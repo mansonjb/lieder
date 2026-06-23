@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+/* Site de contenu SEO public : mode clair fige (palette pensee pour fond clair). */
+:root {
+  color-scheme: light;
+}
+
+@theme {
+  /* Direction "Carte postale claire" (C2) : creme lumineux, teal/aqua frais,
+     accent jaune doux solaire. Pas d'orange/rouge. */
+  --color-ink: #33403e;
+  --color-paper: #fcfaf5;
+  --color-paper-2: #f3efe3;
+  --color-sea: #3fa99b;
+  --color-sea-deep: #2e7d74;
+  --color-marsh: #5e8c7d;
+  --color-sun: #e7b13a;
+  --color-sand: #e7d9b8;
+  --color-muted: #6e746a;
+  --color-line: #e6dfce;
+
+  /* Mappe depuis next/font (voir layout.tsx). Le role "mono" reutilise DM Sans
+     (libelles en capitales espacees, style carte postale). */
+  --font-display: var(--ff-display), Georgia, "Times New Roman", serif;
+  --font-body: var(--ff-body), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--ff-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* DM Serif Display est mono-graisse : on neutralise les graisses synthetiques. */
+.font-display {
+  font-weight: 400 !important;
+  letter-spacing: -0.005em;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Contenu editorial MDX (rendu dans <div class="longform">). */
+.longform {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--color-ink);
+}
+.longform > * + * {
+  margin-top: 1.15em;
+}
+.longform h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.8rem;
+  line-height: 1.15;
+  margin-top: 1.9em;
+  color: var(--color-ink);
+}
+.longform h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.35rem;
+  margin-top: 1.5em;
+  color: var(--color-ink);
+}
+.longform a {
+  color: var(--color-sea-deep);
+  text-decoration: underline;
+  text-decoration-color: var(--color-sun);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+.longform a:hover {
+  color: var(--color-sea);
+}
+.longform ul {
+  list-style: disc;
+  padding-left: 1.3em;
+}
+.longform ol {
+  list-style: decimal;
+  padding-left: 1.3em;
+}
+.longform li + li {
+  margin-top: 0.4em;
+}
+.longform blockquote {
+  border-left: 3px solid var(--color-sea);
+  padding-left: 1em;
+  font-style: italic;
+  color: var(--color-muted);
+}
+.longform strong {
+  font-weight: 500;
+}
+.longform table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.longform th,
+.longform td {
+  border: 1px solid var(--color-line);
+  padding: 0.5rem 0.7rem;
+  text-align: left;
+}
+.longform thead th {
+  background: var(--color-paper-2);
+}
