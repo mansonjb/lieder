@@ -12,6 +12,10 @@ export function heroImage(key: string): string | undefined {
   // ou-dormir/<commune> ou restaurants/<commune> -> image de la commune
   const reuse = key.match(/^(?:ou-dormir|restaurants)\/([^/]+)$/);
   if (reuse && M[`villages/${reuse[1]}`]) return M[`villages/${reuse[1]}`];
+  // plages sans photo propre -> repli sur une belle plage generique
+  if (key.startsWith("plages/")) {
+    return M["plages/le-gros-jonc"] || M["plages/la-conche-des-baleines"] || undefined;
+  }
   return undefined;
 }
 
