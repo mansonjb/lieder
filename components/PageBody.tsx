@@ -368,6 +368,63 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
             </div>
           </div>
 
+          {/* ── CTAs colorés ── */}
+          {(() => {
+            const CTA_ITEMS = [
+              {
+                key: "villages",
+                icon: "🏘",
+                color: "#3fa99b",
+                fr: { label: "Villages", title: "10 communes à découvrir", sub: "Ports, marais salants, maisons blanches aux volets verts" },
+                en: { label: "Villages", title: "10 communes to discover", sub: "Harbours, salt marshes, white houses with green shutters" },
+              },
+              {
+                key: "plages",
+                icon: "🌊",
+                color: "#2e7d74",
+                fr: { label: "Plages", title: "Les plus belles plages de l'île", sub: "Atlantique sauvage, pertuis abrité, eau turquoise" },
+                en: { label: "Beaches", title: "The island's finest beaches", sub: "Wild Atlantic, sheltered coves, turquoise waters" },
+              },
+              {
+                key: "ou-dormir",
+                icon: "🛏",
+                color: "#5e8c7d",
+                fr: { label: "Hébergement", title: "Où dormir sur l'Île de Ré", sub: "Hôtels de charme, gîtes, campings — carte en temps réel" },
+                en: { label: "Stay", title: "Where to sleep on Île de Ré", sub: "Boutique hotels, cottages, campsites — live map" },
+              },
+            ];
+            return (
+              <div className="mt-16 grid gap-4 sm:grid-cols-3">
+                {CTA_ITEMS.map((item) => {
+                  const e = getByKey(item.key);
+                  if (!e) return null;
+                  const t = locale === "fr" ? item.fr : item.en;
+                  return (
+                    <a
+                      key={item.key}
+                      href={pageHref(e, locale)}
+                      className="group relative overflow-hidden rounded-2xl px-6 py-7 text-white transition-transform duration-200 hover:-translate-y-1 hover:shadow-xl"
+                      style={{ background: item.color }}
+                    >
+                      <div
+                        aria-hidden
+                        className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full opacity-[0.12]"
+                        style={{ background: "white" }}
+                      />
+                      <span className="text-2xl">{item.icon}</span>
+                      <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-white/60">{t.label}</p>
+                      <h3 className="mt-2 font-display text-xl leading-snug text-white">{t.title}</h3>
+                      <p className="mt-1.5 text-sm leading-relaxed text-white/75">{t.sub}</p>
+                      <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.14em] text-white/80 transition-[gap] duration-150 group-hover:underline">
+                        {locale === "fr" ? "Voir →" : "See →"}
+                      </p>
+                    </a>
+                  );
+                })}
+              </div>
+            );
+          })()}
+
           {/* ── Editorial body ── */}
           {Body ? (
             <div className="longform mx-auto mt-16 max-w-3xl border-t border-line pt-12">

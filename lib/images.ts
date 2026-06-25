@@ -44,6 +44,17 @@ const OU_DORMIR_GALLERY_KEYS = [
   "villages/ars-en-re",
 ];
 
+// Image de repli pour les silos éditoriaux (quand-venir, séjour, etc.)
+const SILO_FALLBACK: Record<string, string> = {
+  "quand-venir":  "plages/la-conche-des-baleines",
+  "sejour":       "villages/saint-martin-de-re",
+  "preparer":     "villages/ars-en-re",
+  "comparatifs":  "villages/les-portes-en-re",
+  "que-faire":    "plages/le-gros-jonc",
+  "restaurants":  "villages/la-flotte",
+  "gastronomie":  "villages/la-flotte",
+};
+
 /** Image hero d'une page : match direct, sinon repli sur l'image de la commune. */
 export function heroImage(key: string): string | undefined {
   if (M[key]) return M[key];
@@ -66,6 +77,13 @@ export function heroImage(key: string): string | undefined {
   if (key.startsWith("plages/")) {
     return M["plages/le-gros-jonc"] || M["plages/la-conche-des-baleines"] || undefined;
   }
+  // repli silo éditorial (quand-venir, sejour, etc.)
+  const fallback = SILO_FALLBACK[key];
+  if (fallback && M[fallback]) return M[fallback];
+  // sous-pages de silo éditorial (quand-venir/saison-estivale, etc.)
+  const siloRoot = key.split("/")[0];
+  const rootFallback = SILO_FALLBACK[siloRoot];
+  if (rootFallback && M[rootFallback]) return M[rootFallback];
   return undefined;
 }
 
