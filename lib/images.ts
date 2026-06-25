@@ -23,3 +23,18 @@ export function homeHero(): string | undefined {
     Object.values(M)[0]
   );
 }
+
+/** 3-4 images pour le bento grid de la home, dans l'ordre prioritaire. */
+export function bentoImages(): { key: string; src: string }[] {
+  const preferred = [
+    "villages/saint-martin-de-re",
+    "plages/la-conche-des-baleines",
+    "villages/ars-en-re",
+    "villages/la-flotte",
+    "villages/les-portes-en-re",
+    "plages/le-gros-jonc",
+  ];
+  return preferred
+    .map((key) => ({ key, src: M[key] }))
+    .filter((x): x is { key: string; src: string } => Boolean(x.src));
+}

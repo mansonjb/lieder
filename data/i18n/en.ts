@@ -46,10 +46,10 @@ export const UI_EN: Dict = {
   },
   langSwitch: { label: "Language", fr: "Français", en: "English" },
   home: {
-    heroEyebrow: "The complete Île de Ré guide",
-    heroTitle: "Where to stay, what to do and when to visit Île de Ré",
+    heroEyebrow: "Independent guide · Île de Ré",
+    heroTitle: "The island you never truly leave behind",
     heroSub:
-      "The 10 villages, the beaches, the activities, the best tables and the right season. Practical, up-to-date advice for a great stay on the island.",
+      "Ten villages, two coastlines, one unforgettable light. Your independent guide to getting the most out of Île de Ré, whether it's your first visit or your twentieth.",
     explore: "Explore",
     silosHeading: "Start here",
   },

@@ -46,10 +46,10 @@ export const UI_FR: Dict = {
   },
   langSwitch: { label: "Langue", fr: "Français", en: "English" },
   home: {
-    heroEyebrow: "Le guide complet de l'Île de Ré",
-    heroTitle: "Où dormir, quoi faire et quand venir sur l'Île de Ré",
+    heroEyebrow: "Guide indépendant · Île de Ré",
+    heroTitle: "L'île qu'on ne quitte jamais vraiment",
     heroSub:
-      "Les 10 villages, les plages, les activités, les meilleures tables et la bonne saison. Des conseils concrets et à jour pour réussir votre séjour rétais.",
+      "Dix villages, deux côtes, une lumière à part. Ce guide vous aide à tirer le meilleur de l'Île de Ré, que vous y veniez pour la première fois ou que vous y reveniez chaque été.",
     explore: "Explorer",
     silosHeading: "Par où commencer",
   },

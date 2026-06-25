@@ -21,7 +21,10 @@ import { PageCard, SILO_META } from "@/components/PageCard";
 import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
 import { JsonLd } from "@/components/JsonLd";
 import { Hero } from "@/components/Hero";
-import { heroImage, homeHero } from "@/lib/images";
+import { heroImage, homeHero, bentoImages } from "@/lib/images";
+import { BentoGrid, type BentoItem } from "@/components/BentoGrid";
+import { StatBar } from "@/components/StatBar";
+import { CtaBanner } from "@/components/CtaBanner";
 
 type Props = {
   entry: PageEntry;
@@ -207,6 +210,20 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
 
   // ---- Home -----------------------------------------------------------
   if (entry.template === "home") {
+    // Bento grid: build BentoItem array from available images
+    const bento = bentoImages().map(({ key, src }): BentoItem => {
+      const e = getByKey(key);
+      return {
+        src,
+        alt: e ? e.h1[locale] : key,
+        href: e ? pageHref(e, locale) : undefined,
+        label: e ? e.h1[locale] : undefined,
+      };
+    });
+
+    const ouDormirEntry = getByKey("ou-dormir");
+    const ouDormirHref = ouDormirEntry ? pageHref(ouDormirEntry, locale) : "/ou-dormir";
+
     return (
       <>
         <JsonLd
@@ -221,18 +238,17 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
           }}
         />
 
-        {/* Hero */}
-        <section className="mx-auto max-w-6xl px-5 pt-14 pb-6 text-center">
+        {/* ── Hero ── */}
+        <section className="mx-auto max-w-6xl px-5 pt-14 pb-8 text-center">
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-sea-deep">
             {dict.home.heroEyebrow}
           </p>
-          <h1 className="mx-auto mt-4 max-w-3xl font-display text-4xl font-semibold leading-tight text-ink sm:text-5xl">
+          <h1 className="mx-auto mt-4 max-w-3xl font-display text-4xl leading-tight text-ink sm:text-5xl lg:text-6xl">
             {dict.home.heroTitle}
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-muted">
             {dict.home.heroSub}
           </p>
-
           {/* Quick-nav pills */}
           <div className="mx-auto mt-8 flex flex-wrap justify-center gap-2">
             {QUICK_NAV.map(({ key, icon, fr, en }) => {
@@ -252,21 +268,53 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
           </div>
         </section>
 
-        {homeHero() ? (
-          <div className="mx-auto max-w-6xl px-5">
+        {/* ── Stats bar ── */}
+        <div className="mx-auto max-w-6xl px-5">
+          <StatBar locale={locale} />
+        </div>
+
+        {/* ── Bento photo grid ── */}
+        {bento.length >= 2 ? (
+          <div className="mx-auto mt-8 max-w-6xl px-5">
+            <BentoGrid items={bento} />
+          </div>
+        ) : homeHero() ? (
+          <div className="mx-auto mt-8 max-w-6xl px-5">
             <Hero src={homeHero()!} alt="Île de Ré" priority />
           </div>
         ) : null}
 
-        {/* Grouped category sections */}
-        <section className="mx-auto max-w-6xl px-5 pb-20">
-          {HOME_GROUPS.map((group) => {
-            const pages = group.keys
-              .map((k) => getByKey(k))
-              .filter((p): p is NonNullable<typeof p> => p != null);
+        {/* ── Category sections ── */}
+        <section className="mx-auto max-w-6xl px-5 pb-24">
+
+          {/* Group 1: Discover */}
+          {(() => {
+            const g = HOME_GROUPS[0];
+            const pages = g.keys.map((k) => getByKey(k)).filter((p): p is NonNullable<typeof p> => p != null);
             return (
-              <div key={group.fr} className="mt-14">
-                <SectionDivider label={locale === "fr" ? group.fr : group.en} />
+              <div className="mt-16">
+                <SectionDivider label={locale === "fr" ? g.fr : g.en} />
+                <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                  {pages.map((p) => (
+                    <PageCard key={p.key} entry={p} locale={locale} />
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
+
+          {/* ── CTA Banner: accommodation ── */}
+          <div className="mt-14">
+            <CtaBanner href={ouDormirHref} locale={locale} variant="stay" />
+          </div>
+
+          {/* Group 2: Plan */}
+          {(() => {
+            const g = HOME_GROUPS[1];
+            const pages = g.keys.map((k) => getByKey(k)).filter((p): p is NonNullable<typeof p> => p != null);
+            return (
+              <div className="mt-14">
+                <SectionDivider label={locale === "fr" ? g.fr : g.en} />
                 <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {pages.map((p) => (
                     <PageCard key={p.key} entry={p} locale={locale} />
@@ -274,13 +322,40 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
                 </div>
               </div>
             );
-          })}
+          })()}
 
+          {/* ── Signatures: activities strip ── */}
+          <div className="mt-16">
+            <SectionDivider label={locale === "fr" ? "Ce qu'on fait ici" : "What you'll do here"} />
+            <div className="mt-5 flex gap-2.5 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none]">
+              {[
+                { icon: "🚴", fr: "Vélo — 100 km de pistes plates",       en: "Cycling — 100 km of flat paths"     },
+                { icon: "🌊", fr: "Plages atlantiques & pertuis abrité",   en: "Atlantic & sheltered beaches"        },
+                { icon: "🦪", fr: "Huîtres & cabanes ostréicoles",         en: "Oysters & seafood shacks"            },
+                { icon: "🧂", fr: "Fleur de sel des marais salants",       en: "Hand-harvested sea salt"             },
+                { icon: "🔭", fr: "Phare des Baleines — 257 marches",      en: "Phare des Baleines lighthouse"      },
+                { icon: "🦅", fr: "Réserve de Lilleau des Niges",          en: "Lilleau des Niges bird reserve"      },
+                { icon: "⛵", fr: "Voile, kayak & paddle",                 en: "Sailing, kayaking & paddle"          },
+                { icon: "🍷", fr: "Pineau des Charentes & vins de l'île",  en: "Pineau des Charentes & island wines" },
+              ].map((s) => (
+                <div
+                  key={s.fr}
+                  className="flex shrink-0 items-center gap-2.5 rounded-xl border border-line bg-white px-4 py-3 shadow-sm"
+                >
+                  <span className="text-xl">{s.icon}</span>
+                  <span className="whitespace-nowrap text-sm text-ink">{locale === "fr" ? s.fr : s.en}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ── Editorial body ── */}
           {Body ? (
-            <div className="longform mx-auto mt-16 max-w-3xl">
+            <div className="longform mx-auto mt-16 max-w-3xl border-t border-line pt-12">
               <Body />
             </div>
           ) : null}
+
           <AffiliateDisclosure dict={dict} />
         </section>
       </>
