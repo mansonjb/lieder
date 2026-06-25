@@ -2,7 +2,6 @@ import { JsonLd } from "@/components/JsonLd";
 
 export type FaqItem = { q: string; a: string };
 
-// Rend la FAQ + le JSON-LD FAQPage. Ne rend rien si vide (evite le contenu mince).
 export function FaqBlock({
   heading,
   items,
@@ -11,22 +10,32 @@ export function FaqBlock({
   items: FaqItem[];
 }) {
   if (!items || items.length === 0) return null;
+
   return (
     <section className="mt-14">
-      <h2 className="font-display text-2xl font-semibold text-ink">{heading}</h2>
-      <dl className="mt-6 space-y-3">
-        {items.map((it) => (
-          <div
-            key={it.q}
-            className="rounded-2xl border border-line bg-paper p-5"
-          >
-            <dt className="font-display text-lg font-semibold text-ink">
-              {it.q}
-            </dt>
-            <dd className="mt-2 leading-relaxed text-ink/90">{it.a}</dd>
+      {/* Section heading */}
+      <div className="flex items-center gap-4 mb-7">
+        <h2 className="shrink-0 font-mono text-[12px] uppercase tracking-[0.2em] text-sea-deep">
+          {heading}
+        </h2>
+        <div className="h-px flex-1 bg-line" />
+      </div>
+
+      {/* Q&A cards */}
+      <div className="overflow-hidden rounded-2xl border border-line divide-y divide-line">
+        {items.map((it, i) => (
+          <div key={it.q} className="bg-white px-6 py-5">
+            <p className="flex items-start gap-3">
+              <span className="shrink-0 mt-0.5 font-mono text-[10px] font-semibold text-sea-deep leading-tight pt-[3px]">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span className="font-semibold text-[15px] text-ink leading-snug">{it.q}</span>
+            </p>
+            <p className="mt-3 pl-7 text-sm leading-relaxed text-muted">{it.a}</p>
           </div>
         ))}
-      </dl>
+      </div>
+
       <JsonLd
         data={{
           "@context": "https://schema.org",

@@ -1,3 +1,10 @@
+export type AccommodationPick = {
+  name: string;
+  type: { fr: string; en: string };
+  price: string;
+  stars?: number;
+};
+
 export type VillageMeta = {
   distancePontKm: number;
   beachCount: number;
@@ -6,6 +13,7 @@ export type VillageMeta = {
   goodToKnow: { fr: string; en: string }[];
   marketDay: { fr: string; en: string };
   restaurantPicks?: { name: string; tag: { fr: string; en: string }; price: string }[];
+  accommodationPicks?: AccommodationPick[];
 };
 
 export const VILLAGE_META: Record<string, VillageMeta> = {
@@ -27,6 +35,11 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { name: "Le Phare", tag: { fr: "Brasserie vue mer", en: "Sea-view brasserie" }, price: "€€" },
       { name: "La Flambée", tag: { fr: "Poissons & grillades", en: "Fish & grills" }, price: "€€" },
     ],
+    accommodationPicks: [
+      { name: "Camping La Pergola", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
+      { name: "Gîtes du Pertuis", type: { fr: "Locations semaine", en: "Weekly rentals" }, price: "€€" },
+      { name: "Villa du Sablanceaux", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€€" },
+    ],
   },
   "sainte-marie-de-re": {
     distancePontKm: 8,
@@ -42,6 +55,11 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { fr: "Marché quotidien en juillet-août, jeudi et dimanche hors saison ; excellents producteurs locaux", en: "Daily market July-August, Thursday and Sunday off-season; excellent local producers" },
     ],
     marketDay: { fr: "Jeu. & Dim. (été : quotidien)", en: "Thu. & Sun. (summer: daily)" },
+    accommodationPicks: [
+      { name: "Camping Les Grenettes", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
+      { name: "Résidence Les Baleines", type: { fr: "Locations semaine", en: "Weekly rentals" }, price: "€€" },
+      { name: "Maison du Pertuis", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€€" },
+    ],
   },
   "la-flotte": {
     distancePontKm: 13,
@@ -63,6 +81,11 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { name: "Chai Nous Comme Chai Vous", tag: { fr: "Gastronomique créatif", en: "Creative gastronomy" }, price: "€€€" },
       { name: "Le Saint Georges", tag: { fr: "Bistrot de port", en: "Harbour bistrot" }, price: "€€" },
     ],
+    accommodationPicks: [
+      { name: "Hôtel Le Richelieu", type: { fr: "Hôtel face à la mer", en: "Seafront hotel" }, price: "€€€", stars: 4 },
+      { name: "La Villa Rhéa", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€€" },
+      { name: "Camping La Grillotière", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
+    ],
   },
   "saint-martin-de-re": {
     distancePontKm: 15,
@@ -83,6 +106,11 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { name: "La Table d'Olivia", tag: { fr: "Gastronomique", en: "Gastronomic" }, price: "€€€" },
       { name: "Le Tout du Cru", tag: { fr: "Bar à huîtres", en: "Oyster bar" }, price: "€€" },
     ],
+    accommodationPicks: [
+      { name: "Hôtel de Toiras", type: { fr: "Relais & Châteaux 5★", en: "Relais & Châteaux 5★" }, price: "€€€€", stars: 5 },
+      { name: "Les Ateliers de l'Image", type: { fr: "Boutique hôtel", en: "Boutique hotel" }, price: "€€€€" },
+      { name: "Gîtes intra-muros", type: { fr: "Locations centre historique", en: "Historic centre rentals" }, price: "€€€" },
+    ],
   },
   "le-bois-plage-en-re": {
     distancePontKm: 20,
@@ -98,6 +126,11 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { fr: "Les vents d'ouest sont dominants : parfaits pour le kitesurf et le windsurf, moins pour la baignade tranquille", en: "Westerly winds dominate — ideal for kitesurfing and windsurfing, less so for calm swimming" },
     ],
     marketDay: { fr: "Quotidien (été), jeu. & dim.", en: "Daily (summer), Thu. & Sun." },
+    accommodationPicks: [
+      { name: "Camping Yelloh! La Tour des Prises", type: { fr: "Camping 5★", en: "5★ campsite" }, price: "€€", stars: 5 },
+      { name: "Camping Interlude", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
+      { name: "Hôtel L'Océan", type: { fr: "Hôtel village", en: "Village hotel" }, price: "€€", stars: 2 },
+    ],
   },
   "la-couarde-sur-mer": {
     distancePontKm: 24,
@@ -113,6 +146,11 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { fr: "Le marché de La Couarde est réputé pour ses producteurs de légumes bio et ses huîtres", en: "La Couarde's market is known for its organic vegetable growers and fresh oysters" },
     ],
     marketDay: { fr: "Quotidien (été), lun. & ven.", en: "Daily (summer), Mon. & Fri." },
+    accommodationPicks: [
+      { name: "Camping La Grainetière", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
+      { name: "Camping de la Côte", type: { fr: "Camping 4★ bord de mer", en: "4★ seafront campsite" }, price: "€", stars: 4 },
+      { name: "Gîtes & villas", type: { fr: "Locations semaine", en: "Weekly rentals" }, price: "€€-€€€" },
+    ],
   },
   "loix": {
     distancePontKm: 28,
@@ -133,6 +171,10 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { name: "La Route du Sel", tag: { fr: "Bistrot local", en: "Local bistrot" }, price: "€€" },
       { name: "La Cabane du Feneau", tag: { fr: "Cabane ostréicole", en: "Oyster cabin" }, price: "€" },
     ],
+    accommodationPicks: [
+      { name: "Gîtes de la presqu'île", type: { fr: "Locations semaine", en: "Weekly rentals" }, price: "€€" },
+      { name: "Chambres d'hôtes du Fier", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€€" },
+    ],
   },
   "ars-en-re": {
     distancePontKm: 32,
@@ -149,6 +191,11 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { fr: "Le marché du vendredi est l'un des plus animés et des plus locaux de l'île — arrivez avant 9h30", en: "Friday market is one of the island's most local and lively — arrive before 9:30am" },
     ],
     marketDay: { fr: "Vendredi matin", en: "Friday morning" },
+    accommodationPicks: [
+      { name: "Hôtel du Martray", type: { fr: "Hôtel de charme", en: "Boutique hotel" }, price: "€€€", stars: 3 },
+      { name: "Camping de la Monnerie", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
+      { name: "Chambres d'hôtes du village", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€" },
+    ],
   },
   "saint-clement-des-baleines": {
     distancePontKm: 35,
@@ -169,6 +216,11 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { name: "JUSTE Restaurant", tag: { fr: "Fruits de mer & phare", en: "Seafood by the lighthouse" }, price: "€€" },
       { name: "A l'Ouest", tag: { fr: "Crêperie créative (Gault & Millau)", en: "Creative crêperie (Gault & Millau)" }, price: "€" },
     ],
+    accommodationPicks: [
+      { name: "Camping Les Baleines", type: { fr: "Camping 4★ près du phare", en: "4★ campsite near lighthouse" }, price: "€", stars: 4 },
+      { name: "La Maison du Phare", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€€" },
+      { name: "Gîtes du bout de l'île", type: { fr: "Locations semaine", en: "Weekly rentals" }, price: "€€" },
+    ],
   },
   "les-portes-en-re": {
     distancePontKm: 38,
@@ -188,6 +240,11 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { name: "Le Bout du Monde", tag: { fr: "Mouclade & tapas", en: "Mouclade & tapas" }, price: "€€" },
       { name: "Les Huîtres de Trousse-Chemise", tag: { fr: "Dégustation directe", en: "Direct farm tasting" }, price: "€" },
       { name: "Le Bistrot des Portes", tag: { fr: "Ouvert toute l'année", en: "Open year-round" }, price: "€€" },
+    ],
+    accommodationPicks: [
+      { name: "Camping Yelloh! Les Ilates", type: { fr: "Camping 5★ prestige", en: "5★ premium campsite" }, price: "€€", stars: 5 },
+      { name: "Camping de la Monnerie", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
+      { name: "Gîtes & maisons de charme", type: { fr: "Locations semaine", en: "Weekly rentals" }, price: "€€€" },
     ],
   },
 };

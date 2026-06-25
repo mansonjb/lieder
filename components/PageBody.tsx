@@ -32,8 +32,11 @@ import { GoodToKnow } from "@/components/GoodToKnow";
 import { RestaurantHighlights } from "@/components/RestaurantHighlights";
 import { BeachStatBar } from "@/components/BeachStatBar";
 import { BeachTags } from "@/components/BeachTags";
+import { AccommodationHighlights } from "@/components/AccommodationHighlights";
+import { AccommodationTypesGrid } from "@/components/AccommodationTypesGrid";
 import { VILLAGE_META } from "@/data/village-meta";
 import { BEACH_META } from "@/data/beach-meta";
+import { getVillageFaqs, OU_DORMIR_FAQS } from "@/data/faq-content";
 
 type Props = {
   entry: PageEntry;
@@ -472,6 +475,9 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
         {/* Restaurant highlights */}
         <RestaurantHighlights slug={communeSlug} locale={locale} />
 
+        {/* Accommodation highlights */}
+        <AccommodationHighlights slug={communeSlug} locale={locale} />
+
         {/* Sub-pages of this village */}
         {kids.length > 0 ? (
           <section className="mt-12">
@@ -484,7 +490,7 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
           </section>
         ) : null}
 
-        <FaqBlock heading={dict.faq.heading} items={[]} />
+        <FaqBlock heading={dict.faq.heading} items={getVillageFaqs(communeSlug, locale)} />
         <RelatedPages heading={dict.related.heading} entries={related} locale={locale} />
 
         {/* Stay22 accommodation map */}
@@ -582,9 +588,10 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
   }
 
   // ---- Templates "article" (non-village, non-plage) -------------------
-  const showComparison =
-    entry.template === "ou-dormir" || entry.template === "comparatif";
+  const isOuDormir = entry.template === "ou-dormir";
+  const showComparison = isOuDormir || entry.template === "comparatif";
   const showBestTime = entry.template === "quand-venir";
+  const articleFaqs = isOuDormir ? OU_DORMIR_FAQS[locale] : [];
 
   return (
     <article className="mx-auto max-w-3xl px-5 py-10">
@@ -602,11 +609,12 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
           note={dict.bestTime.note}
         />
       ) : null}
+      {isOuDormir ? <AccommodationTypesGrid locale={locale} /> : null}
       {showComparison ? (
         <ComparisonTable heading={dict.comparison.heading} emptyLabel={dict.wip} />
       ) : null}
       {body}
-      <FaqBlock heading={dict.faq.heading} items={[]} />
+      <FaqBlock heading={dict.faq.heading} items={articleFaqs} />
       <RelatedPages
         heading={dict.related.heading}
         entries={related}
