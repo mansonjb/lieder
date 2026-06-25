@@ -30,7 +30,10 @@ import { VillageStatBar } from "@/components/VillageStatBar";
 import { VillageTags } from "@/components/VillageTags";
 import { GoodToKnow } from "@/components/GoodToKnow";
 import { RestaurantHighlights } from "@/components/RestaurantHighlights";
+import { BeachStatBar } from "@/components/BeachStatBar";
+import { BeachTags } from "@/components/BeachTags";
 import { VILLAGE_META } from "@/data/village-meta";
+import { BEACH_META } from "@/data/beach-meta";
 
 type Props = {
   entry: PageEntry;
@@ -496,18 +499,92 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
     );
   }
 
-  // ---- Templates "article" (non-village) -----------------------------
+  // ---- Template "plage" ------------------------------------------------
+  if (entry.template === "plage") {
+    const beachSlug = entry.key.replace("plages/", "");
+    const beachMeta = BEACH_META[beachSlug];
+
+    const communeEntry = beachMeta?.commune ? getByKey(`villages/${beachMeta.commune}`) : null;
+    const rawCommuneName = communeEntry ? communeEntry.h1[locale] : null;
+    const communeName = rawCommuneName?.replace(/^(Visiter |Visit )/i, "") ?? null;
+    const communeHref = communeEntry ? pageHref(communeEntry, locale) : null;
+    const restaurantEntry = beachMeta?.commune ? getByKey(`restaurants/${beachMeta.commune}`) : null;
+    const restaurantHref = restaurantEntry ? pageHref(restaurantEntry, locale) : null;
+
+    const beachStayNote =
+      locale === "fr"
+        ? "Les plages de l'Île de Ré n'accueillent pas d'hébergements directement — les hôtels, gîtes et campings les plus proches sont dans les villages voisins, souvent à cinq minutes à vélo."
+        : "Île de Ré's beaches have no accommodation directly on-site — the nearest hotels, cottages and campsites are in the surrounding villages, usually a five-minute bike ride away.";
+
+    return (
+      <article className="mx-auto max-w-3xl px-5 py-10">
+        <JsonLd data={primaryJsonLd(entry, locale)} />
+        <ArticleHeader entry={entry} locale={locale} dict={dict} />
+
+        {gallery.length >= 2 ? (
+          <PhotoGallery images={gallery} alt={entry.h1[locale]} />
+        ) : hero ? (
+          <Hero src={hero} alt={entry.h1[locale]} priority />
+        ) : null}
+
+        <BeachStatBar slug={beachSlug} locale={locale} />
+        <BeachTags slug={beachSlug} locale={locale} />
+
+        <div className="mt-8">{body}</div>
+
+        {beachMeta?.goodToKnow?.length ? (
+          <GoodToKnow items={beachMeta.goodToKnow} locale={locale} />
+        ) : null}
+
+        {/* Link to nearest village + restaurants */}
+        {(communeHref || restaurantHref) && communeName ? (
+          <div className="my-10 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-line bg-white px-5 py-4">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
+                {locale === "fr" ? "Village le plus proche" : "Nearest village"}
+              </p>
+              <p className="mt-0.5 font-semibold text-ink">{communeName}</p>
+            </div>
+            <div className="flex gap-2">
+              {communeHref && (
+                <a
+                  href={communeHref}
+                  className="rounded-xl border border-line px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-ink hover:border-sea hover:text-sea-deep"
+                >
+                  {locale === "fr" ? "Le village →" : "The village →"}
+                </a>
+              )}
+              {restaurantHref && (
+                <a
+                  href={restaurantHref}
+                  className="rounded-xl bg-sea-deep px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-white hover:bg-sea"
+                >
+                  {locale === "fr" ? "Restaurants →" : "Restaurants →"}
+                </a>
+              )}
+            </div>
+          </div>
+        ) : null}
+
+        <FaqBlock heading={dict.faq.heading} items={[]} />
+        <RelatedPages heading={dict.related.heading} entries={related} locale={locale} />
+
+        {stay ? (
+          <div className="mt-14">
+            <SectionDivider label={locale === "fr" ? "Hébergements à proximité" : "Nearby accommodation"} />
+            <p className="mt-3 text-sm leading-relaxed text-muted">{beachStayNote}</p>
+            <div className="mt-2">{stay}</div>
+          </div>
+        ) : null}
+        {entry.stay22 ? <AffiliateDisclosure dict={dict} /> : null}
+      </article>
+    );
+  }
+
+  // ---- Templates "article" (non-village, non-plage) -------------------
   const showComparison =
     entry.template === "ou-dormir" || entry.template === "comparatif";
   const showBestTime = entry.template === "quand-venir";
-  const isBeach = entry.template === "plage";
-
-  const stayLabel =
-    locale === "fr" ? "Hébergements à proximité" : "Nearby accommodation";
-  const beachStayNote =
-    locale === "fr"
-      ? "Les plages de l'Île de Ré n'accueillent pas d'hébergements directement — les hôtels, gîtes et campings les plus proches sont dans les villages voisins, souvent à cinq minutes à vélo."
-      : "Île de Ré's beaches have no accommodation directly on-site — the nearest hotels, cottages and campsites are in the surrounding villages, usually a five-minute bike ride away.";
 
   return (
     <article className="mx-auto max-w-3xl px-5 py-10">
@@ -537,10 +614,7 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
       />
       {stay ? (
         <div className="mt-14">
-          <SectionDivider label={stayLabel} />
-          {isBeach ? (
-            <p className="mt-3 text-sm leading-relaxed text-muted">{beachStayNote}</p>
-          ) : null}
+          <SectionDivider label={locale === "fr" ? "Hébergements à proximité" : "Nearby accommodation"} />
           <div className="mt-2">{stay}</div>
         </div>
       ) : null}
