@@ -36,6 +36,9 @@ import { AccommodationHighlights } from "@/components/AccommodationHighlights";
 import { AccommodationTypesGrid } from "@/components/AccommodationTypesGrid";
 import { Stay22InlineCta } from "@/components/Stay22InlineCta";
 import { SeasonBand } from "@/components/SeasonBand";
+import { ClimateChart } from "@/components/ClimateChart";
+import { ClimateHighlights } from "@/components/ClimateHighlights";
+import { SeasonGrid } from "@/components/SeasonGrid";
 import { VILLAGE_META } from "@/data/village-meta";
 import { BEACH_META } from "@/data/beach-meta";
 import { getVillageFaqs, OU_DORMIR_FAQS } from "@/data/faq-content";
@@ -654,11 +657,23 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
         <Hero src={hero} alt={entry.h1[locale]} priority />
       ) : null}
       {showBestTime ? (
-        <BestTimeWidget
-          locale={locale}
-          heading={dict.bestTime.heading}
-          note={dict.bestTime.note}
-        />
+        <>
+          {/* Chiffres-clés climatiques (soulignages) */}
+          <ClimateHighlights locale={locale} />
+
+          {/* Graphique températures + ensoleillement */}
+          <ClimateChart locale={locale} />
+
+          {/* Widget mois par saison */}
+          <BestTimeWidget
+            locale={locale}
+            heading={dict.bestTime.heading}
+            note={dict.bestTime.note}
+          />
+
+          {/* Grille des 4 saisons détaillée */}
+          <SeasonGrid locale={locale} />
+        </>
       ) : null}
 
       {/* Bandeau urgence saison sur les pages ou-dormir (hors root) */}
