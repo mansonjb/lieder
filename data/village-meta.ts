@@ -55,6 +55,11 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { fr: "Marché quotidien en juillet-août, jeudi et dimanche hors saison ; excellents producteurs locaux", en: "Daily market July-August, Thursday and Sunday off-season; excellent local producers" },
     ],
     marketDay: { fr: "Jeu. & Dim. (été : quotidien)", en: "Thu. & Sun. (summer: daily)" },
+    restaurantPicks: [
+      { name: "La Suite Sainte-Marie", tag: { fr: "Brasserie tendance vue mer", en: "Trendy sea-view brasserie" }, price: "€€" },
+      { name: "L'Ami Jean",            tag: { fr: "Cuisine du marché",          en: "Market-fresh cooking"       }, price: "€€" },
+      { name: "Le Grain de Sel",       tag: { fr: "Poissons & fruits de mer",   en: "Fish & seafood"             }, price: "€€" },
+    ],
     accommodationPicks: [
       { name: "Camping Les Grenettes", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
       { name: "Résidence Les Baleines", type: { fr: "Locations semaine", en: "Weekly rentals" }, price: "€€" },
@@ -126,6 +131,11 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { fr: "Les vents d'ouest sont dominants : parfaits pour le kitesurf et le windsurf, moins pour la baignade tranquille", en: "Westerly winds dominate — ideal for kitesurfing and windsurfing, less so for calm swimming" },
     ],
     marketDay: { fr: "Quotidien (été), jeu. & dim.", en: "Daily (summer), Thu. & Sun." },
+    restaurantPicks: [
+      { name: "Le Relais du Petit Renard", tag: { fr: "Cuisine régionale & terrasse", en: "Regional cuisine & terrace" }, price: "€€" },
+      { name: "Bistrot de la Grande Plage", tag: { fr: "Plats du jour face à l'océan", en: "Daily specials facing the ocean" }, price: "€€" },
+      { name: "La Cabane du Vigneron",     tag: { fr: "Planches & vins de l'île",    en: "Boards & island wines"          }, price: "€"  },
+    ],
     accommodationPicks: [
       { name: "Camping Yelloh! La Tour des Prises", type: { fr: "Camping 5★", en: "5★ campsite" }, price: "€€", stars: 5 },
       { name: "Camping Interlude", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
@@ -146,6 +156,11 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { fr: "Le marché de La Couarde est réputé pour ses producteurs de légumes bio et ses huîtres", en: "La Couarde's market is known for its organic vegetable growers and fresh oysters" },
     ],
     marketDay: { fr: "Quotidien (été), lun. & ven.", en: "Daily (summer), Mon. & Fri." },
+    restaurantPicks: [
+      { name: "Le Temps de Vivre",  tag: { fr: "Bistronomique & local",      en: "Bistronomy & local produce"  }, price: "€€"  },
+      { name: "La Petite École",    tag: { fr: "Ardoise du marché midi",      en: "Market blackboard at lunch"  }, price: "€€"  },
+      { name: "Bar de La Couarde",  tag: { fr: "Huîtres & apéros en terrasse", en: "Oysters & terrace drinks"  }, price: "€"   },
+    ],
     accommodationPicks: [
       { name: "Camping La Grainetière", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
       { name: "Camping de la Côte", type: { fr: "Camping 4★ bord de mer", en: "4★ seafront campsite" }, price: "€", stars: 4 },
@@ -191,6 +206,11 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { fr: "Le marché du vendredi est l'un des plus animés et des plus locaux de l'île — arrivez avant 9h30", en: "Friday market is one of the island's most local and lively — arrive before 9:30am" },
     ],
     marketDay: { fr: "Vendredi matin", en: "Friday morning" },
+    restaurantPicks: [
+      { name: "Le Martray",          tag: { fr: "Terrasse avec vue sur le port",    en: "Terrace overlooking the harbour"  }, price: "€€"  },
+      { name: "La Baleine Bleue",    tag: { fr: "Huîtres & mouclade d'Ars",        en: "Oysters & Ars mussels"            }, price: "€€"  },
+      { name: "L'Estaminet d'Ars",   tag: { fr: "Bistrot de village, carte courte", en: "Village bistrot, short menu"      }, price: "€"   },
+    ],
     accommodationPicks: [
       { name: "Hôtel du Martray", type: { fr: "Hôtel de charme", en: "Boutique hotel" }, price: "€€€", stars: 3 },
       { name: "Camping de la Monnerie", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
