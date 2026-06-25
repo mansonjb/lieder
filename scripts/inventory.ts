@@ -273,7 +273,7 @@ const SEJOUR: [string, string, string, string, boolean][] = [
 // --- Silo I : Préparer --------------------------------------------------
 const PREPARER: [string, string, string, string, boolean][] = [
   ["acces-pont", "bridge-access", "Accès et pont (péage, tarifs)", "Access and the bridge (toll, prices)", false],
-  ["depuis-la-rochelle", "from-la-rochelle", "Aller à l'Île de Ré depuis La Rochelle", "Getting to Île de Ré from La Rochelle", false],
+  ["depuis-la-rochelle", "from-la-rochelle", "Aller sur l'Île de Ré depuis La Rochelle", "Getting to Île de Ré from La Rochelle", false],
   ["depuis-paris", "from-paris", "Y aller depuis Paris", "Getting there from Paris", false],
   ["en-train", "by-train", "Venir en train (gare de La Rochelle)", "Coming by train (La Rochelle station)", false],
   ["sans-voiture", "car-free", "Visiter l'Île de Ré sans voiture", "Visiting Île de Ré without a car", false],

@@ -588,10 +588,11 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
   }
 
   // ---- Templates "article" (non-village, non-plage) -------------------
-  const isOuDormir = entry.template === "ou-dormir";
-  const showComparison = isOuDormir || entry.template === "comparatif";
+  // ou-dormir root = guide principal ; sub-pages = hotels, campings, etc.
+  const isOuDormirRoot = entry.template === "ou-dormir" && entry.key === "ou-dormir";
+  const showComparison = entry.template === "comparatif";
   const showBestTime = entry.template === "quand-venir";
-  const articleFaqs = isOuDormir ? OU_DORMIR_FAQS[locale] : [];
+  const articleFaqs = isOuDormirRoot ? OU_DORMIR_FAQS[locale] : [];
 
   return (
     <article className="mx-auto max-w-3xl px-5 py-10">
@@ -609,7 +610,8 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
           note={dict.bestTime.note}
         />
       ) : null}
-      {isOuDormir ? <AccommodationTypesGrid locale={locale} /> : null}
+      {/* Guide ou-dormir principal uniquement — pas sur les sous-pages hotels/campings */}
+      {isOuDormirRoot ? <AccommodationTypesGrid locale={locale} /> : null}
       {showComparison ? (
         <ComparisonTable heading={dict.comparison.heading} emptyLabel={dict.wip} />
       ) : null}

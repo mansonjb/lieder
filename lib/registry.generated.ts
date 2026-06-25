@@ -11457,15 +11457,15 @@ export const REGISTRY: PageEntry[] = [
       "en": "plan-your-trip/from-la-rochelle"
     },
     "title": {
-      "fr": "Aller à l'Île de Ré depuis La Rochelle",
+      "fr": "Aller sur l'Île de Ré depuis La Rochelle",
       "en": "Getting to Île de Ré from La Rochelle"
     },
     "h1": {
-      "fr": "Aller à l'Île de Ré depuis La Rochelle",
+      "fr": "Aller sur l'Île de Ré depuis La Rochelle",
       "en": "Getting to Île de Ré from La Rochelle"
     },
     "description": {
-      "fr": "Aller à l'Île de Ré depuis La Rochelle : l'essentiel à savoir et nos conseils pratiques, à jour, pour l'Île de Ré.",
+      "fr": "Aller sur l'Île de Ré depuis La Rochelle : l'essentiel à savoir et nos conseils pratiques, à jour, pour l'Île de Ré.",
       "en": "Getting to Île de Ré from La Rochelle: the essentials and our practical, up-to-date tips for Île de Ré."
     },
     "targetKeyword": {

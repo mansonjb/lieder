@@ -116,7 +116,7 @@ export const OU_DORMIR_FAQS: Record<Locale, FaqItem[]> = {
       a: "Oui, principalement à Saint-Martin-de-Ré : l'Hôtel de Toiras (Relais & Châteaux, 5★) est la référence. La Flotte propose l'Hôtel Le Richelieu (4★, face à la mer). Ces établissements se réservent 6 à 12 mois à l'avance pour l'été.",
     },
     {
-      q: "Peut-on venir à l'Île de Ré sans voiture ?",
+      q: "Peut-on venir sur l'Île de Ré sans voiture ?",
       a: "Oui, et c'est recommandé en été. Le vélo est le meilleur moyen de se déplacer grâce aux 100 km de pistes cyclables. Des locations de vélos sont disponibles dès l'arrivée. Des navettes estivales relient également les villages entre eux.",
     },
   ],
