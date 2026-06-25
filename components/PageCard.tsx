@@ -1,7 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import type { PageEntry } from "@/lib/types";
 import { pageHref } from "@/lib/registry";
+import { heroImage } from "@/lib/images";
 
 export const SILO_META: Record<string, { icon: string; color: string; fr: string; en: string }> = {
   villages:            { icon: "🏘",  color: "#3fa99b", fr: "Villages",      en: "Villages"      },
@@ -30,14 +32,29 @@ export function PageCard({
   const meta = SILO_META[entry.silo] ?? { icon: "✦", color: "#3fa99b", fr: entry.silo, en: entry.silo };
   const siloLabel = locale === "fr" ? meta.fr : meta.en;
   const cta = locale === "fr" ? "Découvrir" : "Explore";
+  const thumb = heroImage(entry.key);
 
   return (
     <Link
       href={pageHref(entry, locale)}
       className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_14px_32px_rgba(46,125,116,0.13)]"
     >
-      {/* Top color stripe */}
-      <div className="h-[3px] w-full shrink-0" style={{ background: meta.color }} />
+      {/* Photo thumbnail (when available) */}
+      {thumb ? (
+        <div className="relative h-32 w-full shrink-0 overflow-hidden bg-sand">
+          <Image
+            src={thumb}
+            alt={entry.h1[locale]}
+            fill
+            sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+        </div>
+      ) : (
+        /* Top color stripe fallback when no photo */
+        <div className="h-[3px] w-full shrink-0" style={{ background: meta.color }} />
+      )}
 
       {/* Icon + category label */}
       <div className="flex items-center gap-2.5 px-5 pt-4 pb-1">

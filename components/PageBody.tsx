@@ -39,6 +39,7 @@ import { SeasonBand } from "@/components/SeasonBand";
 import { ClimateChart } from "@/components/ClimateChart";
 import { ClimateHighlights } from "@/components/ClimateHighlights";
 import { SeasonGrid } from "@/components/SeasonGrid";
+import { VillageMap } from "@/components/VillageMap";
 import { VILLAGE_META } from "@/data/village-meta";
 import { BEACH_META } from "@/data/beach-meta";
 import { getVillageFaqs, OU_DORMIR_FAQS } from "@/data/faq-content";
@@ -473,6 +474,9 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
         ) : hero ? (
           <Hero src={hero} alt={entry.h1[locale]} priority />
         ) : null}
+
+        {/* Island map with all villages */}
+        <VillageMap locale={locale} highlighted={communeSlug} />
 
         {/* Stats bar + characteristic tags */}
         <VillageStatBar slug={communeSlug} locale={locale} />
