@@ -26,6 +26,11 @@ import { BentoGrid, type BentoItem } from "@/components/BentoGrid";
 import { StatBar } from "@/components/StatBar";
 import { CtaBanner } from "@/components/CtaBanner";
 import { PhotoGallery } from "@/components/PhotoGallery";
+import { VillageStatBar } from "@/components/VillageStatBar";
+import { VillageTags } from "@/components/VillageTags";
+import { GoodToKnow } from "@/components/GoodToKnow";
+import { RestaurantHighlights } from "@/components/RestaurantHighlights";
+import { VILLAGE_META } from "@/data/village-meta";
 
 type Props = {
   entry: PageEntry;
@@ -431,12 +436,71 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
     );
   }
 
-  // ---- Templates "article" -------------------------------------------
+  // ---- Template "village" --------------------------------------------
+  if (entry.template === "village") {
+    const communeSlug = entry.key.replace("villages/", "");
+    const villageMeta = VILLAGE_META[communeSlug];
+    const kids = childrenOf(entry.key);
+
+    return (
+      <article className="mx-auto max-w-3xl px-5 py-10">
+        <JsonLd data={primaryJsonLd(entry, locale)} />
+        <ArticleHeader entry={entry} locale={locale} dict={dict} />
+
+        {/* Gallery or single hero */}
+        {gallery.length >= 2 ? (
+          <PhotoGallery images={gallery} alt={entry.h1[locale]} />
+        ) : hero ? (
+          <Hero src={hero} alt={entry.h1[locale]} priority />
+        ) : null}
+
+        {/* Stats bar + characteristic tags */}
+        <VillageStatBar slug={communeSlug} locale={locale} />
+        <VillageTags slug={communeSlug} locale={locale} />
+
+        {/* Main editorial prose */}
+        <div className="mt-8">{body}</div>
+
+        {/* Good to know callout */}
+        {villageMeta?.goodToKnow?.length ? (
+          <GoodToKnow items={villageMeta.goodToKnow} locale={locale} />
+        ) : null}
+
+        {/* Restaurant highlights */}
+        <RestaurantHighlights slug={communeSlug} locale={locale} />
+
+        {/* Sub-pages of this village */}
+        {kids.length > 0 ? (
+          <section className="mt-12">
+            <SectionDivider label={locale === "fr" ? "Dans ce village" : "In this village"} />
+            <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              {kids.map((k) => (
+                <PageCard key={k.key} entry={k} locale={locale} />
+              ))}
+            </div>
+          </section>
+        ) : null}
+
+        <FaqBlock heading={dict.faq.heading} items={[]} />
+        <RelatedPages heading={dict.related.heading} entries={related} locale={locale} />
+
+        {/* Stay22 accommodation map */}
+        {stay ? (
+          <div className="mt-14">
+            <SectionDivider label={locale === "fr" ? "Hébergements à proximité" : "Nearby accommodation"} />
+            <div className="mt-2">{stay}</div>
+          </div>
+        ) : null}
+        {entry.stay22 ? <AffiliateDisclosure dict={dict} /> : null}
+      </article>
+    );
+  }
+
+  // ---- Templates "article" (non-village) -----------------------------
   const showComparison =
     entry.template === "ou-dormir" || entry.template === "comparatif";
   const showBestTime = entry.template === "quand-venir";
   const isBeach = entry.template === "plage";
-  const kids = entry.template === "village" ? childrenOf(entry.key) : [];
 
   const stayLabel =
     locale === "fr" ? "Hébergements à proximité" : "Nearby accommodation";
@@ -465,16 +529,6 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
         <ComparisonTable heading={dict.comparison.heading} emptyLabel={dict.wip} />
       ) : null}
       {body}
-      {kids.length > 0 ? (
-        <section className="mt-12">
-          <SectionDivider label={locale === "fr" ? "Dans ce village" : "In this village"} />
-          <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            {kids.map((k) => (
-              <PageCard key={k.key} entry={k} locale={locale} />
-            ))}
-          </div>
-        </section>
-      ) : null}
       <FaqBlock heading={dict.faq.heading} items={[]} />
       <RelatedPages
         heading={dict.related.heading}
