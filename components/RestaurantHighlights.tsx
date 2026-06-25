@@ -1,9 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import { VILLAGE_META } from "@/data/village-meta";
 import { getByKey, pageHref } from "@/lib/registry";
+import { galleryImages, heroImage } from "@/lib/images";
 
-// Slug village → nom d'affichage pour les recherches
 const VILLAGE_NAMES: Record<string, string> = {
   "rivedoux-plage":             "Rivedoux-Plage",
   "sainte-marie-de-re":        "Sainte-Marie-de-Ré",
@@ -35,6 +36,12 @@ export function RestaurantHighlights({
   const heading = locale === "fr" ? "Où manger" : "Where to eat";
   const linkLabel = locale === "fr" ? "Voir toutes les adresses →" : "See all recommendations →";
 
+  // Galerie de photos du village pour illustrer chaque restaurant différemment
+  const gallery = [
+    heroImage(`villages/${slug}`),
+    ...galleryImages(`villages/${slug}`).slice(1),
+  ].filter(Boolean) as string[];
+
   return (
     <div className="my-10">
       <div className="flex items-center justify-between gap-4 mb-5">
@@ -56,31 +63,48 @@ export function RestaurantHighlights({
 
       <div className="grid gap-3 sm:grid-cols-3">
         {picks.map((r, i) => {
+          const img = gallery[i % gallery.length];
           const mapsHref = `https://www.google.com/maps/search/${encodeURIComponent(`${r.name}, ${villageName}, Île de Ré`)}`;
           return (
             <article
               key={i}
-              className="relative rounded-xl border border-line bg-white px-4 py-3 flex flex-col gap-1 transition-colors hover:border-sea/40"
+              className="relative rounded-xl border border-line bg-white overflow-hidden flex flex-col transition-colors hover:border-sea/40"
             >
               {/* Stretched link vers Google Maps */}
               <a
                 href={mapsHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="absolute inset-0 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-sea"
+                className="absolute inset-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-sea"
                 aria-label={r.name}
               />
 
-              <div className="flex items-start justify-between gap-2">
-                <span className="font-semibold text-ink text-sm leading-snug">{r.name}</span>
-                <span className="shrink-0 font-mono text-[10px] text-muted">{r.price}</span>
+              {/* Thumbnail photo */}
+              {img && (
+                <div className="relative h-32 w-full shrink-0">
+                  <Image
+                    src={img}
+                    alt={villageName}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                    className="object-cover"
+                  />
+                </div>
+              )}
+
+              {/* Texte */}
+              <div className="px-4 py-3 flex flex-col gap-1">
+                <div className="flex items-start justify-between gap-2">
+                  <span className="font-semibold text-ink text-sm leading-snug">{r.name}</span>
+                  <span className="shrink-0 font-mono text-[10px] text-muted">{r.price}</span>
+                </div>
+                <span className="text-xs text-muted leading-relaxed">
+                  {locale === "fr" ? r.tag.fr : r.tag.en}
+                </span>
+                <p className="relative z-10 mt-2 text-[10px] font-mono text-sea-deep">
+                  {locale === "fr" ? "Voir sur Maps →" : "View on Maps →"}
+                </p>
               </div>
-              <span className="text-xs text-muted leading-relaxed">
-                {locale === "fr" ? r.tag.fr : r.tag.en}
-              </span>
-              <p className="relative z-10 mt-2 text-[10px] font-mono text-sea-deep">
-                {locale === "fr" ? "Voir sur Maps →" : "View on Maps →"}
-              </p>
             </article>
           );
         })}
