@@ -19,6 +19,11 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   turbopack: { root: process.cwd() },
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "images.unsplash.com" },
+    ],
+  },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },

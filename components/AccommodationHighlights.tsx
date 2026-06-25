@@ -1,31 +1,41 @@
-import Link from "next/link";
+import Image from "next/image";
 import type { Locale } from "@/lib/i18n";
 import { VILLAGE_META } from "@/data/village-meta";
 import { getByKey, pageHref } from "@/lib/registry";
 import { stay22Url } from "@/lib/affiliates/stay22";
 import { AffiliateLink } from "@/components/AffiliateLink";
 
+// Unsplash photo IDs by accommodation category
+const PHOTO_MAP: [RegExp, string][] = [
+  [/relais.*châteaux|palace|5★.*hôtel|hôtel.*5★/i, "photo-1542314831-068cd1dbfeeb"], // luxury hotel exterior
+  [/boutique|charme|4★.*hôtel|hôtel.*4★|3★.*hôtel|hôtel.*3★/i, "photo-1566665797739-1674de7a421a"], // boutique hotel room
+  [/hôtel|hotel|relais|village hotel/i, "photo-1551882547-ff40c63fe5fa"], // classic hotel
+  [/chambre.*hôtes|b&b|bed.*breakfast/i, "photo-1586023492125-27b2c045efd7"], // cozy B&B bedroom
+  [/5★.*camp|camp.*5★|prestige|glamping/i, "photo-1510798831971-661eb04b3739"], // glamping
+  [/camping|camp/i, "photo-1504280390367-361c6d9f38f4"], // campsite
+  [/gîte|location|villa|maison/i, "photo-1499793983690-e29da59ef1c2"], // cottage / rental
+];
+
+function typePhoto(frLabel: string): string {
+  for (const [re, id] of PHOTO_MAP) {
+    if (re.test(frLabel)) return `https://images.unsplash.com/${id}?w=600&h=380&fit=crop&auto=format&q=80`;
+  }
+  return `https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&h=380&fit=crop&auto=format&q=80`;
+}
+
 function Stars({ count }: { count: number }) {
   return (
-    <span className="text-[11px] text-amber-400" aria-label={`${count} étoiles`}>
-      {"★".repeat(count)}{"☆".repeat(Math.max(0, 5 - count))}
+    <span className="text-[12px] text-amber-300" aria-label={`${count} étoiles`}>
+      {"★".repeat(count)}
     </span>
   );
 }
 
 const TYPE_COLORS: [string, string][] = [
-  ["hôtel", "#0f766e"],
-  ["hotel", "#0f766e"],
-  ["relais", "#0f766e"],
-  ["gîte", "#4d7c0f"],
-  ["location", "#4d7c0f"],
-  ["villa", "#4d7c0f"],
-  ["maison", "#4d7c0f"],
-  ["camping", "#b45309"],
-  ["glamping", "#b45309"],
-  ["lodge", "#b45309"],
-  ["chambre", "#7c3aed"],
-  ["bed", "#7c3aed"],
+  ["hôtel", "#0f766e"], ["hotel", "#0f766e"], ["relais", "#0f766e"],
+  ["gîte", "#4d7c0f"], ["location", "#4d7c0f"], ["villa", "#4d7c0f"], ["maison", "#4d7c0f"],
+  ["camping", "#b45309"], ["glamping", "#b45309"],
+  ["chambre", "#7c3aed"], ["bed", "#7c3aed"],
 ];
 
 function typeColor(label: string): string {
@@ -60,7 +70,7 @@ export function AccommodationHighlights({
 
   const heading = locale === "fr" ? "Où dormir" : "Where to stay";
   const linkLabel = locale === "fr" ? "Tous les hébergements →" : "All accommodation →";
-  const reserveLabel = locale === "fr" ? "Voir les dispo →" : "Check availability →";
+  const reserveLabel = locale === "fr" ? "Voir les disponibilités" : "Check availability";
 
   return (
     <div className="my-10">
@@ -72,60 +82,83 @@ export function AccommodationHighlights({
           <div className="h-px flex-1 bg-line" />
         </div>
         {ouDormirHref && (
-          <Link
+          <a
             href={ouDormirHref}
             className="shrink-0 font-mono text-[10px] uppercase tracking-[0.14em] text-sea-deep hover:underline"
           >
             {linkLabel}
-          </Link>
+          </a>
         )}
       </div>
 
-      <div className="grid gap-3 sm:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-3">
         {picks.map((r, i) => {
           const typeLabel = locale === "fr" ? r.type.fr : r.type.en;
-          const color = typeColor(typeLabel);
-          const emoji = typeEmoji(typeLabel);
+          const frLabel = r.type.fr;
+          const color = typeColor(frLabel);
+          const emoji = typeEmoji(frLabel);
+          const photo = typePhoto(frLabel);
           const s22href = stay22Url(`${r.name}, Île de Ré, France`);
+
           return (
             <article
               key={i}
-              className="relative rounded-xl border border-line bg-white overflow-hidden flex flex-col transition-colors hover:border-sea/40"
+              className="group relative overflow-hidden rounded-2xl border border-line bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(0,0,0,0.10)]"
             >
               <AffiliateLink
                 network="stay22"
                 context="accom-highlights"
                 href={s22href}
-                className="absolute inset-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-sea"
+                className="absolute inset-0 z-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-sea"
                 ariaLabel={r.name}
               >
                 <span className="sr-only">{r.name}</span>
               </AffiliateLink>
 
-              {/* Bande type + emoji */}
-              <div
-                className="flex items-center gap-2 px-4 py-2.5"
-                style={{ background: color + "18", borderBottom: `2px solid ${color}22` }}
-              >
-                <span className="text-lg">{emoji}</span>
-                <span
-                  className="font-mono text-[10px] uppercase tracking-[0.16em]"
-                  style={{ color }}
-                >
-                  {typeLabel}
-                </span>
-                <span className="ml-auto font-mono text-[10px]" style={{ color }}>{r.price}</span>
+              {/* Photo */}
+              <div className="relative h-44 w-full overflow-hidden bg-sand">
+                <Image
+                  src={photo}
+                  alt={r.name}
+                  fill
+                  sizes="(max-width:640px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                {/* Gradient + stars + price overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between px-4 pb-3">
+                  {r.stars ? <Stars count={r.stars} /> : <span />}
+                  <span className="rounded-full bg-white/15 px-2.5 py-0.5 font-mono text-[11px] font-semibold text-white backdrop-blur-sm">
+                    {r.price}
+                  </span>
+                </div>
               </div>
 
-              {/* Texte */}
-              <div className="px-4 py-3 flex flex-col gap-1 flex-1">
-                <div className="flex items-start justify-between gap-2">
-                  <span className="font-semibold text-ink text-sm leading-snug">{r.name}</span>
-                  {r.stars ? <Stars count={r.stars} /> : null}
+              {/* Card body */}
+              <div className="px-4 pt-3.5 pb-4 flex flex-col gap-2">
+                {/* Type badge */}
+                <div className="flex items-center gap-1.5">
+                  <span className="text-sm">{emoji}</span>
+                  <span
+                    className="font-mono text-[10px] uppercase tracking-[0.15em]"
+                    style={{ color }}
+                  >
+                    {typeLabel}
+                  </span>
                 </div>
-                <p className="relative z-10 mt-auto pt-2 text-[10px] font-mono text-sea-deep">
-                  {reserveLabel}
-                </p>
+
+                {/* Name */}
+                <p className="font-semibold text-ink leading-snug text-sm">{r.name}</p>
+
+                {/* CTA */}
+                <div className="mt-1">
+                  <span
+                    className="inline-flex items-center gap-1 rounded-lg px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-white transition-opacity group-hover:opacity-90"
+                    style={{ background: color }}
+                  >
+                    {reserveLabel} →
+                  </span>
+                </div>
               </div>
             </article>
           );
