@@ -1,9 +1,7 @@
 import manifest from "@/data/images.generated.json";
 
-// Manifeste genere par `npm run photos` : { "villages/<slug>": "/images/...webp" }.
 const M = manifest as Record<string, string>;
 
-// Pour les pages ou-dormir, on choisit l'image de la commune la plus représentative du type
 const OU_DORMIR_HERO: Record<string, string> = {
   "ou-dormir":               "villages/saint-martin-de-re",
   "ou-dormir/hotels":        "villages/saint-martin-de-re",
@@ -36,7 +34,6 @@ const OU_DORMIR_HERO: Record<string, string> = {
   "ou-dormir/ete-2027":      "plages/le-gros-jonc",
 };
 
-// Pour le guide ou-dormir racine, une galerie de 4 villages représentatifs
 const OU_DORMIR_GALLERY_KEYS = [
   "villages/saint-martin-de-re",
   "villages/la-flotte",
@@ -44,50 +41,93 @@ const OU_DORMIR_GALLERY_KEYS = [
   "villages/ars-en-re",
 ];
 
-// Image de repli pour les silos éditoriaux (quand-venir, séjour, etc.)
-const SILO_FALLBACK: Record<string, string> = {
-  "quand-venir":  "plages/la-conche-des-baleines",
-  "sejour":       "villages/saint-martin-de-re",
-  "preparer":     "villages/ars-en-re",
-  "comparatifs":  "villages/les-portes-en-re",
-  "que-faire":    "plages/le-gros-jonc",
-  "restaurants":  "villages/la-flotte",
-  "gastronomie":  "villages/la-flotte",
+// Plage la plus proche par village — utilisée pour les sous-pages "plages" du village
+const VILLAGE_BEACH: Record<string, string> = {
+  "rivedoux-plage":             "plages/sablanceaux",
+  "sainte-marie-de-re":         "plages/les-grenettes",
+  "la-flotte":                  "plages/la-cible",
+  "saint-martin-de-re":         "plages/les-gollandieres",
+  "le-bois-plage-en-re":        "plages/le-gros-jonc",
+  "la-couarde-sur-mer":         "plages/le-peu-ragot",
+  "loix":                       "plages/le-boutillon",
+  "ars-en-re":                  "plages/la-loge",
+  "saint-clement-des-baleines": "plages/la-conche-des-baleines",
+  "les-portes-en-re":           "plages/gros-jonc-les-portes",
 };
 
-/** Image hero d'une page : match direct, sinon repli sur l'image de la commune. */
+// Index de galerie (-2/-3/-4) par sous-silo pour les pages de village
+const VILLAGE_SILO_OFFSET: Record<string, number> = {
+  "que-faire":  2,
+  "ou-dormir":  3,
+  "restaurants": 4,
+};
+
+// Image de repli pour les silos racines et éditoriaux
+const SILO_FALLBACK: Record<string, string> = {
+  "villages":    "villages/saint-martin-de-re",
+  "plages":      "plages/la-conche-des-baleines",
+  "que-faire":   "plages/le-gros-jonc",
+  "restaurants": "villages/la-flotte",
+  "gastronomie": "villages/la-flotte",
+  "quand-venir": "plages/la-conche-des-baleines",
+  "sejour":      "villages/saint-martin-de-re",
+  "preparer":    "villages/ars-en-re",
+  "comparatifs": "villages/les-portes-en-re",
+};
+
+/** Image hero d'une page : match direct, variété par silo pour les sous-pages de village. */
 export function heroImage(key: string): string | undefined {
   if (M[key]) return M[key];
-  // sous-pages de village (villages/<c>/...) -> image de la commune
+
+  // Sous-pages de village (villages/<commune>/<silo>) → image variée par type
+  const villageSub = key.match(/^villages\/([^/]+)\/(.+)$/);
+  if (villageSub) {
+    const commune = villageSub[1];
+    const subSilo = villageSub[2];
+    if (subSilo === "plages") {
+      const beach = VILLAGE_BEACH[commune];
+      return (beach && M[beach]) || M[`villages/${commune}`];
+    }
+    const offset = VILLAGE_SILO_OFFSET[subSilo];
+    if (offset) return M[`villages/${commune}-${offset}`] || M[`villages/${commune}`];
+    return M[`villages/${commune}`];
+  }
+
+  // Page de village (villages/<commune>)
   const village = key.match(/^villages\/([^/]+)/);
   if (village && M[`villages/${village[1]}`]) return M[`villages/${village[1]}`];
-  // ou-dormir/* -> image thématique ou commune
+
+  // ou-dormir/* → image thématique ou commune
   if (key.startsWith("ou-dormir")) {
     const mapped = OU_DORMIR_HERO[key];
     if (mapped && M[mapped]) return M[mapped];
-    // ou-dormir/<commune> -> image de la commune
     const slug = key.replace("ou-dormir/", "");
     if (M[`villages/${slug}`]) return M[`villages/${slug}`];
     return M["villages/saint-martin-de-re"];
   }
-  // restaurants/<commune> -> image de la commune
+
+  // restaurants/<commune> → image de la commune
   const reuse = key.match(/^restaurants\/([^/]+)$/);
   if (reuse && M[`villages/${reuse[1]}`]) return M[`villages/${reuse[1]}`];
-  // plages sans photo propre -> repli sur une belle plage generique
+
+  // plages sans photo propre → repli générique
   if (key.startsWith("plages/")) {
     return M["plages/le-gros-jonc"] || M["plages/la-conche-des-baleines"] || undefined;
   }
-  // repli silo éditorial (quand-venir, sejour, etc.)
+
+  // Silo racine ou éditorial
   const fallback = SILO_FALLBACK[key];
   if (fallback && M[fallback]) return M[fallback];
-  // sous-pages de silo éditorial (quand-venir/saison-estivale, etc.)
+
+  // Sous-pages de silos éditoriaux (quand-venir/saison-estivale, etc.)
   const siloRoot = key.split("/")[0];
   const rootFallback = SILO_FALLBACK[siloRoot];
   if (rootFallback && M[rootFallback]) return M[rootFallback];
+
   return undefined;
 }
 
-/** Toutes les images disponibles pour une page (hero + gallery). */
+/** Toutes les images disponibles pour une page (hero + galerie). */
 export function galleryImages(key: string): string[] {
   const result: string[] = [];
   if (M[key]) result.push(M[key]);
@@ -95,14 +135,13 @@ export function galleryImages(key: string): string[] {
     const k = `${key}-${i}`;
     if (M[k]) result.push(M[k]);
   }
-  // Page ou-dormir racine -> galerie de villages pour rendre la page visuelle
   if (!result.length && key === "ou-dormir") {
     return OU_DORMIR_GALLERY_KEYS.map((k) => M[k]).filter(Boolean) as string[];
   }
   return result;
 }
 
-/** Image d'accueil (repli sur une image emblematique disponible). */
+/** Image d'accueil (repli sur une image emblématique disponible). */
 export function homeHero(): string | undefined {
   return (
     M["villages/saint-martin-de-re"] ||
