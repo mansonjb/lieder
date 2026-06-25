@@ -34,6 +34,8 @@ import { BeachStatBar } from "@/components/BeachStatBar";
 import { BeachTags } from "@/components/BeachTags";
 import { AccommodationHighlights } from "@/components/AccommodationHighlights";
 import { AccommodationTypesGrid } from "@/components/AccommodationTypesGrid";
+import { Stay22InlineCta } from "@/components/Stay22InlineCta";
+import { SeasonBand } from "@/components/SeasonBand";
 import { VILLAGE_META } from "@/data/village-meta";
 import { BEACH_META } from "@/data/beach-meta";
 import { getVillageFaqs, OU_DORMIR_FAQS } from "@/data/faq-content";
@@ -429,6 +431,15 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
           </section>
         ) : null}
 
+        <Stay22InlineCta
+          locale={locale}
+          address="Île de Ré, France"
+          label={{ fr: "Trouver un hébergement sur l'Île de Ré", en: "Find accommodation on Île de Ré" }}
+          sub={{ fr: "Hôtels, gîtes, campings — carte temps réel", en: "Hotels, cottages, campsites — live map" }}
+          variant="card"
+          campaign={`pillar-${entry.silo}`}
+        />
+
         {stay ? (
           <div className="mt-14">
             <SectionDivider label={locale === "fr" ? "Trouver un hébergement" : "Find accommodation"} />
@@ -464,6 +475,16 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
         <VillageStatBar slug={communeSlug} locale={locale} />
         <VillageTags slug={communeSlug} locale={locale} />
 
+        {/* CTA réservation inline */}
+        <Stay22InlineCta
+          locale={locale}
+          address={`${entry.h1[locale].replace(/^Visiter /, "")}, Île de Ré, France`}
+          label={{ fr: `Réserver à ${entry.h1[locale].replace(/^Visiter /, "")}`, en: `Book accommodation in ${entry.h1[locale].replace(/^Visit /, "")}` }}
+          sub={{ fr: "Hôtels, gîtes, campings disponibles", en: "Hotels, cottages, campsites available" }}
+          variant="band"
+          campaign={`village-top-${communeSlug}`}
+        />
+
         {/* Main editorial prose */}
         <div className="mt-8">{body}</div>
 
@@ -477,6 +498,15 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
 
         {/* Accommodation highlights */}
         <AccommodationHighlights slug={communeSlug} locale={locale} />
+
+        {/* CTA bandeau après les hébergements */}
+        <Stay22InlineCta
+          locale={locale}
+          address={`${entry.h1[locale].replace(/^Visiter /, "")}, Île de Ré, France`}
+          label={{ fr: "Comparer tous les hébergements disponibles", en: "Compare all available accommodation" }}
+          variant="band"
+          campaign={`village-bottom-${communeSlug}`}
+        />
 
         {/* Sub-pages of this village */}
         {kids.length > 0 ? (
@@ -493,9 +523,16 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
         <FaqBlock heading={dict.faq.heading} items={getVillageFaqs(communeSlug, locale)} />
         <RelatedPages heading={dict.related.heading} entries={related} locale={locale} />
 
+        {/* Grand CTA avant la carte */}
+        {entry.stay22 ? (
+          <div className="mt-10">
+            <CtaBanner href={`/ou-dormir/${communeSlug}`} locale={locale} variant="stay" />
+          </div>
+        ) : null}
+
         {/* Stay22 accommodation map */}
         {stay ? (
-          <div className="mt-14">
+          <div className="mt-10">
             <SectionDivider label={locale === "fr" ? "Hébergements à proximité" : "Nearby accommodation"} />
             <div className="mt-2">{stay}</div>
           </div>
@@ -536,6 +573,17 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
         <BeachStatBar slug={beachSlug} locale={locale} />
         <BeachTags slug={beachSlug} locale={locale} />
 
+        {/* CTA hébergement près de la plage */}
+        {communeName && (
+          <Stay22InlineCta
+            locale={locale}
+            address={`${communeName}, Île de Ré, France`}
+            label={{ fr: `Dormir à 5 min de la plage — ${communeName}`, en: `Stay 5 min from the beach — ${communeName}` }}
+            variant="band"
+            campaign={`beach-top-${beachSlug}`}
+          />
+        )}
+
         <div className="mt-8">{body}</div>
 
         {beachMeta?.goodToKnow?.length ? (
@@ -575,8 +623,10 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
         <FaqBlock heading={dict.faq.heading} items={[]} />
         <RelatedPages heading={dict.related.heading} entries={related} locale={locale} />
 
+        <SeasonBand locale={locale} />
+
         {stay ? (
-          <div className="mt-14">
+          <div className="mt-6">
             <SectionDivider label={locale === "fr" ? "Hébergements à proximité" : "Nearby accommodation"} />
             <p className="mt-3 text-sm leading-relaxed text-muted">{beachStayNote}</p>
             <div className="mt-2">{stay}</div>
@@ -610,20 +660,49 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
           note={dict.bestTime.note}
         />
       ) : null}
+
+      {/* Bandeau urgence saison sur les pages ou-dormir (hors root) */}
+      {entry.template === "ou-dormir" && !isOuDormirRoot ? (
+        <SeasonBand locale={locale} />
+      ) : null}
+
       {/* Guide ou-dormir principal uniquement — pas sur les sous-pages hotels/campings */}
       {isOuDormirRoot ? <AccommodationTypesGrid locale={locale} /> : null}
+
       {showComparison ? (
         <ComparisonTable heading={dict.comparison.heading} emptyLabel={dict.wip} />
       ) : null}
+
       {body}
+
+      {/* CTA Stay22 après le contenu éditorial */}
+      {entry.stay22 ? (
+        <Stay22InlineCta
+          locale={locale}
+          address={entry.mapLabel?.[locale] ?? "Île de Ré, France"}
+          label={{ fr: "Voir les hébergements disponibles", en: "Browse available accommodation" }}
+          sub={{ fr: "Carte interactive mise à jour en temps réel", en: "Interactive map updated in real time" }}
+          variant="card"
+          campaign={`article-mid-${entry.key}`}
+        />
+      ) : null}
+
       <FaqBlock heading={dict.faq.heading} items={articleFaqs} />
       <RelatedPages
         heading={dict.related.heading}
         entries={related}
         locale={locale}
       />
+
+      {/* Grand CTA avant la carte Stay22 */}
+      {entry.stay22 && !isOuDormirRoot ? (
+        <div className="mt-8">
+          <CtaBanner href="/ou-dormir" locale={locale} variant="stay" />
+        </div>
+      ) : null}
+
       {stay ? (
-        <div className="mt-14">
+        <div className="mt-8">
           <SectionDivider label={locale === "fr" ? "Hébergements à proximité" : "Nearby accommodation"} />
           <div className="mt-2">{stay}</div>
         </div>
