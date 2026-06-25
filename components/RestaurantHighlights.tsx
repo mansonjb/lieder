@@ -1,9 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import { VILLAGE_META } from "@/data/village-meta";
 import { getByKey, pageHref } from "@/lib/registry";
-import { galleryImages, heroImage } from "@/lib/images";
 
 const VILLAGE_NAMES: Record<string, string> = {
   "rivedoux-plage":             "Rivedoux-Plage",
@@ -17,6 +15,34 @@ const VILLAGE_NAMES: Record<string, string> = {
   "saint-clement-des-baleines":"Saint-Clément-des-Baleines",
   "les-portes-en-re":          "Les Portes-en-Ré",
 };
+
+// Couleur d'ambiance par type de cuisine (déduit du tag)
+const CUISINE_COLORS: [string, string][] = [
+  ["huîtres", "#0e7490"],
+  ["poisson", "#0e7490"],
+  ["fruits de mer", "#0e7490"],
+  ["seafood", "#0e7490"],
+  ["fish", "#0e7490"],
+  ["oyster", "#0e7490"],
+  ["bistro", "#92400e"],
+  ["bistrono", "#92400e"],
+  ["brasserie", "#92400e"],
+  ["planches", "#b45309"],
+  ["tapas", "#b45309"],
+  ["cabane", "#065f46"],
+  ["terrasse", "#065f46"],
+  ["marché", "#4d7c0f"],
+  ["market", "#4d7c0f"],
+  ["ardoise", "#7c3aed"],
+];
+
+function cuisineColor(tag: string): string {
+  const t = tag.toLowerCase();
+  for (const [kw, color] of CUISINE_COLORS) {
+    if (t.includes(kw)) return color;
+  }
+  return "#5e8c7d";
+}
 
 export function RestaurantHighlights({
   slug,
@@ -35,12 +61,6 @@ export function RestaurantHighlights({
   const villageName = VILLAGE_NAMES[slug] ?? slug;
   const heading = locale === "fr" ? "Où manger" : "Where to eat";
   const linkLabel = locale === "fr" ? "Voir toutes les adresses →" : "See all recommendations →";
-
-  // Galerie de photos du village pour illustrer chaque restaurant différemment
-  const gallery = [
-    heroImage(`villages/${slug}`),
-    ...galleryImages(`villages/${slug}`).slice(1),
-  ].filter(Boolean) as string[];
 
   return (
     <div className="my-10">
@@ -63,7 +83,8 @@ export function RestaurantHighlights({
 
       <div className="grid gap-3 sm:grid-cols-3">
         {picks.map((r, i) => {
-          const img = gallery[i % gallery.length];
+          const tag = locale === "fr" ? r.tag.fr : r.tag.en;
+          const color = cuisineColor(tag);
           const mapsHref = `https://www.google.com/maps/search/${encodeURIComponent(`${r.name}, ${villageName}, Île de Ré`)}`;
           return (
             <article
@@ -79,29 +100,25 @@ export function RestaurantHighlights({
                 aria-label={r.name}
               />
 
-              {/* Thumbnail photo */}
-              {img && (
-                <div className="relative h-32 w-full shrink-0">
-                  <Image
-                    src={img}
-                    alt={villageName}
-                    fill
-                    sizes="(max-width: 640px) 100vw, 33vw"
-                    className="object-cover"
-                  />
-                </div>
-              )}
+              {/* Bande colorée + emoji catégorie */}
+              <div
+                className="flex items-center gap-2 px-4 py-2.5"
+                style={{ background: color + "18", borderBottom: `2px solid ${color}22` }}
+              >
+                <span className="text-lg">🍽</span>
+                <span
+                  className="font-mono text-[10px] uppercase tracking-[0.16em]"
+                  style={{ color }}
+                >
+                  {tag}
+                </span>
+                <span className="ml-auto font-mono text-[10px]" style={{ color }}>{r.price}</span>
+              </div>
 
               {/* Texte */}
-              <div className="px-4 py-3 flex flex-col gap-1">
-                <div className="flex items-start justify-between gap-2">
-                  <span className="font-semibold text-ink text-sm leading-snug">{r.name}</span>
-                  <span className="shrink-0 font-mono text-[10px] text-muted">{r.price}</span>
-                </div>
-                <span className="text-xs text-muted leading-relaxed">
-                  {locale === "fr" ? r.tag.fr : r.tag.en}
-                </span>
-                <p className="relative z-10 mt-2 text-[10px] font-mono text-sea-deep">
+              <div className="px-4 py-3 flex flex-col gap-1 flex-1">
+                <span className="font-semibold text-ink text-sm leading-snug">{r.name}</span>
+                <p className="relative z-10 mt-auto pt-2 text-[10px] font-mono text-sea-deep">
                   {locale === "fr" ? "Voir sur Maps →" : "View on Maps →"}
                 </p>
               </div>
