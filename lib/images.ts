@@ -15,6 +15,17 @@ export function heroImage(key: string): string | undefined {
   return undefined;
 }
 
+/** Toutes les images disponibles pour une page (hero + gallery). */
+export function galleryImages(key: string): string[] {
+  const result: string[] = [];
+  if (M[key]) result.push(M[key]);
+  for (let i = 2; i <= 4; i++) {
+    const k = `${key}-${i}`;
+    if (M[k]) result.push(M[k]);
+  }
+  return result;
+}
+
 /** Image d'accueil (repli sur une image emblematique disponible). */
 export function homeHero(): string | undefined {
   return (

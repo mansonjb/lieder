@@ -143,13 +143,19 @@ for (let i = 0; i < todo.length; i += 10) {
     });
     if (best < 0) continue;
     const p = batch[best];
+    const allImgs: string[] = ((r.imageUrls as string[] | undefined) || [img]).filter(Boolean).slice(0, 4);
     try {
-      const rel = `images/${p.kind}/${p.slug}.webp`;
-      await downloadPhoto(img, path.join(ROOT, "public", rel));
-      manifest[`${p.kind}/${p.slug}`] = `/${rel}`;
+      for (let idx = 0; idx < allImgs.length; idx++) {
+        const suffix = idx === 0 ? "" : `-${idx + 1}`;
+        const rel = `images/${p.kind}/${p.slug}${suffix}.webp`;
+        const outPath = path.join(ROOT, "public", rel);
+        if (!FORCE && existsSync(outPath)) continue;
+        await downloadPhoto(allImgs[idx], outPath);
+        manifest[`${p.kind}/${p.slug}${suffix}`] = `/${rel}`;
+        await sleep(60);
+      }
       used.add(best);
       filled++;
-      await sleep(60);
     } catch {
       console.log(`  ${p.slug}: erreur telechargement`);
     }

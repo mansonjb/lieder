@@ -21,10 +21,11 @@ import { PageCard, SILO_META } from "@/components/PageCard";
 import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
 import { JsonLd } from "@/components/JsonLd";
 import { Hero } from "@/components/Hero";
-import { heroImage, homeHero, bentoImages } from "@/lib/images";
+import { heroImage, homeHero, bentoImages, galleryImages } from "@/lib/images";
 import { BentoGrid, type BentoItem } from "@/components/BentoGrid";
 import { StatBar } from "@/components/StatBar";
 import { CtaBanner } from "@/components/CtaBanner";
+import { PhotoGallery } from "@/components/PhotoGallery";
 
 type Props = {
   entry: PageEntry;
@@ -195,6 +196,7 @@ function primaryJsonLd(entry: PageEntry, locale: Locale): object {
 export function PageBody({ entry, locale, dict, Body }: Props) {
   const related = relatedOf(entry);
   const hero = heroImage(entry.key);
+  const gallery = galleryImages(entry.key);
   const mapLabel =
     entry.mapLabel?.[locale] ?? (locale === "fr" ? "l'Île de Ré" : "Île de Ré");
   const stay =
@@ -447,7 +449,11 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
     <article className="mx-auto max-w-3xl px-5 py-10">
       <JsonLd data={primaryJsonLd(entry, locale)} />
       <ArticleHeader entry={entry} locale={locale} dict={dict} />
-      {hero ? <Hero src={hero} alt={entry.h1[locale]} priority /> : null}
+      {gallery.length >= 2 ? (
+        <PhotoGallery images={gallery} alt={entry.h1[locale]} />
+      ) : hero ? (
+        <Hero src={hero} alt={entry.h1[locale]} priority />
+      ) : null}
       {showBestTime ? (
         <BestTimeWidget
           locale={locale}
