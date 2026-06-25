@@ -403,7 +403,6 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
 
         <p className="mb-8 text-lg leading-relaxed text-muted">{entry.description[locale]}</p>
 
-        {stay}
         {body}
 
         {kids.length > 0 ? (
@@ -417,6 +416,13 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
           </section>
         ) : null}
 
+        {stay ? (
+          <div className="mt-14">
+            <SectionDivider label={locale === "fr" ? "Trouver un hébergement" : "Find accommodation"} />
+            <div className="mt-2">{stay}</div>
+          </div>
+        ) : null}
+
         <FaqBlock heading={dict.faq.heading} items={[]} />
         {entry.stay22 ? <AffiliateDisclosure dict={dict} /> : null}
       </div>
@@ -424,13 +430,18 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
   }
 
   // ---- Templates "article" -------------------------------------------
-  const mapHigh = ["ou-dormir", "comparatif", "quand-venir", "sejour"].includes(
-    entry.template,
-  );
   const showComparison =
     entry.template === "ou-dormir" || entry.template === "comparatif";
   const showBestTime = entry.template === "quand-venir";
+  const isBeach = entry.template === "plage";
   const kids = entry.template === "village" ? childrenOf(entry.key) : [];
+
+  const stayLabel =
+    locale === "fr" ? "Hébergements à proximité" : "Nearby accommodation";
+  const beachStayNote =
+    locale === "fr"
+      ? "Les plages de l'Île de Ré n'accueillent pas d'hébergements directement — les hôtels, gîtes et campings les plus proches sont dans les villages voisins, souvent à cinq minutes à vélo."
+      : "Île de Ré's beaches have no accommodation directly on-site — the nearest hotels, cottages and campsites are in the surrounding villages, usually a five-minute bike ride away.";
 
   return (
     <article className="mx-auto max-w-3xl px-5 py-10">
@@ -444,12 +455,10 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
           note={dict.bestTime.note}
         />
       ) : null}
-      {mapHigh ? stay : null}
       {showComparison ? (
         <ComparisonTable heading={dict.comparison.heading} emptyLabel={dict.wip} />
       ) : null}
       {body}
-      {!mapHigh ? stay : null}
       {kids.length > 0 ? (
         <section className="mt-12">
           <SectionDivider label={locale === "fr" ? "Dans ce village" : "In this village"} />
@@ -466,6 +475,15 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
         entries={related}
         locale={locale}
       />
+      {stay ? (
+        <div className="mt-14">
+          <SectionDivider label={stayLabel} />
+          {isBeach ? (
+            <p className="mt-3 text-sm leading-relaxed text-muted">{beachStayNote}</p>
+          ) : null}
+          <div className="mt-2">{stay}</div>
+        </div>
+      ) : null}
       {entry.stay22 ? <AffiliateDisclosure dict={dict} /> : null}
     </article>
   );
