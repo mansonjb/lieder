@@ -5,15 +5,19 @@ import { getByKey, pageHref } from "@/lib/registry";
 import { stay22Url } from "@/lib/affiliates/stay22";
 import { AffiliateLink } from "@/components/AffiliateLink";
 
-// Unsplash photo IDs by accommodation category
+// Photos scrapées via Apify Google Places (vraies photos des établissements)
+import hotelImagesRaw from "@/data/hotel-images.generated.json";
+const hotelImages = hotelImagesRaw as Record<string, string>;
+
+// Fallback Unsplash par catégorie si pas de photo scrapée
 const PHOTO_MAP: [RegExp, string][] = [
-  [/relais.*châteaux|palace|5★.*hôtel|hôtel.*5★/i, "photo-1542314831-068cd1dbfeeb"], // luxury hotel exterior
-  [/boutique|charme|4★.*hôtel|hôtel.*4★|3★.*hôtel|hôtel.*3★/i, "photo-1566665797739-1674de7a421a"], // boutique hotel room
-  [/hôtel|hotel|relais|village hotel/i, "photo-1551882547-ff40c63fe5fa"], // classic hotel
-  [/chambre.*hôtes|b&b|bed.*breakfast/i, "photo-1586023492125-27b2c045efd7"], // cozy B&B bedroom
-  [/5★.*camp|camp.*5★|prestige|glamping/i, "photo-1510798831971-661eb04b3739"], // glamping
-  [/camping|camp/i, "photo-1504280390367-361c6d9f38f4"], // campsite
-  [/gîte|location|villa|maison/i, "photo-1499793983690-e29da59ef1c2"], // cottage / rental
+  [/relais.*châteaux|palace|5★.*hôtel|hôtel.*5★/i, "photo-1542314831-068cd1dbfeeb"],
+  [/boutique|charme|4★.*hôtel|hôtel.*4★|3★.*hôtel|hôtel.*3★/i, "photo-1566665797739-1674de7a421a"],
+  [/hôtel|hotel|relais/i, "photo-1551882547-ff40c63fe5fa"],
+  [/chambre.*hôtes|b&b|bed.*breakfast/i, "photo-1586023492125-27b2c045efd7"],
+  [/5★.*camp|camp.*5★|prestige|glamping/i, "photo-1510798831971-661eb04b3739"],
+  [/camping|camp/i, "photo-1504280390367-361c6d9f38f4"],
+  [/gîte|location|villa|maison/i, "photo-1499793983690-e29da59ef1c2"],
 ];
 
 function typePhoto(frLabel: string): string {
@@ -97,7 +101,8 @@ export function AccommodationHighlights({
           const frLabel = r.type.fr;
           const color = typeColor(frLabel);
           const emoji = typeEmoji(frLabel);
-          const photo = typePhoto(frLabel);
+          const scraped = hotelImages[`${slug}-${i}`];
+          const photo = scraped || typePhoto(frLabel);
           const s22href = stay22Url(`${r.name}, Île de Ré, France`);
 
           return (
