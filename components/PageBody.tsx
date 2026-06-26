@@ -509,19 +509,17 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
                   {bento.slice(0, 6).map((img, i) => (
                     <div
                       key={img.key}
-                      className="relative h-40 w-48 shrink-0 overflow-hidden rounded-2xl sm:h-44 sm:w-auto"
+                      className="group relative h-40 w-48 shrink-0 overflow-hidden rounded-2xl shadow-sm sm:h-44 sm:w-auto"
                       style={i === 0 ? { gridColumn: "span 2" } : {}}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={img.src}
                         alt=""
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                         loading={i < 2 ? "eager" : "lazy"}
                       />
-                      {i === 0 && (
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                      )}
+                      <div className={`absolute inset-0 bg-gradient-to-t to-transparent ${i === 0 ? "from-black/45" : "from-black/20"}`} />
                     </div>
                   ))}
                 </div>
