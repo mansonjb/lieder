@@ -19,6 +19,8 @@ export type BeachMeta = {
   baignade: "surveillee" | "libre";
   tags: BeachTag[];
   goodToKnow: { fr: string; en: string }[];
+  lat: number;
+  lng: number;
 };
 
 // Labels display pour les tags
@@ -40,6 +42,7 @@ export const TAG_LABELS: Record<BeachTag, { fr: string; en: string; icon: string
 export const BEACH_META: Record<string, BeachMeta> = {
   "sablanceaux": {
     commune: "rivedoux-plage",
+    lat: 46.1534, lng: -1.2778,
     exposition: "pertuis",
     longueur: "600 m",
     baignade: "libre",
@@ -52,6 +55,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "rivedoux-nord": {
     commune: "rivedoux-plage",
+    lat: 46.1612, lng: -1.2742,
     exposition: "pertuis",
     longueur: "400 m",
     baignade: "surveillee",
@@ -64,6 +68,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "rivedoux-sud": {
     commune: "rivedoux-plage",
+    lat: 46.1573, lng: -1.2724,
     exposition: "pertuis",
     longueur: "300 m",
     baignade: "libre",
@@ -76,6 +81,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "les-grenettes": {
     commune: "sainte-marie-de-re",
+    lat: 46.1564, lng: -1.2984,
     exposition: "pertuis",
     longueur: "1,2 km",
     baignade: "surveillee",
@@ -88,6 +94,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "la-clouse": {
     commune: "sainte-marie-de-re",
+    lat: 46.1633, lng: -1.3075,
     exposition: "pertuis",
     longueur: "400 m",
     baignade: "libre",
@@ -100,6 +107,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "arnerault": {
     commune: "sainte-marie-de-re",
+    lat: 46.1693, lng: -1.3178,
     exposition: "pertuis",
     longueur: "600 m",
     baignade: "libre",
@@ -112,6 +120,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "la-cible": {
     commune: "la-flotte",
+    lat: 46.1805, lng: -1.3208,
     exposition: "pertuis",
     longueur: "700 m",
     baignade: "libre",
@@ -124,6 +133,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "les-gollandieres": {
     commune: "le-bois-plage-en-re",
+    lat: 46.2051, lng: -1.3638,
     exposition: "atlantique",
     longueur: "1,2 km",
     baignade: "surveillee",
@@ -136,6 +146,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "le-gros-jonc": {
     commune: "le-bois-plage-en-re",
+    lat: 46.1776, lng: -1.4078,
     exposition: "atlantique",
     longueur: "1,5 km",
     baignade: "surveillee",
@@ -148,6 +159,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "le-petit-sergent": {
     commune: "le-bois-plage-en-re",
+    lat: 46.1810, lng: -1.4147,
     exposition: "atlantique",
     longueur: "500 m",
     baignade: "libre",
@@ -160,6 +172,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "le-peu-ragot": {
     commune: "la-couarde-sur-mer",
+    lat: 46.1938, lng: -1.4275,
     exposition: "atlantique",
     longueur: "800 m",
     baignade: "libre",
@@ -172,6 +185,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "les-prises": {
     commune: "la-couarde-sur-mer",
+    lat: 46.1988, lng: -1.4445,
     exposition: "atlantique",
     longueur: "600 m",
     baignade: "libre",
@@ -184,6 +198,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "la-pergola": {
     commune: "la-couarde-sur-mer",
+    lat: 46.1965, lng: -1.4389,
     exposition: "atlantique",
     longueur: "500 m",
     baignade: "libre",
@@ -196,6 +211,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "la-benaie": {
     commune: "la-couarde-sur-mer",
+    lat: 46.1952, lng: -1.4230,
     exposition: "pertuis",
     longueur: "700 m",
     baignade: "libre",
@@ -208,6 +224,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "le-goisil": {
     commune: "la-couarde-sur-mer",
+    lat: 46.2158, lng: -1.4356,
     exposition: "pertuis",
     longueur: "500 m",
     baignade: "libre",
@@ -220,6 +237,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "la-salee": {
     commune: "loix",
+    lat: 46.2322, lng: -1.4387,
     exposition: "pertuis",
     longueur: "400 m",
     baignade: "libre",
@@ -232,6 +250,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "le-boutillon": {
     commune: "loix",
+    lat: 46.2377, lng: -1.4440,
     exposition: "pertuis",
     longueur: "500 m",
     baignade: "libre",
@@ -244,6 +263,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "la-loge": {
     commune: "loix",
+    lat: 46.2251, lng: -1.4516,
     exposition: "pertuis",
     longueur: "400 m",
     baignade: "libre",
@@ -256,6 +276,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "le-marchais": {
     commune: "ars-en-re",
+    lat: 46.2145, lng: -1.4873,
     exposition: "pertuis",
     longueur: "600 m",
     baignade: "libre",
@@ -268,6 +289,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "le-lizay": {
     commune: "ars-en-re",
+    lat: 46.2173, lng: -1.5238,
     exposition: "atlantique",
     longueur: "1 km",
     baignade: "libre",
@@ -280,6 +302,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "le-petit-bec": {
     commune: "ars-en-re",
+    lat: 46.2296, lng: -1.5621,
     exposition: "atlantique",
     longueur: "400 m",
     baignade: "libre",
@@ -292,6 +315,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "la-redoute": {
     commune: "ars-en-re",
+    lat: 46.2225, lng: -1.5097,
     exposition: "atlantique",
     longueur: "1 km",
     baignade: "libre",
@@ -304,6 +328,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "gros-jonc-les-portes": {
     commune: "les-portes-en-re",
+    lat: 46.2402, lng: -1.7710,
     exposition: "atlantique",
     longueur: "1,2 km",
     baignade: "libre",
@@ -316,6 +341,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "la-patache": {
     commune: "les-portes-en-re",
+    lat: 46.2490, lng: -1.7890,
     exposition: "atlantique",
     longueur: "800 m",
     baignade: "libre",
@@ -328,6 +354,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "le-grouin": {
     commune: "les-portes-en-re",
+    lat: 46.2507, lng: -1.8023,
     exposition: "atlantique",
     longueur: "600 m",
     baignade: "libre",
@@ -340,6 +367,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "trousse-chemise": {
     commune: "saint-clement-des-baleines",
+    lat: 46.2265, lng: -1.6472,
     exposition: "atlantique",
     longueur: "1,5 km",
     baignade: "libre",
@@ -352,6 +380,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "plage-du-phare": {
     commune: "saint-clement-des-baleines",
+    lat: 46.2354, lng: -1.6762,
     exposition: "atlantique",
     longueur: "400 m",
     baignade: "libre",
@@ -364,6 +393,7 @@ export const BEACH_META: Record<string, BeachMeta> = {
   },
   "la-conche-des-baleines": {
     commune: "saint-clement-des-baleines",
+    lat: 46.2330, lng: -1.6642,
     exposition: "atlantique",
     longueur: "3 km",
     baignade: "libre",

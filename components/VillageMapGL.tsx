@@ -9,6 +9,7 @@ const STYLE_URL = "https://tiles.openfreemap.org/styles/positron";
 
 const ISLAND_CENTER: [number, number] = [-1.53, 46.192];
 const ISLAND_ZOOM = 10.8;
+const VILLAGE_ZOOM = 13;
 
 type Village = {
   slug: string;
@@ -44,11 +45,17 @@ export function VillageMapGL({
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
 
+    const focusedVillage = highlighted ? VILLAGES.find((v) => v.slug === highlighted) : null;
+    const initialCenter: [number, number] = focusedVillage
+      ? [focusedVillage.lng, focusedVillage.lat]
+      : ISLAND_CENTER;
+    const initialZoom = focusedVillage ? VILLAGE_ZOOM : ISLAND_ZOOM;
+
     const map = new maplibregl.Map({
       container: containerRef.current,
       style: STYLE_URL,
-      center: ISLAND_CENTER,
-      zoom: ISLAND_ZOOM,
+      center: initialCenter,
+      zoom: initialZoom,
       minZoom: 9,
       maxZoom: 14,
       attributionControl: { compact: true },

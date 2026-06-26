@@ -480,11 +480,85 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
 
         <p className="mb-8 text-lg leading-relaxed text-muted">{entry.description[locale]}</p>
 
+        {/* Villages pillar: photo strip + island facts + map */}
+        {entry.key === "villages" && (() => {
+          const bento = bentoImages();
+          const ISLAND_STATS = locale === "fr"
+            ? [
+                { value: "30 km", label: "d'est en ouest" },
+                { value: "10", label: "communes" },
+                { value: "73 km²", label: "superficie" },
+                { value: "85 km", label: "pistes cyclables" },
+                { value: "28", label: "plages" },
+                { value: "2,9 km", label: "le pont de Ré" },
+              ]
+            : [
+                { value: "30 km", label: "east to west" },
+                { value: "10", label: "communes" },
+                { value: "73 km²", label: "surface area" },
+                { value: "85 km", label: "cycle paths" },
+                { value: "28", label: "beaches" },
+                { value: "1.8 mi", label: "the bridge" },
+              ];
+          const siloColor = meta?.color ?? "#0f766e";
+          return (
+            <>
+              {/* Photo strip */}
+              {bento.length > 0 && (
+                <div className="mb-8 -mx-5 flex gap-2 overflow-x-auto px-5 pb-1 sm:mx-0 sm:grid sm:grid-cols-3 sm:overflow-visible sm:px-0">
+                  {bento.slice(0, 6).map((img, i) => (
+                    <div
+                      key={img.key}
+                      className="relative h-40 w-48 shrink-0 overflow-hidden rounded-2xl sm:h-44 sm:w-auto"
+                      style={i === 0 ? { gridColumn: "span 2" } : {}}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={img.src}
+                        alt=""
+                        className="h-full w-full object-cover"
+                        loading={i < 2 ? "eager" : "lazy"}
+                      />
+                      {i === 0 && (
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Island stats band */}
+              <div className="mb-8 overflow-hidden rounded-2xl border border-line bg-white shadow-sm">
+                <div className="h-1 w-full" style={{ background: siloColor }} />
+                <div className="grid grid-cols-3 divide-x divide-y divide-line sm:grid-cols-6 sm:divide-y-0">
+                  {ISLAND_STATS.map((s, i) => (
+                    <div key={i} className="px-4 py-4">
+                      <p className="font-display text-2xl font-bold" style={{ color: siloColor }}>
+                        {s.value}
+                      </p>
+                      <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+                        {s.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Interactive map with all 10 village pins */}
+              <VillageMap locale={locale} />
+            </>
+          );
+        })()}
+
         {body}
 
         {kids.length > 0 ? (
           <section className="mt-12">
-            <SectionDivider label={locale === "fr" ? "Dans cette rubrique" : "In this section"} />
+            <SectionDivider label={
+              entry.key === "villages"
+                ? (locale === "fr" ? "Les 10 villages" : "The 10 villages")
+                : (locale === "fr" ? "Dans cette rubrique" : "In this section")
+            } />
             <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {kids.map((k) => (
                 <PageCard key={k.key} entry={k} locale={locale} />

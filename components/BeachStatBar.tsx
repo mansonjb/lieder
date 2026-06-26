@@ -29,6 +29,9 @@ export function BeachStatBar({ slug, locale }: { slug: string; locale: Locale })
       highlight: meta.baignade === "surveillee" },
   ];
 
+  const mapsUrl = `https://maps.google.com/?q=${meta.lat},${meta.lng}`;
+  const mapsLabel = locale === "fr" ? "Itinéraire Google Maps" : "Google Maps directions";
+
   return (
     <div className="mt-6 overflow-hidden rounded-2xl border border-line bg-white">
       <div className="grid grid-cols-2 gap-px bg-line sm:grid-cols-4">
@@ -43,6 +46,18 @@ export function BeachStatBar({ slug, locale }: { slug: string; locale: Locale })
             </p>
           </div>
         ))}
+      </div>
+      <div className="border-t border-line px-4 py-2.5">
+        <a
+          href={mapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 font-mono text-[11px] text-sea-deep hover:underline"
+        >
+          <span>📍</span>
+          <span>{mapsLabel}</span>
+          <span className="text-[10px] text-muted">↗</span>
+        </a>
       </div>
     </div>
   );
