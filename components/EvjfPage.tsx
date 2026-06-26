@@ -92,41 +92,41 @@ export function EvjfPage({
         {
           icon: "🚲",
           title: "Un terrain de jeu à échelle humaine",
-          desc: "85 km de pistes cyclables sans voiture ni feux rouges. Louer des vélos pour tout le groupe est l'activité EVJF numéro 1 sur l'île — accessible à toutes, inoubliable pour toutes.",
+          desc: "85 km de pistes cyclables sans voiture ni feux rouges. Louer des vélos pour tout le groupe est l'activité EVJF numéro 1 sur l'île, accessible à toutes, inoubliable pour toutes.",
         },
         {
           icon: "🌊",
           title: "La mer, les plages et la liberté",
-          desc: "25 plages, une eau qui monte à 22 °C en été, et une côte sauvage à l'ouest. Paddle, surf, kayak de mer — tout est là, sans avoir à se déplacer loin.",
+          desc: "25 plages, une eau qui monte à 22 °C en été, et une côte sauvage à l'ouest. Paddle, surf, kayak de mer : tout est là, sans avoir à se déplacer loin.",
         },
         {
           icon: "🏡",
           title: "Des maisons pour se retrouver",
-          desc: "Grandes villas avec piscine et jardin pour 8 à 15 personnes. C'est autour de la table de la maison qu'un vrai EVJF se construit — apéro rosé, playlist, fous rires.",
+          desc: "Grandes villas avec piscine et jardin pour 8 à 15 personnes. C'est autour de la table de la maison qu'un vrai EVJF se construit : apéro rosé, playlist, fous rires.",
         },
       ]
     : [
         {
           icon: "🚲",
           title: "A playground at human scale",
-          desc: "85 km of car-free cycle paths. Renting bikes for the whole group is the number-one hen party activity on the island — accessible for everyone, unforgettable for all.",
+          desc: "85 km of car-free cycle paths. Renting bikes for the whole group is the number-one hen party activity on the island, accessible for everyone, unforgettable for all.",
         },
         {
           icon: "🌊",
           title: "The sea, the beaches, the freedom",
-          desc: "25 beaches, sea reaching 22 °C in summer, and a wild west coast. Paddleboarding, surfing, kayaking — all within easy reach, no long drives needed.",
+          desc: "25 beaches, sea reaching 22 °C in summer, and a wild west coast. Paddleboarding, surfing, kayaking: all within easy reach, no long drives needed.",
         },
         {
           icon: "🏡",
           title: "Houses made for togetherness",
-          desc: "Large villas with pools and gardens for 8–15 people. It's around the kitchen table that a hen party really comes alive — rosé, playlists, laughter.",
+          desc: "Large villas with pools and gardens for 8–15 people. It's around the kitchen table that a hen party really comes alive: rosé, playlists, laughter.",
         },
       ];
 
   const timeline = fr
     ? [
         { icon: "🏡", time: "Vendredi 18h", title: "Arrivée & installation", desc: "Prise de possession de la maison, déballage, premier apéro rosé en terrasse." },
-        { icon: "🍽", time: "Vendredi soir", title: "Dîner maison ou restaurant", desc: "Barbecue dans le jardin ou table réservée à Saint-Martin — prévoir à l'avance en saison." },
+        { icon: "🍽", time: "Vendredi soir", title: "Dîner maison ou restaurant", desc: "Barbecue dans le jardin ou table réservée à Saint-Martin. Prévoir à l'avance en saison." },
         { icon: "🚲", time: "Samedi 9h", title: "Balade vélo côtière", desc: "Location groupée, balade vers les salines d'Ars ou la pointe des Baleines. 15–25 € / personne." },
         { icon: "🦪", time: "Samedi 12h30", title: "Déjeuner aux huîtres", desc: "Cabane ostréicole à La Flotte ou au Bois-Plage : huîtres + muscadet + pain-beurre, les pieds dans le sable." },
         { icon: "🏄", time: "Samedi après-midi", title: "Activité nautique au choix", desc: "Paddle en groupe (moniteur inclus), cours de surf collectif, ou kayak de mer côtier." },
@@ -135,7 +135,7 @@ export function EvjfPage({
       ]
     : [
         { icon: "🏡", time: "Friday 6pm", title: "Arrival & settling in", desc: "Settle into the house, unpack, and start with a first rosé apéritif on the terrace." },
-        { icon: "🍽", time: "Friday evening", title: "Dinner in or out", desc: "BBQ in the garden or a table reserved at a Saint-Martin restaurant — book ahead in peak season." },
+        { icon: "🍽", time: "Friday evening", title: "Dinner in or out", desc: "BBQ in the garden or a table reserved at a Saint-Martin restaurant. Book ahead in peak season." },
         { icon: "🚲", time: "Saturday 9am", title: "Coastal bike ride", desc: "Group rental, ride to the salt marshes of Ars or Pointe des Baleines. €15–25 per person." },
         { icon: "🦪", time: "Saturday 12:30pm", title: "Oyster lunch", desc: "Oyster shack at La Flotte or Le Bois-Plage: oysters + Muscadet + bread, feet in the sand." },
         { icon: "🏄", time: "Saturday afternoon", title: "Water activity of choice", desc: "Group paddleboarding (instructor included), group surf lesson, or coastal sea kayaking." },
@@ -225,11 +225,11 @@ export function EvjfPage({
     ? [
         {
           q: "Combien de personnes pour un EVJF à l'Île de Ré ?",
-          a: "Les groupes de 6 à 15 personnes s'y sentent comme chez elles. Au-delà de 15, trouver une seule maison et circuler ensemble devient complexe — mieux vaut réserver deux maisons proches l'une de l'autre.",
+          a: "Les groupes de 6 à 15 personnes s'y sentent comme chez elles. Au-delà de 15, trouver une seule maison et circuler ensemble devient complexe. Mieux vaut réserver deux maisons proches l'une de l'autre.",
         },
         {
           q: "Quand réserver pour ne pas rater la bonne maison ?",
-          a: "Pour juillet-août, réservez 6 à 9 mois à l'avance — les meilleures villas avec piscine partent dès janvier. Pour mai, juin ou septembre, 3 à 4 mois suffisent généralement. Ces mois sont aussi bien moins chers et moins fréquentés.",
+          a: "Pour juillet-août, réservez 6 à 9 mois à l'avance : les meilleures villas avec piscine partent dès janvier. Pour mai, juin ou septembre, 3 à 4 mois suffisent généralement. Ces mois sont aussi bien moins chers et moins fréquentés.",
         },
         {
           q: "Comment rejoindre l'Île de Ré sans voiture ?",
@@ -245,17 +245,17 @@ export function EvjfPage({
         },
         {
           q: "Est-ce possible de faire un EVJF en dehors de l'été ?",
-          a: "Absolument — mai, juin et septembre sont les meilleures périodes : moins chères, moins fréquentées, et la météo est souvent très agréable. En dehors de l'été, vérifiez que vos activités nautiques sont encore ouvertes : certains prestataires ferment mi-octobre.",
+          a: "Absolument : mai, juin et septembre sont les meilleures périodes : moins chères, moins fréquentées, et la météo est souvent très agréable. En dehors de l'été, vérifiez que vos activités nautiques sont encore ouvertes : certains prestataires ferment mi-octobre.",
         },
       ]
     : [
         {
           q: "How many people for a hen party on Île de Ré?",
-          a: "Groups of 6 to 15 feel right at home. Beyond 15, finding a single house and moving around together becomes tricky — better to book two nearby houses.",
+          a: "Groups of 6 to 15 feel right at home. Beyond 15, finding a single house and moving around together becomes tricky. Better to book two nearby houses.",
         },
         {
           q: "When should we book to get the best house?",
-          a: "For July–August, book 6–9 months ahead — the best pool villas go by January. For May, June or September, 3–4 months is usually enough. Those months are also considerably cheaper and quieter.",
+          a: "For July–August, book 6–9 months ahead, the best pool villas go by January. For May, June or September, 3–4 months is usually enough. Those months are also considerably cheaper and quieter.",
         },
         {
           q: "How do we get to Île de Ré without a car?",
@@ -271,7 +271,7 @@ export function EvjfPage({
         },
         {
           q: "Can we do a hen party outside summer?",
-          a: "Absolutely — May, June and September are the best months: cheaper, quieter, and the weather is usually lovely. Outside summer, check that water activities are still running: some operators close from mid-October.",
+          a: "Absolutely: May, June and September are the best months: cheaper, quieter, and the weather is usually lovely. Outside summer, check that water activities are still running: some operators close from mid-October.",
         },
       ];
 
@@ -296,8 +296,8 @@ export function EvjfPage({
         </p>
         <h1 className="font-display text-3xl font-bold leading-tight text-white sm:text-[2.4rem]">
           {fr
-            ? <>L'Île de Ré —<br />l'EVJF qu'elle n'oubliera pas</>
-            : <>Île de Ré —<br />the hen party she won't forget</>}
+            ? <>L'Île de Ré :<br />l'EVJF qu'elle n'oubliera pas</>
+            : <>Île de Ré :<br />the hen party she won't forget</>}
         </h1>
         <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-white/85">
           {fr
@@ -419,8 +419,8 @@ export function EvjfPage({
             en: "Find your hen party house on Île de Ré",
           }}
           sub={{
-            fr: "Maisons de groupe, villas avec piscine, gîtes — carte interactive mise à jour en temps réel",
-            en: "Group houses, pool villas, gîtes — interactive map updated in real time",
+            fr: "Maisons de groupe, villas avec piscine, gîtes, carte interactive mise à jour en temps réel",
+            en: "Group houses, pool villas, gîtes, interactive map updated in real time",
           }}
           variant="card"
           campaign="evjf-mid"
@@ -471,8 +471,8 @@ export function EvjfPage({
         </p>
         <p className="mt-2 text-sm leading-relaxed text-ink/80">
           {fr
-            ? "L'île de Ré n'a pas d'offre de clubbing. C'est une destination de terrasse, de fête douce et de plein air. Si le groupe veut une vraie soirée dansante, La Rochelle (30 min) offre plusieurs clubs et bars live — prévoir un taxi ou VTC retour."
-            : "Île de Ré has no clubbing scene. It's a destination for terrace nights, relaxed celebrations, and outdoor life. If the group wants a proper night out, La Rochelle (30 min) has several clubs and live bars — arrange a taxi or rideshare back."}
+            ? "L'île de Ré n'a pas d'offre de clubbing. C'est une destination de terrasse, de fête douce et de plein air. Si le groupe veut une vraie soirée dansante, La Rochelle (30 min) offre plusieurs clubs et bars live. Prévoir un taxi ou VTC retour."
+            : "Île de Ré has no clubbing scene. It's a destination for terrace nights, relaxed celebrations, and outdoor life. If the group wants a proper night out, La Rochelle (30 min) has several clubs and live bars. Arrange a taxi or rideshare back."}
         </p>
       </div>
 
@@ -564,7 +564,7 @@ export function EvjfPage({
 
       {/* ── FAQ ──────────────────────────────────────────────────────────── */}
       <FaqBlock
-        heading={fr ? "Questions fréquentes — EVJF à l'Île de Ré" : "Hen party FAQs — Île de Ré"}
+        heading={fr ? "Questions fréquentes : EVJF à l'Île de Ré" : "Hen party FAQs: Île de Ré"}
         items={faqItems}
       />
 
