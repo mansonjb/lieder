@@ -33,7 +33,8 @@ export function BeachStatBar({ slug, locale }: { slug: string; locale: Locale })
   const mapsLabel = locale === "fr" ? "Itinéraire Google Maps" : "Google Maps directions";
 
   return (
-    <div className="mt-6 overflow-hidden rounded-2xl border border-line bg-white">
+    <div className="mt-6 overflow-hidden rounded-2xl border border-line bg-white shadow-sm">
+      <div className="h-1 w-full bg-gradient-to-r from-sea-deep via-sea to-sea/40" />
       <div className="grid grid-cols-2 gap-px bg-line sm:grid-cols-4">
         {stats.map((s, i) => (
           <div key={i} className="bg-white px-4 py-4">
