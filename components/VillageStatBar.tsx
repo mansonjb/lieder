@@ -1,7 +1,7 @@
 import type { Locale } from "@/lib/i18n";
 import { VILLAGE_META } from "@/data/village-meta";
 
-type Stat = { icon: string; value: string; label: { fr: string; en: string } };
+type Stat = { icon: string; value: string; label: { fr: string; en: string }; accent?: boolean };
 
 function buildStats(slug: string, locale: Locale): Stat[] {
   const meta = VILLAGE_META[slug];
@@ -35,6 +35,7 @@ function buildStats(slug: string, locale: Locale): Stat[] {
       icon: "🏆",
       value: locale === "fr" ? "Labellisé" : "Certified",
       label: { fr: "Plus Beau Village", en: "Plus Beau Village" },
+      accent: true,
     });
   }
 
@@ -46,22 +47,27 @@ export function VillageStatBar({ slug, locale }: { slug: string; locale: Locale 
   if (!stats.length) return null;
 
   return (
-    <div className="mt-6 flex flex-wrap gap-px overflow-hidden rounded-2xl border border-line bg-line">
-      {stats.map((s, i) => (
-        <div
-          key={i}
-          className="flex flex-1 flex-col items-center gap-1 bg-white px-4 py-4 text-center"
-          style={{ minWidth: "120px" }}
-        >
-          <span className="text-xl">{s.icon}</span>
-          <span className="font-display text-lg font-semibold text-sea-deep leading-tight">
-            {s.value}
-          </span>
-          <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-            {locale === "fr" ? s.label.fr : s.label.en}
-          </span>
-        </div>
-      ))}
+    <div className="mt-6 overflow-hidden rounded-2xl border border-line bg-white shadow-sm">
+      <div className="h-1 w-full bg-gradient-to-r from-sea-deep via-sea to-sea/40" />
+      <div className="flex flex-wrap gap-px bg-line">
+        {stats.map((s, i) => (
+          <div
+            key={i}
+            className="group flex flex-1 flex-col items-center gap-1.5 bg-white px-3 py-4 text-center"
+            style={{ minWidth: "110px" }}
+          >
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-sea/10 text-lg transition-colors duration-200 group-hover:bg-sea/20">
+              {s.icon}
+            </div>
+            <span className={`font-display text-xl font-bold leading-tight ${s.accent ? "text-amber-500" : "text-sea-deep"}`}>
+              {s.value}
+            </span>
+            <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-muted">
+              {locale === "fr" ? s.label.fr : s.label.en}
+            </span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
