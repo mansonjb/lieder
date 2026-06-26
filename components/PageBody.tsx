@@ -44,6 +44,7 @@ import { VillageLinks } from "@/components/VillageLinks";
 import { VILLAGE_META } from "@/data/village-meta";
 import { BEACH_META } from "@/data/beach-meta";
 import { getVillageFaqs, OU_DORMIR_FAQS } from "@/data/faq-content";
+import { EvjfPage } from "@/components/EvjfPage";
 
 type Props = {
   entry: PageEntry;
@@ -773,6 +774,16 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
           </div>
         ) : null}
         {entry.stay22 ? <AffiliateDisclosure dict={dict} /> : null}
+      </article>
+    );
+  }
+
+  // ---- EVJF — page dédiée full-visuelle --------------------------------
+  if (entry.template === "evjf") {
+    return (
+      <article className="mx-auto max-w-3xl px-5 py-10">
+        <JsonLd data={primaryJsonLd(entry, locale)} />
+        <EvjfPage locale={locale} entry={entry} dict={dict} />
       </article>
     );
   }

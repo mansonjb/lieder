@@ -155,7 +155,7 @@ const MARIAGE_VILLAGES = ["saint-martin-de-re", "la-flotte", "ars-en-re", "le-bo
 const OCCASIONS: [string, string, string, string][] = [
   ["ou-dormir/lune-de-miel", "where-to-stay/honeymoon", "Lune de miel sur l'Île de Ré", "Honeymoon on Île de Ré"],
   ["ou-dormir/week-end-amoureux", "where-to-stay/romantic-weekend", "Week-end en amoureux", "Romantic weekend"],
-  ["ou-dormir/evjf", "where-to-stay/hen-party", "EVJF sur l'Île de Ré", "Hen party on Île de Ré"],
+  // evjf has its own "evjf" template — added separately below
   ["ou-dormir/evg", "where-to-stay/stag-party", "EVG sur l'Île de Ré", "Stag party on Île de Ré"],
   ["ou-dormir/anniversaire", "where-to-stay/birthday", "Fêter un anniversaire", "Celebrate a birthday"],
   ["ou-dormir/seminaire-entreprise", "where-to-stay/corporate-retreat", "Séminaire et team building", "Corporate retreats & team building"],
@@ -412,6 +412,20 @@ function buildRaw(): Raw[] {
   for (const [slugFr, slugEn, fr, en] of OCCASIONS) {
     pages.push({ slugFr, slugEn, fr, en, silo: "ou-dormir-mariage", template: "ou-dormir", intent: "transactionnel", stay22: true, geo: ISLAND, parent: "ou-dormir-mariage" });
   }
+  // EVJF — page dédiée avec template visuel riche
+  pages.push({
+    slugFr: "ou-dormir/evjf",
+    slugEn: "where-to-stay/hen-party",
+    fr: "EVJF à l'Île de Ré — maisons & hôtels pour enterrement de vie de jeune fille",
+    en: "Hen party on Île de Ré — houses & hotels for your bachelorette",
+    silo: "ou-dormir-mariage",
+    template: "evjf",
+    intent: "transactionnel",
+    stay22: true,
+    geo: ISLAND,
+    parent: "ou-dormir-mariage",
+    priority: 0.8,
+  });
 
   // Silo E : que faire
   for (const [segFr, segEn, fr, en, stay22, geo] of ACTIVITIES) {

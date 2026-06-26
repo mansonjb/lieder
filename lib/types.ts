@@ -28,7 +28,8 @@ export type Template =
   | "comparatif"
   | "sejour"
   | "guide"
-  | "legal";
+  | "legal"
+  | "evjf";
 
 export type Intent =
   | "informationnel"

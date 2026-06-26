@@ -6514,52 +6514,6 @@ export const REGISTRY: PageEntry[] = [
     "parent": "ou-dormir-mariage"
   },
   {
-    "key": "ou-dormir/evjf",
-    "silo": "ou-dormir-mariage",
-    "template": "ou-dormir",
-    "intent": "transactionnel",
-    "stay22": true,
-    "slug": {
-      "fr": "ou-dormir/evjf",
-      "en": "where-to-stay/hen-party"
-    },
-    "title": {
-      "fr": "EVJF sur l'Île de Ré",
-      "en": "Hen party on Île de Ré"
-    },
-    "h1": {
-      "fr": "EVJF sur l'Île de Ré",
-      "en": "Hen party on Île de Ré"
-    },
-    "description": {
-      "fr": "EVJF sur l'Île de Ré : nos meilleures adresses par quartier et par budget, avec carte et comparatif pour réserver au bon endroit.",
-      "en": "Hen party on Île de Ré: our top picks by area and budget, with a map and comparison table to book in the right place."
-    },
-    "targetKeyword": {
-      "fr": "evjf sur l'île de ré",
-      "en": "hen party on île de ré"
-    },
-    "related": [
-      "ou-dormir-mariage",
-      "ou-dormir-mariage/salles-reception",
-      "ou-dormir-mariage/hotels-pour-invites",
-      "ou-dormir-mariage/lieux-avec-hebergement",
-      "ou-dormir-mariage/petit-mariage-intime"
-    ],
-    "lastUpdated": "2026-06-22",
-    "priority": 0.8,
-    "geo": {
-      "lat": 46.198,
-      "lng": -1.42,
-      "zoom": 11
-    },
-    "mapLabel": {
-      "fr": "l'Île de Ré",
-      "en": "Île de Ré"
-    },
-    "parent": "ou-dormir-mariage"
-  },
-  {
     "key": "ou-dormir/evg",
     "silo": "ou-dormir-mariage",
     "template": "ou-dormir",
@@ -6768,6 +6722,52 @@ export const REGISTRY: PageEntry[] = [
     "targetKeyword": {
       "fr": "réunion de famille et grande tablée",
       "en": "family reunions"
+    },
+    "related": [
+      "ou-dormir-mariage",
+      "ou-dormir-mariage/salles-reception",
+      "ou-dormir-mariage/hotels-pour-invites",
+      "ou-dormir-mariage/lieux-avec-hebergement",
+      "ou-dormir-mariage/petit-mariage-intime"
+    ],
+    "lastUpdated": "2026-06-22",
+    "priority": 0.8,
+    "geo": {
+      "lat": 46.198,
+      "lng": -1.42,
+      "zoom": 11
+    },
+    "mapLabel": {
+      "fr": "l'Île de Ré",
+      "en": "Île de Ré"
+    },
+    "parent": "ou-dormir-mariage"
+  },
+  {
+    "key": "ou-dormir/evjf",
+    "silo": "ou-dormir-mariage",
+    "template": "evjf",
+    "intent": "transactionnel",
+    "stay22": true,
+    "slug": {
+      "fr": "ou-dormir/evjf",
+      "en": "where-to-stay/hen-party"
+    },
+    "title": {
+      "fr": "EVJF à l'Île de Ré — maisons & hôtels pour enterrement de vie de jeune fille",
+      "en": "Hen party on Île de Ré — houses & hotels for your bachelorette"
+    },
+    "h1": {
+      "fr": "EVJF à l'Île de Ré — maisons & hôtels pour enterrement de vie de jeune fille",
+      "en": "Hen party on Île de Ré — houses & hotels for your bachelorette"
+    },
+    "description": {
+      "fr": "EVJF à l'Île de Ré — maisons & hôtels pour enterrement de vie de jeune fille.",
+      "en": "Hen party on Île de Ré — houses & hotels for your bachelorette."
+    },
+    "targetKeyword": {
+      "fr": "evjf à l'île de ré — maisons & hôtels pour enterrement de vie de jeune fille",
+      "en": "hen party on île de ré — houses & hotels for your bachelorette"
     },
     "related": [
       "ou-dormir-mariage",
@@ -11469,7 +11469,7 @@ export const REGISTRY: PageEntry[] = [
       "en": "Getting to Île de Ré from La Rochelle: the essentials and our practical, up-to-date tips for Île de Ré."
     },
     "targetKeyword": {
-      "fr": "aller à l'île de ré depuis la rochelle",
+      "fr": "aller sur l'île de ré depuis la rochelle",
       "en": "getting to île de ré from la rochelle"
     },
     "related": [
