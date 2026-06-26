@@ -5,6 +5,12 @@ export type AccommodationPick = {
   stars?: number;
 };
 
+export type VillageLink = {
+  label: { fr: string; en: string };
+  href: string;
+  icon: string;
+};
+
 export type VillageMeta = {
   distancePontKm: number;
   beachCount: number;
@@ -14,6 +20,7 @@ export type VillageMeta = {
   marketDay: { fr: string; en: string };
   restaurantPicks?: { name: string; tag: { fr: string; en: string }; price: string }[];
   accommodationPicks?: AccommodationPick[];
+  links?: VillageLink[];
 };
 
 export const VILLAGE_META: Record<string, VillageMeta> = {
@@ -40,6 +47,10 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { name: "Gîtes du Pertuis", type: { fr: "Locations semaine", en: "Weekly rentals" }, price: "€€" },
       { name: "Villa du Sablanceaux", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€€" },
     ],
+    links: [
+      { icon: "🏛", label: { fr: "Office de tourisme de l'Île de Ré", en: "Île de Ré Tourist Office" }, href: "https://www.destinationiledere.fr/" },
+      { icon: "🌊", label: { fr: "Plage de Sablanceaux", en: "Sablanceaux Beach" }, href: "https://www.destinationiledere.fr/plages/sablanceaux" },
+    ],
   },
   "sainte-marie-de-re": {
     distancePontKm: 8,
@@ -64,6 +75,10 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { name: "Camping Les Grenettes", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
       { name: "Résidence Les Baleines", type: { fr: "Locations semaine", en: "Weekly rentals" }, price: "€€" },
       { name: "Maison du Pertuis", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€€" },
+    ],
+    links: [
+      { icon: "🏛", label: { fr: "Office de tourisme de l'Île de Ré", en: "Île de Ré Tourist Office" }, href: "https://www.destinationiledere.fr/" },
+      { icon: "🌊", label: { fr: "Plages de Sainte-Marie-de-Ré", en: "Sainte-Marie beaches" }, href: "https://www.destinationiledere.fr/plages" },
     ],
   },
   "la-flotte": {
@@ -91,6 +106,11 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { name: "La Villa Rhéa", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€€" },
       { name: "Camping La Grillotière", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
     ],
+    links: [
+      { icon: "🏛", label: { fr: "Plus Beaux Villages de France", en: "Plus Beaux Villages de France" }, href: "https://www.les-plus-beaux-villages-de-france.org/fr/nos-villages/la-flotte/" },
+      { icon: "⛪", label: { fr: "Abbaye des Châteliers (XIIe s.)", en: "Abbaye des Châteliers (12th c.)" }, href: "https://www.destinationiledere.fr/abbaye-des-chateliers" },
+      { icon: "🐟", label: { fr: "Port de pêche & criée de La Flotte", en: "La Flotte harbour & fish market" }, href: "https://www.destinationiledere.fr/le-port-de-la-flotte" },
+    ],
   },
   "saint-martin-de-re": {
     distancePontKm: 15,
@@ -115,6 +135,11 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { name: "Hôtel de Toiras", type: { fr: "Relais & Châteaux 5★", en: "Relais & Châteaux 5★" }, price: "€€€€", stars: 5 },
       { name: "Les Ateliers de l'Image", type: { fr: "Boutique hôtel", en: "Boutique hotel" }, price: "€€€€" },
       { name: "Gîtes intra-muros", type: { fr: "Locations centre historique", en: "Historic centre rentals" }, price: "€€€" },
+    ],
+    links: [
+      { icon: "🏰", label: { fr: "Citadelle Vauban — Patrimoine UNESCO", en: "Vauban Citadel — UNESCO Heritage" }, href: "https://www.destinationiledere.fr/citadelle-saint-martin-de-re" },
+      { icon: "🏛", label: { fr: "Office de tourisme de Saint-Martin", en: "Saint-Martin Tourist Office" }, href: "https://www.destinationiledere.fr/" },
+      { icon: "🛒", label: { fr: "Les Halles — marché couvert quotidien (avr-sep)", en: "Les Halles — daily covered market (Apr-Sep)" }, href: "https://www.destinationiledere.fr/marche-saint-martin" },
     ],
   },
   "le-bois-plage-en-re": {
@@ -141,6 +166,10 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { name: "Camping Interlude", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
       { name: "Hôtel L'Océan", type: { fr: "Hôtel village", en: "Village hotel" }, price: "€€", stars: 2 },
     ],
+    links: [
+      { icon: "🍷", label: { fr: "Domaine viticole — Vignes de l'Île de Ré", en: "Île de Ré vineyards visit" }, href: "https://www.destinationiledere.fr/vignes-ile-de-re" },
+      { icon: "🏛", label: { fr: "Office de tourisme de l'Île de Ré", en: "Île de Ré Tourist Office" }, href: "https://www.destinationiledere.fr/" },
+    ],
   },
   "la-couarde-sur-mer": {
     distancePontKm: 24,
@@ -166,6 +195,10 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { name: "Camping de la Côte", type: { fr: "Camping 4★ bord de mer", en: "4★ seafront campsite" }, price: "€", stars: 4 },
       { name: "Gîtes & villas", type: { fr: "Locations semaine", en: "Weekly rentals" }, price: "€€-€€€" },
     ],
+    links: [
+      { icon: "🚴", label: { fr: "Véloroute de l'Île de Ré — itinéraires", en: "Île de Ré cycling routes" }, href: "https://www.destinationiledere.fr/velo" },
+      { icon: "🏛", label: { fr: "Office de tourisme de l'Île de Ré", en: "Île de Ré Tourist Office" }, href: "https://www.destinationiledere.fr/" },
+    ],
   },
   "loix": {
     distancePontKm: 28,
@@ -189,6 +222,10 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
     accommodationPicks: [
       { name: "Gîtes de la presqu'île", type: { fr: "Locations semaine", en: "Weekly rentals" }, price: "€€" },
       { name: "Chambres d'hôtes du Fier", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€€" },
+    ],
+    links: [
+      { icon: "🧂", label: { fr: "Écomusée du marais salant de Loix", en: "Salt marsh ecomuseum Loix" }, href: "https://www.destinationiledere.fr/ecomusee-marais-salant" },
+      { icon: "🏛", label: { fr: "Office de tourisme de l'Île de Ré", en: "Île de Ré Tourist Office" }, href: "https://www.destinationiledere.fr/" },
     ],
   },
   "ars-en-re": {
@@ -216,6 +253,11 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { name: "Camping de la Monnerie", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
       { name: "Chambres d'hôtes du village", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€" },
     ],
+    links: [
+      { icon: "🏛", label: { fr: "Plus Beaux Villages de France — Ars-en-Ré", en: "Plus Beaux Villages — Ars-en-Ré" }, href: "https://www.les-plus-beaux-villages-de-france.org/fr/nos-villages/ars-en-re/" },
+      { icon: "🦩", label: { fr: "Réserve naturelle Lilleau des Niges (LPO)", en: "Lilleau des Niges Nature Reserve" }, href: "https://www.lpo.fr/reserves-naturelles/lilleau-des-niges" },
+      { icon: "🧂", label: { fr: "Fleur de sel — marais salants d'Ars-en-Ré", en: "Fleur de sel — salt marshes" }, href: "https://www.destinationiledere.fr/fleur-de-sel-ile-de-re" },
+    ],
   },
   "saint-clement-des-baleines": {
     distancePontKm: 35,
@@ -241,6 +283,11 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { name: "La Maison du Phare", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€€" },
       { name: "Gîtes du bout de l'île", type: { fr: "Locations semaine", en: "Weekly rentals" }, price: "€€" },
     ],
+    links: [
+      { icon: "🔭", label: { fr: "Phare des Baleines — 257 marches, panorama 360°", en: "Phare des Baleines — 257 steps, 360° panorama" }, href: "https://pharetourisme.com/" },
+      { icon: "🦩", label: { fr: "Réserve naturelle Lilleau des Niges (LPO)", en: "Lilleau des Niges Nature Reserve" }, href: "https://www.lpo.fr/reserves-naturelles/lilleau-des-niges" },
+      { icon: "🏛", label: { fr: "Office de tourisme de l'Île de Ré", en: "Île de Ré Tourist Office" }, href: "https://www.destinationiledere.fr/" },
+    ],
   },
   "les-portes-en-re": {
     distancePontKm: 38,
@@ -265,6 +312,11 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { name: "Camping Yelloh! Les Ilates", type: { fr: "Camping 5★ prestige", en: "5★ premium campsite" }, price: "€€", stars: 5 },
       { name: "Camping de la Monnerie", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
       { name: "Gîtes & maisons de charme", type: { fr: "Locations semaine", en: "Weekly rentals" }, price: "€€€" },
+    ],
+    links: [
+      { icon: "🦅", label: { fr: "Forêt de Trousse-Chemise — dunes & landes sauvages", en: "Trousse-Chemise forest — wild dunes & heathland" }, href: "https://www.destinationiledere.fr/foret-trousse-chemise" },
+      { icon: "🌅", label: { fr: "Pointe des Portes — meilleur coucher de soleil de l'île", en: "Pointe des Portes — best sunset on the island" }, href: "https://www.destinationiledere.fr/pointe-des-portes" },
+      { icon: "🏛", label: { fr: "Office de tourisme de l'Île de Ré", en: "Île de Ré Tourist Office" }, href: "https://www.destinationiledere.fr/" },
     ],
   },
 };

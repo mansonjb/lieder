@@ -110,8 +110,24 @@ export function heroImage(key: string): string | undefined {
   const reuse = key.match(/^restaurants\/([^/]+)$/);
   if (reuse && M[`villages/${reuse[1]}`]) return M[`villages/${reuse[1]}`];
 
-  // plages sans photo propre → repli générique
+  // plages/* avec photo propre → déjà capté par M[key] au début
+  // Pages éditoriales de plages (catégories) → photo thématique variée
+  const PLAGE_CATEGORY: Record<string, string> = {
+    "plages/familiales":        "plages/les-grenettes",
+    "plages/surveillees":       "plages/sablanceaux",
+    "plages/sauvages":          "plages/trousse-chemise",
+    "plages/surf":              "plages/la-conche-des-baleines",
+    "plages/kitesurf-windsurf": "plages/le-gros-jonc",
+    "plages/peche-a-pied":      "plages/le-marchais",
+    "plages/chien-autorise":    "plages/la-benaie",
+    "plages/nudistes":          "plages/le-lizay",
+    "plages/coucher-de-soleil": "plages/le-grouin",
+    "plages/marees-horaires":   "plages/gros-jonc-les-portes",
+    "plages/accessibles-pmr":   "plages/les-prises",
+  };
   if (key.startsWith("plages/")) {
+    const cat = PLAGE_CATEGORY[key];
+    if (cat && M[cat]) return M[cat];
     return M["plages/le-gros-jonc"] || M["plages/la-conche-des-baleines"] || undefined;
   }
 

@@ -40,6 +40,7 @@ import { ClimateChart } from "@/components/ClimateChart";
 import { ClimateHighlights } from "@/components/ClimateHighlights";
 import { SeasonGrid } from "@/components/SeasonGrid";
 import { VillageMap } from "@/components/VillageMap";
+import { VillageLinks } from "@/components/VillageLinks";
 import { VILLAGE_META } from "@/data/village-meta";
 import { BEACH_META } from "@/data/beach-meta";
 import { getVillageFaqs, OU_DORMIR_FAQS } from "@/data/faq-content";
@@ -556,6 +557,9 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
         {villageMeta?.goodToKnow?.length ? (
           <GoodToKnow items={villageMeta.goodToKnow} locale={locale} />
         ) : null}
+
+        {/* External links */}
+        <VillageLinks slug={communeSlug} locale={locale} />
 
         {/* Restaurant highlights */}
         <RestaurantHighlights slug={communeSlug} locale={locale} />

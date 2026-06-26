@@ -9,22 +9,14 @@ import { AffiliateLink } from "@/components/AffiliateLink";
 import hotelImagesRaw from "@/data/hotel-images.generated.json";
 const hotelImages = hotelImagesRaw as Record<string, string>;
 
-// Fallback Unsplash par catégorie si pas de photo scrapée
-const PHOTO_MAP: [RegExp, string][] = [
-  [/relais.*châteaux|palace|5★.*hôtel|hôtel.*5★/i, "photo-1542314831-068cd1dbfeeb"],
-  [/boutique|charme|4★.*hôtel|hôtel.*4★|3★.*hôtel|hôtel.*3★/i, "photo-1566665797739-1674de7a421a"],
-  [/hôtel|hotel|relais/i, "photo-1551882547-ff40c63fe5fa"],
-  [/chambre.*hôtes|b&b|bed.*breakfast/i, "photo-1586023492125-27b2c045efd7"],
-  [/5★.*camp|camp.*5★|prestige|glamping/i, "photo-1510798831971-661eb04b3739"],
-  [/camping|camp/i, "photo-1504280390367-361c6d9f38f4"],
-  [/gîte|location|villa|maison/i, "photo-1499793983690-e29da59ef1c2"],
-];
-
-function typePhoto(frLabel: string): string {
-  for (const [re, id] of PHOTO_MAP) {
-    if (re.test(frLabel)) return `https://images.unsplash.com/${id}?w=600&h=380&fit=crop&auto=format&q=80`;
-  }
-  return `https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&h=380&fit=crop&auto=format&q=80`;
+// Fallback local : images de la commune (jamais d'Unsplash générique sans rapport)
+function typePhoto(slug: string, idx: number): string {
+  const variants = [
+    `/images/villages/${slug}.webp`,
+    `/images/villages/${slug}-2.webp`,
+    `/images/villages/${slug}-3.webp`,
+  ];
+  return variants[idx % variants.length];
 }
 
 function Stars({ count }: { count: number }) {
@@ -102,7 +94,7 @@ export function AccommodationHighlights({
           const color = typeColor(frLabel);
           const emoji = typeEmoji(frLabel);
           const scraped = hotelImages[`${slug}-${i}`];
-          const photo = scraped || typePhoto(frLabel);
+          const photo = scraped || typePhoto(slug, i);
           const s22href = stay22Url(`${r.name}, Île de Ré, France`);
 
           return (
