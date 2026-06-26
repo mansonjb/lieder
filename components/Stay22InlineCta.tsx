@@ -28,20 +28,23 @@ export function Stay22InlineCta({
         network="stay22"
         context={campaign ?? "inline-cta"}
         href={href}
-        className="my-8 flex flex-col gap-3 rounded-2xl border border-sea/25 bg-sea/6 px-6 py-5 transition-colors hover:border-sea/40 hover:bg-sea/10 sm:flex-row sm:items-center sm:justify-between"
+        className="group my-8 overflow-hidden rounded-2xl border border-sea/30 bg-white shadow-sm transition-all duration-150 hover:border-sea/50 hover:shadow-md"
       >
-        <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-sea-deep">
-            🛏 {locale === "fr" ? "Hébergement" : "Accommodation"}
-          </p>
-          <p className="mt-1 font-semibold text-ink">{locale === "fr" ? label.fr : label.en}</p>
-          {sub && (
-            <p className="mt-0.5 text-sm text-muted">{locale === "fr" ? sub.fr : sub.en}</p>
-          )}
+        <div className="h-1 w-full bg-gradient-to-r from-sea-deep via-sea to-sea/40" />
+        <div className="flex flex-col gap-3 px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-sea-deep">
+              🛏 {locale === "fr" ? "Hébergement" : "Accommodation"}
+            </p>
+            <p className="mt-1 font-semibold text-ink">{locale === "fr" ? label.fr : label.en}</p>
+            {sub && (
+              <p className="mt-0.5 text-sm text-muted">{locale === "fr" ? sub.fr : sub.en}</p>
+            )}
+          </div>
+          <span className="shrink-0 rounded-xl bg-sea-deep px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-white transition-colors group-hover:bg-sea">
+            {ctaLabel}
+          </span>
         </div>
-        <span className="shrink-0 rounded-xl bg-sea-deep px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-white">
-          {ctaLabel}
-        </span>
       </AffiliateLink>
     );
   }
