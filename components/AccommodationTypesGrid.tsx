@@ -10,6 +10,7 @@ type Example = {
 
 type AccomType = {
   icon: string;
+  color: string;
   heading: { fr: string; en: string };
   description: { fr: string; en: string };
   price: string;
@@ -19,11 +20,10 @@ type AccomType = {
   cta: { fr: string; en: string };
 };
 
-const TYPE_COLORS: string[] = ["#0f766e", "#4d7c0f", "#b45309", "#7c3aed"];
-
 const TYPES: AccomType[] = [
   {
     icon: "🏨",
+    color: "#0f766e",
     heading:     { fr: "Hôtels",            en: "Hotels"           },
     description: {
       fr: "De la chambre confortable au Relais & Châteaux, l'offre hôtelière de l'île est restreinte mais qualitative, centrée sur Saint-Martin et La Flotte.",
@@ -41,6 +41,7 @@ const TYPES: AccomType[] = [
   },
   {
     icon: "🏡",
+    color: "#4d7c0f",
     heading:     { fr: "Gîtes & locations",  en: "Rentals & gîtes"  },
     description: {
       fr: "La formule la plus répandue sur l'île : maisons et villas louées à la semaine. Disponibilités en hausse hors juillet-août, prix variables selon la surface et la proximité des plages.",
@@ -58,6 +59,7 @@ const TYPES: AccomType[] = [
   },
   {
     icon: "🏕",
+    color: "#b45309",
     heading:     { fr: "Campings",           en: "Campsites"        },
     description: {
       fr: "L'île compte plusieurs campings 4 et 5 étoiles avec piscine, mobil-homes et services premium. Les meilleurs se réservent dès janvier pour l'été — certains affichent complet en mars.",
@@ -75,6 +77,7 @@ const TYPES: AccomType[] = [
   },
   {
     icon: "🛎",
+    color: "#7c3aed",
     heading:     { fr: "Chambres d'hôtes",  en: "B&Bs"             },
     description: {
       fr: "Petites structures à taille humaine chez l'habitant ou en maison de maître. Souvent incluses dans le prix : petit-déjeuner, conseils de propriétaires qui connaissent l'île sur le bout des doigts.",
@@ -92,91 +95,81 @@ const TYPES: AccomType[] = [
   },
 ];
 
+function AccomCard({ t, locale }: { t: AccomType; locale: Locale }) {
+  return (
+    <article className="relative flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-sm transition-all duration-150 hover:border-sea/40 hover:shadow-md">
+      <div className="h-1 w-full shrink-0" style={{ background: t.color }} />
+      <div className="flex flex-grow flex-col gap-3 px-5 pb-5 pt-4">
+        <Link
+          href={locale === "en" ? "/en" + t.internalHref : t.internalHref}
+          className="absolute inset-0 rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-sea"
+          aria-label={locale === "fr" ? t.heading.fr : t.heading.en}
+        />
+        <div className="flex items-center gap-3">
+          <span
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-2xl"
+            style={{ background: t.color + "18" }}
+            aria-hidden="true"
+          >
+            {t.icon}
+          </span>
+          <div>
+            <p className="font-semibold leading-none text-ink">
+              {locale === "fr" ? t.heading.fr : t.heading.en}
+            </p>
+            <p className="mt-0.5 font-mono text-[10px]" style={{ color: t.color }}>
+              {t.price}
+            </p>
+          </div>
+        </div>
+        <p className="text-sm leading-relaxed text-muted">
+          {locale === "fr" ? t.description.fr : t.description.en}
+        </p>
+        <p className="text-xs text-muted">
+          <span className="font-medium text-ink">
+            {locale === "fr" ? "Idéal pour : " : "Best for: "}
+          </span>
+          {locale === "fr" ? t.bestFor.fr : t.bestFor.en}
+        </p>
+        <div className="relative z-10 border-t border-line pt-3">
+          <p className="mb-2 text-xs font-medium text-ink">
+            {locale === "fr" ? "Exemples sur Stay22 :" : "Examples on Stay22:"}
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            {t.examples.map((ex) => (
+              <AffiliateLink
+                key={ex.label}
+                network="stay22"
+                context={"accom-grid-" + t.icon}
+                href={stay22Url(ex.stay22Address)}
+                className="rounded-full border border-sea/30 bg-sea/5 px-3 py-1 text-xs text-sea-deep transition-colors hover:bg-sea/15"
+              >
+                {ex.label}
+              </AffiliateLink>
+            ))}
+          </div>
+        </div>
+        <p className="mt-auto text-sm font-semibold text-sea-deep">
+          {locale === "fr" ? t.cta.fr : t.cta.en}
+        </p>
+      </div>
+    </article>
+  );
+}
+
 export function AccommodationTypesGrid({ locale }: { locale: Locale }) {
   return (
     <div className="my-10">
-      <div className="flex items-center gap-4 mb-7">
+      <div className="mb-7 flex items-center gap-4">
         <h2 className="shrink-0 font-mono text-[12px] uppercase tracking-[0.2em] text-sea-deep">
           {locale === "fr" ? "Types d'hébergements" : "Accommodation types"}
         </h2>
         <div className="h-px flex-1 bg-line" />
       </div>
-
       <div className="grid gap-4 sm:grid-cols-2">
-        {TYPES.map((t, idx) => {
-          const accentColor = TYPE_COLORS[idx % TYPE_COLORS.length];
-          return (
-          <article
-            key={t.icon}
-            className="relative overflow-hidden rounded-2xl border border-line bg-white shadow-sm flex flex-col gap-3 transition-all duration-150 hover:border-sea/40 hover:shadow-md"
-          >
-            {/* Colored top bar */}
-            <div className="h-1 w-full shrink-0" style={{ background: `${accentColor}` }} />
-
-            <div className="flex flex-col gap-3 px-5 pb-5">
-            {/* Overlay link — couvre toute la card sauf les examples */}
-            <Link
-              href={locale === "en" ? `/en${t.internalHref}` : t.internalHref}
-              className="absolute inset-0 rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-sea"
-              aria-label={locale === "fr" ? t.heading.fr : t.heading.en}
-            />
-
-            {/* Header */}
-            <div className="flex items-center gap-3">
-              <span
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-2xl"
-                style={{ background: `${accentColor}18` }}
-                aria-hidden="true"
-              >{t.icon}</span>
-              <div>
-                <p className="font-semibold text-ink leading-none">
-                  {locale === "fr" ? t.heading.fr : t.heading.en}
-                </p>
-                <p className="mt-0.5 font-mono text-[10px]" style={{ color: accentColor }}>{t.price}</p>
-              </div>
-            </div>
-
-            {/* Description */}
-            <p className="text-sm leading-relaxed text-muted">
-              {locale === "fr" ? t.description.fr : t.description.en}
-            </p>
-
-            {/* Idéal pour */}
-            <p className="text-xs text-muted">
-              <span className="font-medium text-ink">
-                {locale === "fr" ? "Idéal pour : " : "Best for: "}
-              </span>
-              {locale === "fr" ? t.bestFor.fr : t.bestFor.en}
-            </p>
-
-            {/* Examples Stay22 — z-10 pour passer au-dessus du stretched link */}
-            <div className="relative z-10 border-t border-line pt-3">
-              <p className="mb-2 text-xs font-medium text-ink">
-                {locale === "fr" ? "Exemples sur Stay22 :" : "Examples on Stay22:"}
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                {t.examples.map((ex) => (
-                  <AffiliateLink
-                    key={ex.label}
-                    network="stay22"
-                    context={`accom-grid-${t.icon}`}
-                    href={stay22Url(ex.stay22Address)}
-                    className="rounded-full border border-sea/30 bg-sea/5 px-3 py-1 text-xs text-sea-deep transition-colors hover:bg-sea/15"
-                  >
-                    {ex.label}
-                  </AffiliateLink>
-                ))}
-              </div>
-            </div>
-
-            {/* CTA interne */}
-            <p className="mt-auto text-sm font-semibold text-sea-deep">
-              {locale === "fr" ? t.cta.fr : t.cta.en}
-            </p>
-            </div>
-          </article>
-          );
-        })}
+        {TYPES.map((t) => (
+          <AccomCard key={t.icon} t={t} locale={locale} />
+        ))}
       </div>
     </div>
   );
