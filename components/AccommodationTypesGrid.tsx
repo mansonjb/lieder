@@ -19,6 +19,8 @@ type AccomType = {
   cta: { fr: string; en: string };
 };
 
+const TYPE_COLORS: string[] = ["#0f766e", "#4d7c0f", "#b45309", "#7c3aed"];
+
 const TYPES: AccomType[] = [
   {
     icon: "🏨",
@@ -101,15 +103,17 @@ export function AccommodationTypesGrid({ locale }: { locale: Locale }) {
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        {TYPES.map((t) => (
-          /*
-           * Stretched-link pattern : <Link> absolu couvre toute la card,
-           * les AffiliateLink examples sont au-dessus via z-10.
-           */
+        {TYPES.map((t, idx) => {
+          const accentColor = TYPE_COLORS[idx % TYPE_COLORS.length];
+          return (
           <article
             key={t.icon}
-            className="relative rounded-2xl border border-line bg-white p-5 flex flex-col gap-3 transition-colors hover:border-sea/40"
+            className="relative overflow-hidden rounded-2xl border border-line bg-white shadow-sm flex flex-col gap-3 transition-all duration-150 hover:border-sea/40 hover:shadow-md"
           >
+            {/* Colored top bar */}
+            <div className="h-1 w-full shrink-0" style={{ background: `${accentColor}` }} />
+
+            <div className="flex flex-col gap-3 px-5 pb-5">
             {/* Overlay link — couvre toute la card sauf les examples */}
             <Link
               href={locale === "en" ? `/en${t.internalHref}` : t.internalHref}
@@ -119,12 +123,16 @@ export function AccommodationTypesGrid({ locale }: { locale: Locale }) {
 
             {/* Header */}
             <div className="flex items-center gap-3">
-              <span className="text-2xl" aria-hidden="true">{t.icon}</span>
+              <span
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-2xl"
+                style={{ background: `${accentColor}18` }}
+                aria-hidden="true"
+              >{t.icon}</span>
               <div>
                 <p className="font-semibold text-ink leading-none">
                   {locale === "fr" ? t.heading.fr : t.heading.en}
                 </p>
-                <p className="mt-0.5 font-mono text-[10px] text-sea-deep">{t.price}</p>
+                <p className="mt-0.5 font-mono text-[10px]" style={{ color: accentColor }}>{t.price}</p>
               </div>
             </div>
 
@@ -165,8 +173,10 @@ export function AccommodationTypesGrid({ locale }: { locale: Locale }) {
             <p className="mt-auto text-sm font-semibold text-sea-deep">
               {locale === "fr" ? t.cta.fr : t.cta.en}
             </p>
+            </div>
           </article>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
