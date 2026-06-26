@@ -52,11 +52,12 @@ export function ClimateChart({ locale }: { locale: Locale }) {
   const sunLabel = locale === "fr" ? "Ensoleillement (h/mois)" : "Sunshine (h/month)";
 
   return (
-    <div className="my-8 overflow-hidden rounded-2xl border border-line bg-white">
+    <div className="my-8 overflow-hidden rounded-2xl border border-line bg-white shadow-sm">
+      <div className="h-1 w-full bg-gradient-to-r from-sea-deep via-sea to-sea/40" />
       {/* Légende */}
       <div className="flex flex-wrap items-center gap-5 px-5 pt-4 pb-2">
-        <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted mr-auto">
-          {locale === "fr" ? "Météo & ensoleillement" : "Climate & sunshine"}
+        <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-sea-deep mr-auto">
+          ☀ {locale === "fr" ? "Météo & ensoleillement" : "Climate & sunshine"}
         </p>
         <span className="flex items-center gap-1.5 text-xs text-muted">
           <span className="inline-block h-2.5 w-6 rounded-full bg-amber-300/70" />
