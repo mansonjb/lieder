@@ -31,6 +31,26 @@ const VILLAGES: Village[] = [
   { slug: "rivedoux-plage",             name: "Rivedoux-Plage",             lng: -1.2732, lat: 46.1558 },
 ];
 
+function makeLabelEl(name: string, isHighlighted: boolean): HTMLDivElement {
+  const el = document.createElement("div");
+  el.style.cssText = [
+    "background:white",
+    `color:${isHighlighted ? "#92400e" : "#1f2937"}`,
+    `border:1.5px solid ${isHighlighted ? "#f59e0b" : "#d1d5db"}`,
+    "padding:1px 5px",
+    "border-radius:3px",
+    "font-family:system-ui,-apple-system,sans-serif",
+    "font-size:10px",
+    `font-weight:${isHighlighted ? "700" : "500"}`,
+    "white-space:nowrap",
+    "pointer-events:none",
+    "box-shadow:0 1px 2px rgba(0,0,0,.12)",
+    "transform:translateX(-50%)",
+  ].join(";");
+  el.textContent = name;
+  return el;
+}
+
 export function VillageMapGL({
   locale,
   highlighted,
@@ -64,8 +84,9 @@ export function VillageMapGL({
 
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
 
+    const markers: maplibregl.Marker[] = [];
+
     map.on("load", () => {
-      // All villages source
       map.addSource("villages", {
         type: "geojson",
         data: {
@@ -82,7 +103,6 @@ export function VillageMapGL({
         } as GeoJSON.FeatureCollection,
       });
 
-      // Regular village dots (teal)
       map.addLayer({
         id: "villages-dot",
         type: "circle",
@@ -96,7 +116,6 @@ export function VillageMapGL({
         },
       });
 
-      // Highlighted village dot (amber)
       map.addLayer({
         id: "village-highlighted",
         type: "circle",
@@ -110,28 +129,17 @@ export function VillageMapGL({
         },
       });
 
-      // Village name labels
-      map.addLayer({
-        id: "villages-label",
-        type: "symbol",
-        source: "villages",
-        layout: {
-          "text-field": ["get", "name"],
-          "text-font": ["Noto Sans Regular"],
-          "text-size": 11,
-          "text-offset": [0, 1.4],
-          "text-anchor": "top",
-          "text-allow-overlap": false,
-          "text-ignore-placement": false,
-        },
-        paint: {
-          "text-color": "#1f2937",
-          "text-halo-color": "#ffffff",
-          "text-halo-width": 1.5,
-        },
+      // HTML markers for labels: bypass MapLibre symbol collision with base-map place labels
+      VILLAGES.forEach((v) => {
+        const isHighlighted = v.slug === highlighted;
+        const dotRadius = isHighlighted ? 14 : 9;
+        const el = makeLabelEl(v.name, isHighlighted);
+        const marker = new maplibregl.Marker({ element: el, anchor: "top", offset: [0, dotRadius] })
+          .setLngLat([v.lng, v.lat])
+          .addTo(map);
+        markers.push(marker);
       });
 
-      // Click → popup with link
       map.on("click", ["villages-dot", "village-highlighted"], (e) => {
         const f = e.features?.[0];
         if (!f) return;
@@ -161,6 +169,7 @@ export function VillageMapGL({
     });
 
     return () => {
+      markers.forEach((m) => m.remove());
       map.remove();
       mapRef.current = null;
     };
@@ -170,7 +179,6 @@ export function VillageMapGL({
 
   return (
     <div className="my-8 overflow-hidden rounded-2xl border border-line shadow-sm">
-      {/* Header */}
       <div className="flex items-center gap-3 border-b border-line bg-white px-5 py-3">
         <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-sea-deep">
           🗺 {heading}
@@ -178,7 +186,6 @@ export function VillageMapGL({
         <span className="ml-auto font-mono text-[10px] text-muted">10 communes</span>
       </div>
 
-      {/* Map container */}
       <div className="relative h-72 sm:h-80">
         <div ref={containerRef} style={{ width: "100%", height: "100%" }} />
         {!ready && (
