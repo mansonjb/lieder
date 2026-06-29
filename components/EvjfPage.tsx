@@ -6,7 +6,6 @@ import { Breadcrumb, type Crumb } from "@/components/Breadcrumb";
 import { FaqBlock, type FaqItem } from "@/components/FaqBlock";
 import { Stay22InlineCta } from "@/components/Stay22InlineCta";
 import { RelatedPages } from "@/components/RelatedPages";
-import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
 import { ancestors, pageHref, relatedOf } from "@/lib/registry";
 
 // ── Visual helper ────────────────────────────────────────────────────────────
@@ -570,7 +569,6 @@ export function EvjfPage({
 
       {/* ── Related + disclosure ─────────────────────────────────────────── */}
       <RelatedPages heading={dict.related.heading} entries={related} locale={locale} />
-      <AffiliateDisclosure dict={dict} />
     </>
   );
 }

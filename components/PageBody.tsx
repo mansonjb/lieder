@@ -18,7 +18,6 @@ import { BestTimeWidget } from "@/components/BestTimeWidget";
 import { FaqBlock } from "@/components/FaqBlock";
 import { RelatedPages } from "@/components/RelatedPages";
 import { PageCard, SILO_META } from "@/components/PageCard";
-import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
 import { JsonLd } from "@/components/JsonLd";
 import { Hero } from "@/components/Hero";
 import { heroImage, homeHero, bentoImages, galleryImages } from "@/lib/images";
@@ -434,7 +433,7 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
             </div>
           ) : null}
 
-          <AffiliateDisclosure dict={dict} />
+          {/* affiliate disclosure in footer */}
         </section>
       </>
     );
@@ -583,7 +582,7 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
         ) : null}
 
         <FaqBlock heading={dict.faq.heading} items={[]} />
-        {entry.stay22 ? <AffiliateDisclosure dict={dict} /> : null}
+        {/* affiliate disclosure in footer */}
       </div>
     );
   }
@@ -678,7 +677,7 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
             <div className="mt-2">{stay}</div>
           </div>
         ) : null}
-        {entry.stay22 ? <AffiliateDisclosure dict={dict} /> : null}
+        {/* affiliate disclosure in footer */}
       </article>
     );
   }
@@ -773,7 +772,7 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
             <div className="mt-2">{stay}</div>
           </div>
         ) : null}
-        {entry.stay22 ? <AffiliateDisclosure dict={dict} /> : null}
+        {/* affiliate disclosure in footer */}
       </article>
     );
   }
@@ -870,7 +869,6 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
           <div className="mt-2">{stay}</div>
         </div>
       ) : null}
-      {entry.stay22 ? <AffiliateDisclosure dict={dict} /> : null}
     </article>
   );
 }

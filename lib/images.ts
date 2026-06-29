@@ -62,6 +62,56 @@ const VILLAGE_SILO_OFFSET: Record<string, number> = {
   "restaurants": 4,
 };
 
+// Photo spécifique par page que-faire (évite que toutes les activités aient la même photo)
+const QUE_FAIRE_PHOTO: Record<string, string> = {
+  "que-faire/incontournables":          "villages/saint-martin-de-re-3",
+  "que-faire/velo":                     "villages/ars-en-re-2",
+  "que-faire/location-velo":            "villages/le-bois-plage-en-re",
+  "que-faire/phare-des-baleines":       "plages/plage-du-phare",
+  "que-faire/marais-salants":           "villages/loix",
+  "que-faire/ecomusee-marais-salant":   "villages/loix-2",
+  "que-faire/reserve-lilleau-des-niges": "plages/gros-jonc-les-portes",
+  "que-faire/fortifications-vauban":    "villages/saint-martin-de-re-2",
+  "que-faire/abbaye-des-chateliers":    "villages/la-flotte-2",
+  "que-faire/fort-de-la-pree":          "villages/rivedoux-plage",
+  "que-faire/musee-ernest-cognacq":     "villages/saint-martin-de-re-4",
+  "que-faire/degustation-huitres":      "villages/la-flotte-3",
+  "que-faire/degustation-vin":          "villages/ars-en-re-3",
+  "que-faire/marches":                  "villages/saint-martin-de-re",
+  "que-faire/surf":                     "plages/la-conche-des-baleines",
+  "que-faire/kitesurf":                 "plages/la-cible-2",
+  "que-faire/paddle":                   "plages/le-peu-ragot",
+  "que-faire/voile-catamaran":          "plages/sablanceaux",
+  "que-faire/kayak":                    "plages/le-marchais",
+  "que-faire/peche":                    "plages/le-marchais-2",
+  "que-faire/baignade":                 "plages/les-grenettes",
+  "que-faire/randonnee":                "plages/trousse-chemise",
+  "que-faire/observation-oiseaux":      "plages/gros-jonc-les-portes-2",
+  "que-faire/golf":                     "villages/le-bois-plage-en-re-2",
+  "que-faire/tennis":                   "villages/rivedoux-plage-2",
+  "que-faire/aquarium":                 "villages/la-rochelle",
+  "que-faire/camping":                  "villages/les-portes-en-re",
+  "que-faire/balades-en-mer":           "plages/la-benaie",
+  "que-faire/plongee":                  "plages/le-grouin",
+  "que-faire/chars-a-voile":            "plages/la-conche-des-baleines-2",
+};
+
+// Rotation pour les pages que-faire sans photo dédiée
+const QUE_FAIRE_ROTATION = [
+  "villages/ars-en-re",
+  "plages/la-conche-des-baleines-3",
+  "villages/la-flotte-4",
+  "plages/trousse-chemise-2",
+  "villages/les-portes-en-re-2",
+  "plages/les-grenettes-2",
+  "villages/le-bois-plage-en-re-3",
+  "plages/gros-jonc-les-portes-3",
+  "villages/saint-clement-des-baleines-2",
+  "plages/la-benaie-2",
+  "villages/loix-3",
+  "plages/le-goisil",
+];
+
 // Image de repli pour les silos racines et éditoriaux
 const SILO_FALLBACK: Record<string, string> = {
   "villages":    "villages/saint-martin-de-re",
@@ -129,6 +179,14 @@ export function heroImage(key: string): string | undefined {
     const cat = PLAGE_CATEGORY[key];
     if (cat && M[cat]) return M[cat];
     return M["plages/le-gros-jonc"] || M["plages/la-conche-des-baleines"] || undefined;
+  }
+
+  // que-faire/* → photo spécifique par activité, puis rotation pour éviter les doublons
+  if (key.startsWith("que-faire/")) {
+    const specific = QUE_FAIRE_PHOTO[key];
+    if (specific && M[specific]) return M[specific];
+    const rotIdx = key.length % QUE_FAIRE_ROTATION.length;
+    return M[QUE_FAIRE_ROTATION[rotIdx]] || M["plages/le-gros-jonc"];
   }
 
   // Silo racine ou éditorial
