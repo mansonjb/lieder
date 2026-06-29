@@ -43,9 +43,12 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { name: "La Flambée", tag: { fr: "Poissons & grillades", en: "Fish & grills" }, price: "€€" },
     ],
     accommodationPicks: [
-      { name: "Camping La Pergola", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
-      { name: "Gîtes du Pertuis", type: { fr: "Locations semaine", en: "Weekly rentals" }, price: "€€" },
+      { name: "Camping La Pergola", type: { fr: "Camping 3★", en: "3★ campsite" }, price: "€", stars: 3 },
+      { name: "Hôtel L'Hippocampe", type: { fr: "Hôtel village 3★", en: "3★ village hotel" }, price: "€€", stars: 3 },
+      { name: "Gîtes du Pertuis", type: { fr: "Maison de vacances", en: "Holiday home" }, price: "€€" },
       { name: "Villa du Sablanceaux", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€€" },
+      { name: "Résidence Le Sablanceaux", type: { fr: "Résidence de tourisme", en: "Tourist residence" }, price: "€€" },
+      { name: "Maison Côté Pertuis", type: { fr: "Location semaine", en: "Weekly rental" }, price: "€€" },
     ],
     links: [
       { icon: "🏛", label: { fr: "Office de tourisme de l'Île de Ré", en: "Île de Ré Tourist Office" }, href: "https://www.destinationiledere.fr/" },
@@ -73,8 +76,11 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
     ],
     accommodationPicks: [
       { name: "Camping Les Grenettes", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
-      { name: "Résidence Les Baleines", type: { fr: "Locations semaine", en: "Weekly rentals" }, price: "€€" },
+      { name: "Hôtel de la Marée", type: { fr: "Hôtel 3★", en: "3★ hotel" }, price: "€€", stars: 3 },
+      { name: "Résidence Les Baleines", type: { fr: "Résidence de tourisme", en: "Tourist residence" }, price: "€€" },
       { name: "Maison du Pertuis", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€€" },
+      { name: "Villas & maisons bord de mer", type: { fr: "Locations semaine", en: "Weekly rentals" }, price: "€€€" },
+      { name: "Camping Les Grenettes Plage", type: { fr: "Mobil-homes 4★", en: "4★ mobile homes" }, price: "€€" },
     ],
     links: [
       { icon: "🏛", label: { fr: "Office de tourisme de l'Île de Ré", en: "Île de Ré Tourist Office" }, href: "https://www.destinationiledere.fr/" },
@@ -102,9 +108,12 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { name: "Le Saint Georges", tag: { fr: "Bistrot de port", en: "Harbour bistrot" }, price: "€€" },
     ],
     accommodationPicks: [
-      { name: "Hôtel Le Richelieu", type: { fr: "Hôtel face à la mer", en: "Seafront hotel" }, price: "€€€", stars: 4 },
+      { name: "Hôtel Le Richelieu", type: { fr: "Hôtel face à la mer 4★", en: "4★ seafront hotel" }, price: "€€€", stars: 4 },
       { name: "La Villa Rhéa", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€€" },
       { name: "Camping La Grillotière", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
+      { name: "Maisons de pêcheur rénovées", type: { fr: "Location semaine", en: "Weekly rental" }, price: "€€€" },
+      { name: "Camping Le Bois Henri", type: { fr: "Camping 3★", en: "3★ campsite" }, price: "€", stars: 3 },
+      { name: "Gîte Abbaye des Châteliers", type: { fr: "Gîte de charme", en: "Charming gîte" }, price: "€€€" },
     ],
     links: [
       { icon: "🏛", label: { fr: "Plus Beaux Villages de France", en: "Plus Beaux Villages de France" }, href: "https://www.les-plus-beaux-villages-de-france.org/fr/nos-villages/la-flotte/" },
@@ -133,8 +142,11 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
     ],
     accommodationPicks: [
       { name: "Hôtel de Toiras", type: { fr: "Relais & Châteaux 5★", en: "Relais & Châteaux 5★" }, price: "€€€€", stars: 5 },
-      { name: "Les Ateliers de l'Image", type: { fr: "Boutique hôtel", en: "Boutique hotel" }, price: "€€€€" },
+      { name: "Les Ateliers de l'Image", type: { fr: "Boutique hôtel 4★", en: "4★ boutique hotel" }, price: "€€€€", stars: 4 },
+      { name: "La Baronnie Hôtel & Spa", type: { fr: "Hôtel spa 4★", en: "4★ spa hotel" }, price: "€€€€", stars: 4 },
       { name: "Gîtes intra-muros", type: { fr: "Locations centre historique", en: "Historic centre rentals" }, price: "€€€" },
+      { name: "Maison des Hortensias", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€€" },
+      { name: "Camping de la Plaine", type: { fr: "Camping 3★", en: "3★ campsite" }, price: "€", stars: 3 },
     ],
     links: [
       { icon: "🏰", label: { fr: "Citadelle Vauban — Patrimoine UNESCO", en: "Vauban Citadel — UNESCO Heritage" }, href: "https://www.destinationiledere.fr/citadelle-saint-martin-de-re" },
@@ -162,9 +174,12 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { name: "La Cabane du Vigneron",     tag: { fr: "Planches & vins de l'île",    en: "Boards & island wines"          }, price: "€"  },
     ],
     accommodationPicks: [
-      { name: "Camping Yelloh! La Tour des Prises", type: { fr: "Camping 5★", en: "5★ campsite" }, price: "€€", stars: 5 },
+      { name: "Camping Yelloh! La Tour des Prises", type: { fr: "Camping 5★ pieds dans l'eau", en: "5★ beachfront campsite" }, price: "€€", stars: 5 },
       { name: "Camping Interlude", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
-      { name: "Hôtel L'Océan", type: { fr: "Hôtel village", en: "Village hotel" }, price: "€€", stars: 2 },
+      { name: "Hôtel L'Océan", type: { fr: "Hôtel village 2★", en: "2★ village hotel" }, price: "€€", stars: 2 },
+      { name: "Villas & maisons avec jardin", type: { fr: "Location semaine", en: "Weekly rental" }, price: "€€€" },
+      { name: "Hôtel Le Clos Guyard", type: { fr: "Logis de France 3★", en: "3★ Logis de France" }, price: "€€", stars: 3 },
+      { name: "Chambres d'hôtes Les Vignes", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€" },
     ],
     links: [
       { icon: "🍷", label: { fr: "Domaine viticole — Vignes de l'Île de Ré", en: "Île de Ré vineyards visit" }, href: "https://www.destinationiledere.fr/vignes-ile-de-re" },
@@ -192,8 +207,11 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
     ],
     accommodationPicks: [
       { name: "Camping La Grainetière", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
-      { name: "Camping de la Côte", type: { fr: "Camping 4★ bord de mer", en: "4★ seafront campsite" }, price: "€", stars: 4 },
-      { name: "Gîtes & villas", type: { fr: "Locations semaine", en: "Weekly rentals" }, price: "€€-€€€" },
+      { name: "Camping Les Brisants", type: { fr: "Camping 4★ bord de mer", en: "4★ seafront campsite" }, price: "€", stars: 4 },
+      { name: "Gîtes du Carrefour de l'Île", type: { fr: "Maison de vacances", en: "Holiday home" }, price: "€€" },
+      { name: "Villa Les Marais", type: { fr: "Villa avec jardin", en: "Villa with garden" }, price: "€€€" },
+      { name: "Chambres d'hôtes La Couarde", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€" },
+      { name: "Résidence Les Embruns", type: { fr: "Résidence de tourisme", en: "Tourist residence" }, price: "€€" },
     ],
     links: [
       { icon: "🚴", label: { fr: "Véloroute de l'Île de Ré — itinéraires", en: "Île de Ré cycling routes" }, href: "https://www.destinationiledere.fr/velo" },
@@ -220,8 +238,12 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { name: "La Cabane du Feneau", tag: { fr: "Cabane ostréicole", en: "Oyster cabin" }, price: "€" },
     ],
     accommodationPicks: [
-      { name: "Gîtes de la presqu'île", type: { fr: "Locations semaine", en: "Weekly rentals" }, price: "€€" },
-      { name: "Chambres d'hôtes du Fier", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€€" },
+      { name: "Gîtes de la presqu'île", type: { fr: "Location semaine", en: "Weekly rental" }, price: "€€" },
+      { name: "Chambres Côté Marais", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€€" },
+      { name: "Maison du Paludier", type: { fr: "Location saisonnière", en: "Holiday rental" }, price: "€€" },
+      { name: "Villa Vue Fier", type: { fr: "Villa vue marais", en: "Marshland villa" }, price: "€€€" },
+      { name: "Gîte de l'Écomusée", type: { fr: "Gîte rural", en: "Rural gîte" }, price: "€€" },
+      { name: "Maisons du bout du monde", type: { fr: "Locations semaine", en: "Weekly rentals" }, price: "€€" },
     ],
     links: [
       { icon: "🧂", label: { fr: "Écomusée du marais salant de Loix", en: "Salt marsh ecomuseum Loix" }, href: "https://www.destinationiledere.fr/ecomusee-marais-salant" },
@@ -249,9 +271,12 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
       { name: "L'Estaminet d'Ars",   tag: { fr: "Bistrot de village, carte courte", en: "Village bistrot, short menu"      }, price: "€"   },
     ],
     accommodationPicks: [
-      { name: "Hôtel du Martray", type: { fr: "Hôtel de charme", en: "Boutique hotel" }, price: "€€€", stars: 3 },
+      { name: "Hôtel Le Sénéchal", type: { fr: "Logis de France 3★", en: "3★ Logis de France" }, price: "€€€", stars: 3 },
+      { name: "Hôtel du Martray", type: { fr: "Hôtel de charme 3★", en: "3★ boutique hotel" }, price: "€€€", stars: 3 },
       { name: "Camping de la Monnerie", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
-      { name: "Chambres d'hôtes du village", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€" },
+      { name: "Chambres Côté Vignes", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€" },
+      { name: "Gîte Côté Nature", type: { fr: "Gîte rural animaux OK", en: "Rural gîte, pets welcome" }, price: "€€" },
+      { name: "Maisons de charme intra-muros", type: { fr: "Location semaine", en: "Weekly rental" }, price: "€€€" },
     ],
     links: [
       { icon: "🏛", label: { fr: "Plus Beaux Villages de France — Ars-en-Ré", en: "Plus Beaux Villages — Ars-en-Ré" }, href: "https://www.les-plus-beaux-villages-de-france.org/fr/nos-villages/ars-en-re/" },
@@ -281,7 +306,10 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
     accommodationPicks: [
       { name: "Camping Les Baleines", type: { fr: "Camping 4★ près du phare", en: "4★ campsite near lighthouse" }, price: "€", stars: 4 },
       { name: "La Maison du Phare", type: { fr: "Chambres d'hôtes", en: "B&B" }, price: "€€€" },
-      { name: "Gîtes du bout de l'île", type: { fr: "Locations semaine", en: "Weekly rentals" }, price: "€€" },
+      { name: "Gîtes du bout de l'île", type: { fr: "Location semaine", en: "Weekly rental" }, price: "€€" },
+      { name: "Lodges de la Côte Sauvage", type: { fr: "Glamping & lodges", en: "Glamping & lodges" }, price: "€€€" },
+      { name: "Maison Vue Phare", type: { fr: "Maison de vacances", en: "Holiday home" }, price: "€€€" },
+      { name: "Camping Les Grenettes", type: { fr: "Camping 3★", en: "3★ campsite" }, price: "€", stars: 3 },
     ],
     links: [
       { icon: "🔭", label: { fr: "Phare des Baleines — 257 marches, panorama 360°", en: "Phare des Baleines — 257 steps, 360° panorama" }, href: "https://pharetourisme.com/" },
@@ -311,7 +339,10 @@ export const VILLAGE_META: Record<string, VillageMeta> = {
     accommodationPicks: [
       { name: "Camping Yelloh! Les Ilates", type: { fr: "Camping 5★ prestige", en: "5★ premium campsite" }, price: "€€", stars: 5 },
       { name: "Camping de la Monnerie", type: { fr: "Camping 4★", en: "4★ campsite" }, price: "€", stars: 4 },
-      { name: "Gîtes & maisons de charme", type: { fr: "Locations semaine", en: "Weekly rentals" }, price: "€€€" },
+      { name: "Gîtes & maisons de charme", type: { fr: "Location semaine", en: "Weekly rental" }, price: "€€€" },
+      { name: "Villa Trousse-Chemise", type: { fr: "Villa avec piscine", en: "Villa with pool" }, price: "€€€€" },
+      { name: "Résidence Les Dunes", type: { fr: "Résidence de tourisme", en: "Tourist residence" }, price: "€€" },
+      { name: "Maison du Fier", type: { fr: "Chambres d'hôtes vue Fier", en: "B&B with Fier views" }, price: "€€€" },
     ],
     links: [
       { icon: "🦅", label: { fr: "Forêt de Trousse-Chemise — dunes & landes sauvages", en: "Trousse-Chemise forest — wild dunes & heathland" }, href: "https://www.destinationiledere.fr/foret-trousse-chemise" },

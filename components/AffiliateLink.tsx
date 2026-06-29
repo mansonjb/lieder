@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from "react";
 
-export type AffiliateNetwork = "stay22";
+export type AffiliateNetwork = "stay22" | "booking";
 
 type Props = {
   href: string;

@@ -5406,6 +5406,52 @@ export const REGISTRY: PageEntry[] = [
     "parent": "ou-dormir"
   },
   {
+    "key": "ou-dormir/villas",
+    "silo": "ou-dormir",
+    "template": "ou-dormir",
+    "intent": "comparatif",
+    "stay22": true,
+    "slug": {
+      "fr": "ou-dormir/villas",
+      "en": "where-to-stay/holiday-villas"
+    },
+    "title": {
+      "fr": "Les plus belles villas à louer sur l'Île de Ré",
+      "en": "Best holiday villas for rent on Île de Ré"
+    },
+    "h1": {
+      "fr": "Les plus belles villas à louer sur l'Île de Ré",
+      "en": "Best holiday villas for rent on Île de Ré"
+    },
+    "description": {
+      "fr": "Les plus belles villas à louer sur l'Île de Ré : nos meilleures adresses par quartier et par budget, avec carte et comparatif pour réserver au bon endroit.",
+      "en": "Best holiday villas for rent on Île de Ré: our top picks by area and budget, with a map and comparison table to book in the right place."
+    },
+    "targetKeyword": {
+      "fr": "les plus belles villas à louer sur l'île de ré",
+      "en": "best holiday villas for rent on île de ré"
+    },
+    "related": [
+      "ou-dormir",
+      "ou-dormir/rivedoux-plage",
+      "ou-dormir/sainte-marie-de-re",
+      "ou-dormir/la-flotte",
+      "ou-dormir/saint-martin-de-re"
+    ],
+    "lastUpdated": "2026-06-22",
+    "priority": 0.8,
+    "geo": {
+      "lat": 46.198,
+      "lng": -1.42,
+      "zoom": 11
+    },
+    "mapLabel": {
+      "fr": "l'Île de Ré",
+      "en": "Île de Ré"
+    },
+    "parent": "ou-dormir"
+  },
+  {
     "key": "ou-dormir/campings",
     "silo": "ou-dormir",
     "template": "ou-dormir",

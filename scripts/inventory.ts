@@ -126,6 +126,7 @@ const OU_DORMIR_TYPES: [string, string, string, string][] = [
   ["hotels-romantiques", "romantic-hotels", "Hôtels romantiques", "Romantic hotels"],
   ["maisons-dhotes", "guesthouses", "Chambres et maisons d'hôtes", "Bed & breakfasts and guesthouses"],
   ["locations-vacances", "holiday-rentals", "Locations et villas", "Holiday rentals and villas"],
+  ["villas", "holiday-villas", "Les plus belles villas à louer sur l'Île de Ré", "Best holiday villas for rent on Île de Ré"],
   ["campings", "campsites", "Campings de l'Île de Ré", "Campsites on Île de Ré"],
   ["glamping", "glamping", "Glamping et hébergements insolites", "Glamping and unusual stays"],
   ["avec-piscine-interieure", "indoor-pool", "Hébergements avec piscine chauffée ou couverte", "Stays with a heated or indoor pool"],

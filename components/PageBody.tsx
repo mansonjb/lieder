@@ -44,6 +44,8 @@ import { VILLAGE_META } from "@/data/village-meta";
 import { BEACH_META } from "@/data/beach-meta";
 import { getVillageFaqs, OU_DORMIR_FAQS } from "@/data/faq-content";
 import { EvjfPage } from "@/components/EvjfPage";
+import { OuDormirPicks } from "@/components/OuDormirPicks";
+import { VillaShowcase } from "@/components/VillaShowcase";
 
 type Props = {
   entry: PageEntry;
@@ -836,6 +838,15 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
       ) : null}
 
       {body}
+
+      {/* Sélection d'hébergements pour les sous-pages ou-dormir */}
+      {entry.template === "ou-dormir" && !isOuDormirRoot ? (
+        entry.key === "ou-dormir/villas" ? (
+          <VillaShowcase locale={locale} />
+        ) : (
+          <OuDormirPicks entryKey={entry.key} locale={locale} />
+        )
+      ) : null}
 
       {/* CTA Stay22 après le contenu éditorial */}
       {entry.stay22 ? (
