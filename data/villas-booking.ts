@@ -2,9 +2,12 @@ export type VillaBooking = {
   name: string;
   city: string;
   villageSlug: string;
+  type: string;
   pricePerNight: number;
   rating: number;
+  ratingLabel: string;
   reviews: number;
+  description: string;
   image: string;
   images: string[];
   highlights: string[];

@@ -1,25 +1,16 @@
 import { AffiliateLink } from "@/components/AffiliateLink";
-import { PriceRange } from "@/components/PriceRange";
 import type { VillaBooking } from "@/data/villas-booking";
 
-function priceLevel(pricePerNight: number): 1 | 2 | 3 | 4 {
-  if (pricePerNight < 300) return 1;
-  if (pricePerNight < 500) return 2;
-  if (pricePerNight < 800) return 3;
-  return 4;
+function ratingColor(r: number) {
+  if (r >= 9) return "bg-emerald-600";
+  if (r >= 8) return "bg-teal-600";
+  if (r >= 7) return "bg-sea-deep";
+  return "bg-muted";
 }
 
-function RatingBadge({ rating }: { rating: number }) {
-  if (!rating) return null;
-  const color =
-    rating >= 9 ? "bg-emerald-600" : rating >= 8 ? "bg-teal-600" : "bg-sea-deep";
-  return (
-    <span
-      className={`${color} absolute right-2 top-2 rounded-lg px-2 py-0.5 font-mono text-xs font-bold text-white`}
-    >
-      {rating.toFixed(1)}
-    </span>
-  );
+function reviewCount(n: number) {
+  if (n >= 1000) return `${(n / 1000).toFixed(1)}k`;
+  return String(n);
 }
 
 export function VillaCard({
@@ -29,12 +20,19 @@ export function VillaCard({
   villa: VillaBooking;
   locale: "fr" | "en";
 }) {
-  const ctaLabel = locale === "fr" ? "Voir sur Booking.com" : "View on Booking.com";
-  const perNightLabel = locale === "fr" ? "/nuit" : "/night";
-  const level = priceLevel(villa.pricePerNight);
+  const ctaLabel = locale === "fr" ? "Réserver sur Booking.com" : "Book on Booking.com";
+  const fromLabel = locale === "fr" ? "À PARTIR DE" : "FROM";
+  const perNight = locale === "fr" ? "/ nuit" : "/ night";
+  const reviewLabel = locale === "fr" ? "avis" : "reviews";
+
+  const typeLabel =
+    villa.type === "villa"
+      ? locale === "fr" ? "Villa" : "Villa"
+      : locale === "fr" ? "Maison" : "House";
 
   return (
     <article className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
+      {/* Photo */}
       <div className="relative h-52 shrink-0 overflow-hidden bg-sand">
         {villa.image ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -45,34 +43,58 @@ export function VillaCard({
             loading="lazy"
           />
         ) : null}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        <RatingBadge rating={villa.rating} />
-        {villa.reviews > 0 ? (
-          <span className="absolute bottom-2 left-3 text-xs text-white/80">
-            {villa.reviews} {locale === "fr" ? "avis" : "reviews"}
-          </span>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+
+        {/* Rating badge — top left */}
+        {villa.rating > 0 ? (
+          <div className={`absolute left-2 top-2 flex items-center gap-1.5 rounded-xl ${ratingColor(villa.rating)} px-2 py-1`}>
+            <span className="font-mono text-sm font-bold text-white leading-none">
+              {villa.rating.toFixed(1)}
+            </span>
+            {villa.reviews > 0 ? (
+              <span className="font-mono text-[10px] text-white/80 leading-none">
+                {reviewCount(villa.reviews)}
+              </span>
+            ) : null}
+          </div>
         ) : null}
-        <span className="absolute bottom-2 right-3 font-mono text-sm font-semibold text-white">
-          {villa.pricePerNight}€{perNightLabel}
+
+        {/* Type badge — top right */}
+        <span className="absolute right-2 top-2 rounded-xl bg-amber-400 px-2.5 py-1 font-mono text-[10px] font-bold text-amber-900 uppercase tracking-wide">
+          {typeLabel}
         </span>
       </div>
 
-      <div className="flex flex-1 flex-col gap-2 p-4">
-        <div className="flex items-start justify-between gap-2">
-          <h3 className="font-display text-sm font-semibold leading-snug text-ink line-clamp-2">
+      {/* Card body */}
+      <div className="flex flex-1 flex-col gap-3 p-4">
+        <div>
+          <h3 className="font-display text-base font-semibold leading-snug text-ink line-clamp-2">
             {villa.name}
           </h3>
-          <PriceRange level={level} />
+          <p className="mt-0.5 text-xs text-muted">
+            {villa.city}, Île de Ré
+            {villa.rating > 0 && villa.ratingLabel ? (
+              <> · <span className="text-ink/70">{villa.ratingLabel}</span>
+              {villa.reviews > 0 ? <> · {villa.reviews} {reviewLabel}</> : null}
+              </>
+            ) : null}
+          </p>
         </div>
 
-        <p className="text-xs text-muted">{villa.city}, Île de Ré</p>
+        {/* Description */}
+        {villa.description ? (
+          <p className="rounded-xl bg-paper-2 px-3 py-2.5 text-xs leading-relaxed text-ink/80 line-clamp-3">
+            {villa.description}
+          </p>
+        ) : null}
 
+        {/* Feature pills */}
         {villa.highlights.length > 0 ? (
           <ul className="flex flex-wrap gap-1.5">
             {villa.highlights.slice(0, 3).map((h) => (
               <li
                 key={h}
-                className="rounded-full bg-paper-2 px-2 py-0.5 text-xs text-ink/80"
+                className="rounded-full border border-line px-2 py-0.5 text-xs text-ink/70"
               >
                 {h}
               </li>
@@ -80,14 +102,24 @@ export function VillaCard({
           </ul>
         ) : null}
 
-        <AffiliateLink
-          network="booking"
-          context="villa-card"
-          href={villa.url}
-          className="mt-auto inline-flex w-fit items-center gap-1 rounded-full bg-[#003580] px-4 py-2 pt-3 text-sm font-semibold text-white transition-colors hover:bg-[#00224a]"
-        >
-          {ctaLabel} {"→"}
-        </AffiliateLink>
+        {/* Footer: price + CTA */}
+        <div className="mt-auto flex items-end justify-between gap-3 pt-1">
+          <div>
+            <p className="font-mono text-[9px] uppercase tracking-widest text-muted">{fromLabel}</p>
+            <p className="font-display text-xl font-bold text-ink">
+              {villa.pricePerNight}€{" "}
+              <span className="text-sm font-normal text-muted">{perNight}</span>
+            </p>
+          </div>
+          <AffiliateLink
+            network="booking"
+            context="villa-card"
+            href={villa.url}
+            className="shrink-0 rounded-full bg-[#003580] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#00224a]"
+          >
+            {ctaLabel} →
+          </AffiliateLink>
+        </div>
       </div>
     </article>
   );
