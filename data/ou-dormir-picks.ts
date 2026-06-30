@@ -924,37 +924,523 @@ const CAMPING_FOUGERES: OuDormirPick = {
   stayAddress: "Camping Les Fougères, La Couarde-sur-Mer, Île de Ré",
 };
 
+// ============ ADDITIONS MAXIMALES ============
+
+const RELAX_SPA: OuDormirPick = {
+  name: "Ré-lax Suites & Spa",
+  village: "Saint-Martin-de-Ré",
+  villageSlug: "saint-martin-de-re",
+  photoIndex: 0,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/889751276.jpg?k=53794d17621faff6265fa9dbc9bcffeeaf5f6a5f4eeecaa94b6463363f031be8&o=",
+  type: { fr: "Suite spa", en: "Spa suite" },
+  priceLevel: 4,
+  features: [
+    { fr: "Spa privatif dans chaque suite", en: "Private spa in each suite" },
+    { fr: "Remparts à 2 min à pied", en: "2 min walk to the ramparts" },
+    { fr: "Adresse confidentielle & exclusive", en: "Exclusive intimate address" },
+  ],
+  stayAddress: "Ré-lax, Saint-Martin-de-Ré, Île de Ré",
+};
+
+const CORPS_DE_GARDE: OuDormirPick = {
+  name: "Le Corps de Garde",
+  village: "Saint-Martin-de-Ré",
+  villageSlug: "saint-martin-de-re",
+  photoIndex: 1,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/117606306.jpg?k=bbedd23f712afe9e6be9aee1ddfe291d2a3d44c8c23677e4e1207b68f3dc0897&o=",
+  type: { fr: "Chambre d'hôtes", en: "B&B" },
+  priceLevel: 3,
+  features: [
+    { fr: "Ancien bâtiment militaire Vauban", en: "Former Vauban military building" },
+    { fr: "Terrasse sur les remparts", en: "Terrace on the ramparts" },
+    { fr: "Cachet historique unique", en: "Unique historic character" },
+  ],
+  stayAddress: "Le Corps de Garde, Saint-Martin-de-Ré, Île de Ré",
+};
+
+const CLOS_VAUBAN: OuDormirPick = {
+  name: "Clos Vauban",
+  village: "Saint-Martin-de-Ré",
+  villageSlug: "saint-martin-de-re",
+  photoIndex: 2,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/652623874.jpg?k=7d42cf533d0305fa3778942ed47daa13dac600c876d9f0c2ee741b696ddc59a1&o=",
+  type: { fr: "Chambre d'hôtes", en: "B&B" },
+  priceLevel: 3,
+  features: [
+    { fr: "Jardin privatif intra-muros", en: "Private garden within the ramparts" },
+    { fr: "Piscine chauffée", en: "Heated pool" },
+    { fr: "Petit-déjeuner gourmet", en: "Gourmet breakfast" },
+  ],
+  stayAddress: "Clos Vauban, Saint-Martin-de-Ré, Île de Ré",
+};
+
+const HOTEL_VIEUX_GREEMENT: OuDormirPick = {
+  name: "Hôtel Le Vieux Gréement",
+  village: "Saint-Martin-de-Ré",
+  villageSlug: "saint-martin-de-re",
+  photoIndex: 0,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/333283876.jpg?k=7588346ce60ef203f97fdbbcab5b278d09f7a9f63e4c7a5d500f3e2ab2f832ab&o=",
+  type: { fr: "Hôtel 2★", en: "2★ hotel" },
+  stars: 2,
+  priceLevel: 2,
+  features: [
+    { fr: "À deux pas du port", en: "Steps from the harbour" },
+    { fr: "Ambiance marin & voileux", en: "Nautical sailing atmosphere" },
+    { fr: "Bon rapport qualité-prix", en: "Good value for money" },
+  ],
+  stayAddress: "Hôtel Le Vieux Gréement, Saint-Martin-de-Ré, Île de Ré",
+};
+
+const LE_MOLE: OuDormirPick = {
+  name: "Le Môle",
+  village: "Saint-Martin-de-Ré",
+  villageSlug: "saint-martin-de-re",
+  photoIndex: 1,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/582856464.jpg?k=bf6389251dea8795943ec8bb47c126423e28f98db6039a4abcab3b7e0b5c8c92&o=",
+  type: { fr: "Chambre d'hôtes", en: "B&B" },
+  priceLevel: 3,
+  features: [
+    { fr: "Au bord du môle du port", en: "On the harbour jetty" },
+    { fr: "Vue sur les voiliers", en: "Yacht views" },
+    { fr: "Petit-déjeuner face à la mer", en: "Breakfast facing the sea" },
+  ],
+  stayAddress: "Le Môle, Saint-Martin-de-Ré, Île de Ré",
+};
+
+const PERLE_DE_RE: OuDormirPick = {
+  name: "Appart'hotel Perle de Ré",
+  village: "Saint-Martin-de-Ré",
+  villageSlug: "saint-martin-de-re",
+  photoIndex: 2,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/22507375.jpg?k=a16b5c50cefc9f7c587e062faba4ef4517b59c142dcdf46be1967ac8e94a2679&o=",
+  type: { fr: "Appart'hôtel", en: "Apart'hotel" },
+  priceLevel: 2,
+  features: [
+    { fr: "Studios & appartements équipés", en: "Studios & equipped apartments" },
+    { fr: "Idéal séjour longue durée", en: "Ideal for longer stays" },
+    { fr: "Proche port et marché", en: "Near harbour and market" },
+  ],
+  stayAddress: "Appart'hotel Perle de Ré, Saint-Martin-de-Ré, Île de Ré",
+};
+
+const LANTERNON: OuDormirPick = {
+  name: "Le Lanternon",
+  village: "Saint-Martin-de-Ré",
+  villageSlug: "saint-martin-de-re",
+  photoIndex: 0,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/446960268.jpg?k=34d01c2aba84709900f5c989154ad4151f4b799208eab01fb78238f83063d70a&o=",
+  type: { fr: "Chambre d'hôtes", en: "B&B" },
+  priceLevel: 3,
+  features: [
+    { fr: "Maison de maître restaurée", en: "Restored manor house" },
+    { fr: "Piscine & jardin fleuri", en: "Pool & flowered garden" },
+    { fr: "Vue sur les vignes", en: "Vineyard views" },
+  ],
+  stayAddress: "Le Lanternon, Saint-Martin-de-Ré, Île de Ré",
+};
+
+const LE_SECRET: OuDormirPick = {
+  name: "Le Secret",
+  village: "Saint-Martin-de-Ré",
+  villageSlug: "saint-martin-de-re",
+  photoIndex: 1,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/447129372.jpg?k=400f9fafe2f56810a4d8bfcea58772906868d9f6e1e411f9797c10f548ce2a91&o=",
+  type: { fr: "Chambre d'hôtes", en: "B&B" },
+  priceLevel: 3,
+  features: [
+    { fr: "Adresse discrète intra-muros", en: "Discreet address within the ramparts" },
+    { fr: "Décoration soignée & cosy", en: "Tasteful cosy decor" },
+    { fr: "Terrasse privée", en: "Private terrace" },
+  ],
+  stayAddress: "LE SECRET, Saint-Martin-de-Ré, Île de Ré",
+};
+
+const BOIS_SAINT_MARTIN: OuDormirPick = {
+  name: "Le Bois Saint Martin",
+  village: "Saint-Martin-de-Ré",
+  villageSlug: "saint-martin-de-re",
+  photoIndex: 2,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/543540968.jpg?k=498fe0d7c501d4adb3b9f942d9f289b30dceec139500c2a98c5c2aa795711ae9&o=",
+  type: { fr: "Résidence", en: "Residence" },
+  priceLevel: 2,
+  features: [
+    { fr: "Appartements & studios de charme", en: "Charming studios & apartments" },
+    { fr: "Piscine & jardin communs", en: "Shared pool & garden" },
+    { fr: "Calme à deux pas du centre", en: "Peaceful close to the centre" },
+  ],
+  stayAddress: "Le Bois Saint Martin, Saint-Martin-de-Ré, Île de Ré",
+};
+
+const LE_BELEM: OuDormirPick = {
+  name: "Le Belem",
+  village: "Saint-Martin-de-Ré",
+  villageSlug: "saint-martin-de-re",
+  photoIndex: 0,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/683631287.jpg?k=837c5232d1eba44fad9e64240992bc65428b39cb227fa8f6602fa364de8ac0fb&o=",
+  type: { fr: "Chambre d'hôtes", en: "B&B" },
+  priceLevel: 3,
+  features: [
+    { fr: "Au cœur de Saint-Martin", en: "In the heart of Saint-Martin" },
+    { fr: "Déco marine & authentique", en: "Nautical authentic decor" },
+    { fr: "Petit-déjeuner maison", en: "Homemade breakfast" },
+  ],
+  stayAddress: "Le Belem, Saint-Martin-de-Ré, Île de Ré",
+};
+
+const CLOS_VIEUX_MOULINS: OuDormirPick = {
+  name: "Le Clos des Vieux Moulins",
+  village: "La Flotte",
+  villageSlug: "la-flotte",
+  photoIndex: 0,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/880308702.jpg?k=df118d0f6e93b727e721aa61fea5c9873537d78071eca1b575de4ad78cd3a9c0&o=",
+  type: { fr: "Chambre d'hôtes", en: "B&B" },
+  priceLevel: 3,
+  features: [
+    { fr: "Anciens moulins à vent rénovés", en: "Restored old windmills" },
+    { fr: "Piscine chauffée & jardin", en: "Heated pool & garden" },
+    { fr: "Nuit insolite & poétique", en: "Poetic unusual stay" },
+  ],
+  stayAddress: "Le Clos des Vieux Moulins, La Flotte-en-Ré, Île de Ré",
+};
+
+const ESCAPADE: OuDormirPick = {
+  name: "Escapade Île de Ré",
+  village: "La Flotte",
+  villageSlug: "la-flotte",
+  photoIndex: 1,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/635741832.jpg?k=1ff13fa8395b7b1c2b54548327e2e1e1c90eedde791539ca5e9149b08dba2820&o=",
+  type: { fr: "Chambre d'hôtes", en: "B&B" },
+  priceLevel: 3,
+  features: [
+    { fr: "Vue sur les vignes de La Flotte", en: "Views over La Flotte vineyards" },
+    { fr: "Jardin méditerranéen", en: "Mediterranean garden" },
+    { fr: "Vélos & balades à pied", en: "Bikes & walking trails" },
+  ],
+  stayAddress: "Escapade Île de Ré, La Flotte-en-Ré, Île de Ré",
+};
+
+const CLOS_STERNES: OuDormirPick = {
+  name: "Le Clos des Sternes",
+  village: "La Flotte",
+  villageSlug: "la-flotte",
+  photoIndex: 2,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/847659715.jpg?k=ec4a60b6af4e6d7e2cb79efe68add446eabdbdf102c1c0f5172f47d3b04044b6&o=",
+  type: { fr: "Chambre d'hôtes", en: "B&B" },
+  priceLevel: 3,
+  features: [
+    { fr: "Maison rétaise au calme", en: "Peaceful Ré island house" },
+    { fr: "Jardin clos avec piscine", en: "Enclosed garden with pool" },
+    { fr: "À 800m de la plage de La Cible", en: "800m from La Cible beach" },
+  ],
+  stayAddress: "Le Clos des Sternes, La Flotte-en-Ré, Île de Ré",
+};
+
+const GLAMPING_FLOTTE: OuDormirPick = {
+  name: "Glamping Spot La Flotte",
+  village: "La Flotte",
+  villageSlug: "la-flotte",
+  photoIndex: 0,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/664914279.jpg?k=25a1b65346fd539c1de8247270e24a3f7be589d4de91b79fbcc0f0c10826937d&o=",
+  type: { fr: "Glamping", en: "Glamping" },
+  priceLevel: 2,
+  features: [
+    { fr: "Tentes lodge & cabanes insolites", en: "Luxury tents & unusual cabins" },
+    { fr: "Nature & confort à La Flotte", en: "Nature & comfort at La Flotte" },
+    { fr: "Nuit sous les étoiles", en: "Night under the stars" },
+  ],
+  stayAddress: "Glamping Spot, La Flotte-en-Ré, Île de Ré",
+};
+
+const HOTEL_CLOCHER: OuDormirPick = {
+  name: "Hôtel Le Clocher",
+  village: "Ars-en-Ré",
+  villageSlug: "ars-en-re",
+  photoIndex: 2,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/528213880.jpg?k=553c7bb258ffa6cb4992cbad47b6c604d59b9db923b7ba349b91b3c1a608ec71&o=",
+  type: { fr: "Hôtel 2★", en: "2★ hotel" },
+  stars: 2,
+  priceLevel: 1,
+  features: [
+    { fr: "Face à l'église d'Ars", en: "Facing Ars church" },
+    { fr: "Cœur du plus beau village", en: "Heart of one of France's most beautiful villages" },
+    { fr: "Calme & authenticité rétaise", en: "Calm & authentic Ré character" },
+  ],
+  stayAddress: "Hôtel Le Clocher, Ars-en-Ré, Île de Ré",
+};
+
+const CLOS_MARAIS_ARS: OuDormirPick = {
+  name: "Clos des Marais",
+  village: "Ars-en-Ré",
+  villageSlug: "ars-en-re",
+  photoIndex: 0,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/881043685.jpg?k=280a7c5b322cf6c8fd8825507e5fe0452640695af2d5f416b7e323913bbb390b&o=",
+  type: { fr: "Chambre d'hôtes", en: "B&B" },
+  priceLevel: 3,
+  features: [
+    { fr: "Vue panoramique sur les marais", en: "Panoramic salt marsh views" },
+    { fr: "Maison de caractère rétaise", en: "Characterful Ré island house" },
+    { fr: "Vélos & balades ornithologiques", en: "Bikes & birdwatching walks" },
+  ],
+  stayAddress: "Clos des Marais, Ars-en-Ré, Île de Ré",
+};
+
+const BOIS_FLOTTES: OuDormirPick = {
+  name: "Les Bois Flottés en Ré",
+  village: "Le Bois-Plage",
+  villageSlug: "le-bois-plage-en-re",
+  photoIndex: 1,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/99055406.jpg?k=c9f83b155a459c7f69b923bee28cfd8d139438d94cb3117425c06221cd821e20&o=",
+  type: { fr: "Chambre d'hôtes", en: "B&B" },
+  priceLevel: 3,
+  features: [
+    { fr: "Maison bois & plage à 200m", en: "Wooden house & beach 200m away" },
+    { fr: "Design naturel & scandinave", en: "Natural Scandinavian design" },
+    { fr: "Petit-déjeuner bio maison", en: "Organic homemade breakfast" },
+  ],
+  stayAddress: "Les Bois Flottés en Ré, Le Bois-Plage-en-Ré, Île de Ré",
+};
+
+const ILATTES: OuDormirPick = {
+  name: "Ilattes entre port et plage",
+  village: "Les Portes-en-Ré",
+  villageSlug: "les-portes-en-re",
+  photoIndex: 2,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/866635006.jpg?k=17fcd23d2cb021a75bf5fe4134853c23888bf1bf924e65206eeec2d5e36b4dc1&o=",
+  type: { fr: "Location saisonnière", en: "Holiday rental" },
+  priceLevel: 3,
+  features: [
+    { fr: "Entre port naturel et plage sauvage", en: "Between natural harbour and wild beach" },
+    { fr: "Cadre exceptionnel aux Portes", en: "Exceptional setting at Les Portes" },
+    { fr: "Accès vélos & nature préservée", en: "Bikes & preserved nature" },
+  ],
+  stayAddress: "Ilattes, Les Portes-en-Ré, Île de Ré",
+};
+
+const MA_CHAMBRE_AMIS: OuDormirPick = {
+  name: "Ma Chambre d'Amis",
+  village: "Saint-Clément-des-Baleines",
+  villageSlug: "saint-clement-des-baleines",
+  photoIndex: 1,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/549286764.jpg?k=c707f60c6c389966ced1559f59acf4717ec4ede7060043a0810a158e404c3e5f&o=",
+  type: { fr: "Chambre d'hôtes", en: "B&B" },
+  priceLevel: 2,
+  features: [
+    { fr: "Atmosphère maison familiale", en: "Home-like friendly atmosphere" },
+    { fr: "Jardin & terrasse paisible", en: "Peaceful garden & terrace" },
+    { fr: "À 5 min du phare des Baleines", en: "5 min from the Baleines lighthouse" },
+  ],
+  stayAddress: "Ma Chambre d'Amis, Saint-Clément-des-Baleines, Île de Ré",
+};
+
+const LE_PHARE: OuDormirPick = {
+  name: "Le Phare",
+  village: "Saint-Clément-des-Baleines",
+  villageSlug: "saint-clement-des-baleines",
+  photoIndex: 2,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/532292701.jpg?k=64ef7f0f24f81207740979d053a62daee819662cffaef8fb3418dd722f36fef3&o=",
+  type: { fr: "Chambre d'hôtes", en: "B&B" },
+  priceLevel: 2,
+  features: [
+    { fr: "À 500m du phare des Baleines", en: "500m from Baleines lighthouse" },
+    { fr: "Cadre sauvage bout du monde", en: "Wild end-of-the-world setting" },
+    { fr: "Vélos & balades nocturnes au phare", en: "Bikes & evening lighthouse walks" },
+  ],
+  stayAddress: "Le Phare, Saint-Clément-des-Baleines, Île de Ré",
+};
+
+const ROSE_DES_VENTS: OuDormirPick = {
+  name: "La Rose des Vents",
+  village: "Sainte-Marie-de-Ré",
+  villageSlug: "sainte-marie-de-re",
+  photoIndex: 0,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/669187782.jpg?k=45f0a92883c363fe9d0e821784f786c2450982e8e2c182de042dbd0bd0f0bda8&o=",
+  type: { fr: "Chambre d'hôtes", en: "B&B" },
+  priceLevel: 3,
+  features: [
+    { fr: "Maison de charme & jardin", en: "Charming house & garden" },
+    { fr: "À vélo de la plage", en: "Cycling distance to beach" },
+    { fr: "Accueil chaleureux & petit-déjeuner maison", en: "Warm welcome & homemade breakfast" },
+  ],
+  stayAddress: "La Rose des Vents, Sainte-Marie-de-Ré, Île de Ré",
+};
+
+const SOLEIL_DORE: OuDormirPick = {
+  name: "Le Soleil Do' Ré",
+  village: "Sainte-Marie-de-Ré",
+  villageSlug: "sainte-marie-de-re",
+  photoIndex: 1,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/363459556.jpg?k=9c12852fa0fcc3a255b763c0f3e32e0f97843dcbe79f7ef3bad7ed7ff6edc1bf&o=",
+  type: { fr: "Chambre d'hôtes", en: "B&B" },
+  priceLevel: 3,
+  features: [
+    { fr: "Maison lumineuse proche plage", en: "Bright house near the beach" },
+    { fr: "Terrasse ensoleillée", en: "Sunny terrace" },
+    { fr: "Idéal base pour explorer l'île", en: "Ideal base for exploring the island" },
+  ],
+  stayAddress: "Le Soleil Do' Ré, Sainte-Marie-de-Ré, Île de Ré",
+};
+
+const UNE_PARENTHESE: OuDormirPick = {
+  name: "Une Parenthèse",
+  village: "Sainte-Marie-de-Ré",
+  villageSlug: "sainte-marie-de-re",
+  photoIndex: 2,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/346860451.jpg?k=82cb15886110b02d6fe5c1b35cce73efa8f8dc36059b2c07ecca4670b009acc8&o=",
+  type: { fr: "Chambre d'hôtes", en: "B&B" },
+  priceLevel: 3,
+  features: [
+    { fr: "Jardin piscine & terrasse", en: "Garden pool & terrace" },
+    { fr: "Décoration soignée & contemporaine", en: "Tasteful contemporary decor" },
+    { fr: "À vélo de la plage de Sainte-Marie", en: "Cycling distance to Sainte-Marie beach" },
+  ],
+  stayAddress: "Une Parenthèse, Sainte-Marie-de-Ré, Île de Ré",
+};
+
+const LA_PLAGE_RIVEDOUX: OuDormirPick = {
+  name: "La Plage Rivedoux Beach House",
+  village: "Rivedoux-Plage",
+  villageSlug: "rivedoux-plage",
+  photoIndex: 0,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/852304081.jpg?k=2c9c2c6e966c8011476caa4c8fe0d8c3d0dd59ecd5b0f5a50c25cfd52bff3952&o=",
+  type: { fr: "Maison de plage", en: "Beach house" },
+  priceLevel: 3,
+  features: [
+    { fr: "Face à la plage de Rivedoux", en: "Facing Rivedoux beach" },
+    { fr: "Première commune de l'île", en: "First village on the island" },
+    { fr: "Accès direct sable & mer", en: "Direct beach access" },
+  ],
+  stayAddress: "La Plage Beach House, Rivedoux-Plage, Île de Ré",
+};
+
+const LES_PINS_RIVEDOUX: OuDormirPick = {
+  name: "Les Pins Rivedoux Beach House",
+  village: "Rivedoux-Plage",
+  villageSlug: "rivedoux-plage",
+  photoIndex: 1,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/852684263.jpg?k=1231127d40df72d931a2534ed8ff08661a0b3058415213e5bb5f771fdbac3064&o=",
+  type: { fr: "Maison de plage", en: "Beach house" },
+  priceLevel: 3,
+  features: [
+    { fr: "Sous les pins centenaires", en: "Under century-old pine trees" },
+    { fr: "À 50m de la plage", en: "50m from the beach" },
+    { fr: "Jardin & vélos inclus", en: "Garden & bikes included" },
+  ],
+  stayAddress: "Les Pins Beach House, Rivedoux-Plage, Île de Ré",
+};
+
+const LES_ILES_RIVEDOUX: OuDormirPick = {
+  name: "Les Îles Rivedoux Beach House",
+  village: "Rivedoux-Plage",
+  villageSlug: "rivedoux-plage",
+  photoIndex: 2,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/853250344.jpg?k=473a3460c9d740f6966f1acc6b7804a9e3f628be5f1c471479ddaa52afb2dbbf&o=",
+  type: { fr: "Maison de plage", en: "Beach house" },
+  priceLevel: 3,
+  features: [
+    { fr: "Vue sur les îlots de Ré", en: "Views over Ré's islets" },
+    { fr: "Terrasse & jardin clos", en: "Terrace & enclosed garden" },
+    { fr: "Jusqu'à 8 personnes", en: "Up to 8 guests" },
+  ],
+  stayAddress: "Les Îles Beach House, Rivedoux-Plage, Île de Ré",
+};
+
+const AU_KRE: OuDormirPick = {
+  name: "Au K'Ré",
+  village: "Rivedoux-Plage",
+  villageSlug: "rivedoux-plage",
+  photoIndex: 0,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/355766379.jpg?k=61dddc783e4c88d865ab5a4962ce795a022d6e54018101105cc34bcc09777d19&o=",
+  type: { fr: "Chambre d'hôtes", en: "B&B" },
+  priceLevel: 3,
+  features: [
+    { fr: "Piscine chauffée & spa", en: "Heated pool & spa" },
+    { fr: "Proche pont de l'île", en: "Close to the island bridge" },
+    { fr: "Accueil aux petits soins", en: "Attentive personal service" },
+  ],
+  stayAddress: "Au K'Ré, Rivedoux-Plage, Île de Ré",
+};
+
+const ODALYS: OuDormirPick = {
+  name: "Résidence Odalys Rêve d'Île",
+  village: "Rivedoux-Plage",
+  villageSlug: "rivedoux-plage",
+  photoIndex: 1,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/699488364.jpg?k=7b3e569c690ba67139ca9c0fe9de32f8b504871044edaa446bef65ab966fb338&o=",
+  type: { fr: "Résidence hôtelière", en: "Hotel residence" },
+  priceLevel: 2,
+  features: [
+    { fr: "Studios & appartements équipés", en: "Studios & equipped apartments" },
+    { fr: "Piscine chauffée", en: "Heated pool" },
+    { fr: "Proche de La Rochelle par le pont", en: "Easy access from La Rochelle bridge" },
+  ],
+  stayAddress: "Résidence Odalys Rêve d'île, Rivedoux-Plage, Île de Ré",
+};
+
+const CLOS_PINS: OuDormirPick = {
+  name: "Résidence Le Clos des Pins",
+  village: "Rivedoux-Plage",
+  villageSlug: "rivedoux-plage",
+  photoIndex: 2,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/318036846.jpg?k=c4767d6e374bcccda036f03a0372c78b376c83ae9b54576a9db3aa4901b37c83&o=",
+  type: { fr: "Résidence", en: "Residence" },
+  priceLevel: 2,
+  features: [
+    { fr: "Mobil-homes & bungalows sous les pins", en: "Mobile homes & bungalows under pine trees" },
+    { fr: "Piscine", en: "Pool" },
+    { fr: "Entrée de l'île", en: "Island entrance location" },
+  ],
+  stayAddress: "Résidence Le Clos des Pins, Rivedoux-Plage, Île de Ré",
+};
+
+const LA_VIRGINIE: OuDormirPick = {
+  name: "La Virginie",
+  village: "La Couarde-sur-Mer",
+  villageSlug: "la-couarde-sur-mer",
+  photoIndex: 0,
+  imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/476368817.jpg?k=80798c303523ef6da8f49bdc73ebde19cb3a90313c54bbdd91cdca19ae1f6752&o=",
+  type: { fr: "Chambre d'hôtes", en: "B&B" },
+  priceLevel: 3,
+  features: [
+    { fr: "Maison de charme au cœur de l'île", en: "Charming house in the heart of the island" },
+    { fr: "Jardin & piscine privée", en: "Garden & private pool" },
+    { fr: "À vélo de la plage de la Couarde", en: "Cycling distance to La Couarde beach" },
+  ],
+  stayAddress: "La Virginie, La Couarde-sur-Mer, Île de Ré",
+};
+
 export const OU_DORMIR_PICKS: Record<string, OuDormirPick[]> = {
   "ou-dormir/hotels": [
     TOIRAS, RICHELIEU, CLOS_SAINT_MARTIN, SENECHAL, HOTEL_JETEE,
     OCEAN_BOIS, HIPPOCAMPE, MAREE_STE_MARIE, HOTEL_GRENETTES,
     BOIS_FLOTTAIS, GALIOTE, HOTEL_OYAT, HOTEL_FRANCAIS,
+    HOTEL_VIEUX_GREEMENT, HOTEL_CLOCHER, MARTRAY,
   ],
   "ou-dormir/hotels-luxe": [
-    TOIRAS, ATELIERS_IMAGE, BARONNIE, CLOS_SAINT_MARTIN, ATALANTE,
+    TOIRAS, ATELIERS_IMAGE, BARONNIE, CLOS_SAINT_MARTIN, ATALANTE, RELAX_SPA,
   ],
   "ou-dormir/hotels-de-charme": [
     RICHELIEU, SENECHAL, MARTRAY, VILLA_RHEA, HORTENSIAS,
-    HOTEL_JETEE, GALIOTE, VIGNES_CHAPELLE, HOTEL_PEU_BRETON,
+    HOTEL_JETEE, GALIOTE, VIGNES_CHAPELLE, HOTEL_PEU_BRETON, HOTEL_CLOCHER,
   ],
   "ou-dormir/hotels-bord-de-mer": [
     RICHELIEU, OCEAN_BOIS, YELLOH_ILATES, GRENETTES_CAMP,
-    HOTEL_GRENETTES, GRAND_LARGE, MAREE_STE_MARIE,
+    HOTEL_GRENETTES, GRAND_LARGE, MAREE_STE_MARIE, LA_PLAGE_RIVEDOUX,
   ],
   "ou-dormir/hotels-spa": [
-    BARONNIE, TOIRAS, CLOS_SAINT_MARTIN, ATALANTE, THALACAP, RICHELIEU,
+    BARONNIE, TOIRAS, CLOS_SAINT_MARTIN, ATALANTE, THALACAP, RICHELIEU, RELAX_SPA, AU_KRE,
   ],
   "ou-dormir/hotels-romantiques": [
     TOIRAS, ATELIERS_IMAGE, VILLA_RHEA, BARONNIE,
-    HOTEL_JETEE, CLOS_SAINT_MARTIN, CLOS_GALION,
+    HOTEL_JETEE, CLOS_GALION, CHAT_BOTTE, RELAX_SPA, UNE_PARENTHESE,
   ],
   "ou-dormir/hotels-pas-cher": [
     OCEAN_BOIS, HIPPOCAMPE, MAREE_STE_MARIE, PERGOLA,
-    HOTEL_DU_PORT, BOIS_FLOTTAIS, HOTEL_OYAT,
+    HOTEL_DU_PORT, BOIS_FLOTTAIS, HOTEL_OYAT, HOTEL_CLOCHER,
   ],
   "ou-dormir/hotels-avec-piscine": [
     YELLOH_TOUR, BARONNIE, RICHELIEU, INTERLUDE,
     CLOS_SAINT_MARTIN, ODESIA, ATALANTE, HOTEL_PEU_BRETON,
+    CLOS_VAUBAN, AU_KRE, UNE_PARENTHESE, LA_VIRGINIE,
   ],
   "ou-dormir/campings": [
     YELLOH_TOUR, YELLOH_ILATES, GRAINETIERE, GRILLOTIERE,
@@ -964,72 +1450,83 @@ export const OU_DORMIR_PICKS: Record<string, OuDormirPick[]> = {
     CAMPING_FOUGERES, CAMPING_MARAISES,
   ],
   "ou-dormir/glamping": [
-    YELLOH_TOUR, YELLOH_ILATES, LODGE_BALEINES, SLOW_VILLAGE,
+    YELLOH_TOUR, YELLOH_ILATES, LODGE_BALEINES, SLOW_VILLAGE, GLAMPING_FLOTTE,
   ],
   "ou-dormir/locations-vacances": [
     GITE_INTRA, MAISON_JARDIN, MAISON_PECHEUR, GITE_GROUPE, VILLA_FLOTS,
+    ILATTES, LA_PLAGE_RIVEDOUX, LES_PINS_RIVEDOUX, LES_ILES_RIVEDOUX,
+    BOIS_SAINT_MARTIN, ODALYS, CLOS_PINS,
   ],
   "ou-dormir/maisons-dhotes": [
-    VILLA_RHEA, COTE_MARAIS, MAISON_PHARE, HORTENSIAS,
-    CLOS_GALION, HOTE_PORTES,
+    VILLA_RHEA, COTE_MARAIS, MAISON_PHARE, HORTENSIAS, CLOS_GALION,
+    HOTE_PORTES, CORPS_DE_GARDE, CLOS_VAUBAN, LANTERNON, LE_SECRET,
+    BOIS_FLOTTES, MA_CHAMBRE_AMIS, ROSE_DES_VENTS, SOLEIL_DORE,
+    UNE_PARENTHESE, LA_VIRGINIE, ESCAPADE, CLOS_STERNES,
+    CLOS_MARAIS_ARS, CLOS_VIEUX_MOULINS, AU_KRE, LE_MOLE,
+    LE_PHARE, LE_BELEM,
   ],
   "ou-dormir/proche-plage": [
     YELLOH_TOUR, RICHELIEU, GRENETTES_CAMP, OCEAN_BOIS,
     GRILLOTIERE, GRAND_LARGE, HOTEL_GRENETTES, CAMPING_TAMARINS,
+    LA_PLAGE_RIVEDOUX, LES_PINS_RIVEDOUX, CHAT_BOTTE,
   ],
   "ou-dormir/en-famille": [
     YELLOH_TOUR, YELLOH_ILATES, GRAINETIERE, GRENETTES_CAMP,
     INTERLUDE, CAMPING_PEUPLIERS, ODESIA, ZECAMPING_BOIS,
+    LA_PLAGE_RIVEDOUX, LES_ILES_RIVEDOUX, CAMPING_PORTES,
   ],
   "ou-dormir/grand-groupe": [
-    GITE_GROUPE, VILLA_FLOTS, YELLOH_TOUR, YELLOH_ILATES,
+    GITE_GROUPE, VILLA_FLOTS, YELLOH_TOUR, YELLOH_ILATES, LES_ILES_RIVEDOUX,
   ],
   "ou-dormir/week-end-amoureux": [
     TOIRAS, ATELIERS_IMAGE, VILLA_RHEA, BARONNIE,
-    HOTEL_JETEE, CLOS_GALION, CHAT_BOTTE,
+    HOTEL_JETEE, CLOS_GALION, CHAT_BOTTE, RELAX_SPA,
+    CLOS_VIEUX_MOULINS, LANTERNON, LE_SECRET, CORPS_DE_GARDE,
   ],
   "ou-dormir/lune-de-miel": [
-    TOIRAS, BARONNIE, ATELIERS_IMAGE, CLOS_SAINT_MARTIN,
+    TOIRAS, BARONNIE, ATELIERS_IMAGE, CLOS_SAINT_MARTIN, RELAX_SPA,
+    CLOS_GALION, CHAT_BOTTE, CLOS_VAUBAN,
   ],
   "ou-dormir/animaux-acceptes": [
     GRILLOTIERE, GITE_NATURE, SENECHAL, MAISON_JARDIN,
-    ZECAMPING_ARS, ZECAMPING_BOIS,
+    ZECAMPING_ARS, ZECAMPING_BOIS, CLOS_MARAIS_ARS, CAMPING_PORTES,
   ],
   "ou-dormir/sans-voiture": [
     TOIRAS, RICHELIEU, ATELIERS_IMAGE, SENECHAL,
-    HOTEL_JETEE, HOTEL_DU_PORT, GALIOTE,
+    HOTEL_JETEE, HOTEL_DU_PORT, GALIOTE, HOTEL_CLOCHER, LE_MOLE, LE_BELEM,
   ],
   "ou-dormir/proche-port": [
     TOIRAS, ATELIERS_IMAGE, BARONNIE, HOTEL_JETEE,
-    HOTEL_DU_PORT, CLOS_GALION, HOTEL_DU_PORT,
+    HOTEL_DU_PORT, CLOS_GALION, LE_MOLE, HOTEL_VIEUX_GREEMENT, LE_BELEM,
   ],
   "ou-dormir/seminaire-entreprise": [
-    BARONNIE, RICHELIEU, TOIRAS, GITE_GROUPE, CLOS_SAINT_MARTIN,
+    BARONNIE, RICHELIEU, TOIRAS, GITE_GROUPE, CLOS_SAINT_MARTIN, ODESIA,
   ],
   "ou-dormir/reunion-famille": [
     GITE_GROUPE, VILLA_FLOTS, YELLOH_TOUR, MAISON_JARDIN, YELLOH_ILATES,
+    LES_ILES_RIVEDOUX, CAMPING_PEUPLIERS,
   ],
   "ou-dormir/anniversaire": [
-    TOIRAS, ATELIERS_IMAGE, RICHELIEU, BARONNIE, CLOS_SAINT_MARTIN,
+    TOIRAS, ATELIERS_IMAGE, RICHELIEU, BARONNIE, CLOS_SAINT_MARTIN, RELAX_SPA,
   ],
   "ou-dormir/evg": [
-    YELLOH_ILATES, GITE_GROUPE, SENECHAL, ZECAMPING_ARS,
+    YELLOH_ILATES, GITE_GROUPE, SENECHAL, ZECAMPING_ARS, CAMPING_PORTES,
   ],
   "ou-dormir/evjf": [
-    YELLOH_ILATES, VILLA_FLOTS, BARONNIE, ATALANTE,
+    YELLOH_ILATES, VILLA_FLOTS, BARONNIE, ATALANTE, RELAX_SPA, UNE_PARENTHESE,
   ],
   "ou-dormir/avec-piscine-interieure": [
     BARONNIE, TOIRAS, RICHELIEU, CLOS_SAINT_MARTIN,
   ],
   "ou-dormir/thalasso": [
-    ATALANTE, THALACAP, BARONNIE, TOIRAS,
+    ATALANTE, THALACAP, BARONNIE, TOIRAS, RELAX_SPA,
   ],
   "ou-dormir/ete-2026": [
     YELLOH_TOUR, YELLOH_ILATES, TOIRAS, GRAINETIERE, RICHELIEU,
-    CAMPING_PEUPLIERS, ZECAMPING_BOIS, INTERLUDE,
+    CAMPING_PEUPLIERS, ZECAMPING_BOIS, INTERLUDE, CAMPING_TAMARINS, BALEINES_CAMPING,
   ],
   "ou-dormir/ete-2027": [
     YELLOH_TOUR, YELLOH_ILATES, TOIRAS, GRAINETIERE, RICHELIEU,
-    CAMPING_PEUPLIERS, ZECAMPING_BOIS, INTERLUDE,
+    CAMPING_PEUPLIERS, ZECAMPING_BOIS, INTERLUDE, CAMPING_TAMARINS, BALEINES_CAMPING,
   ],
 };
