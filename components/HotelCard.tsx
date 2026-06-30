@@ -35,23 +35,25 @@ export function HotelCard({
 
   return (
     <article className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
-      {photo ? (
-        <div className="relative h-44 shrink-0 overflow-hidden">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
+      <div className="relative h-44 shrink-0 overflow-hidden">
+        {photo ? (
+          // eslint-disable-next-line @next/next/no-img-element
           <img src={photo} alt={name} className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-          {type ? (
-            <span className="absolute left-2 top-2 rounded-full bg-sea-deep/90 px-2.5 py-0.5 text-xs font-semibold text-white">
-              {type}
-            </span>
-          ) : null}
-          {stars ? (
-            <span className="absolute bottom-2 left-2 text-sm text-amber-300">
-              {"★".repeat(stars)}
-            </span>
-          ) : null}
-        </div>
-      ) : null}
+        ) : (
+          <div className="h-full w-full bg-gradient-to-br from-sea-deep/20 via-sand to-paper-2" />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+        {type ? (
+          <span className="absolute left-2 top-2 rounded-full bg-sea-deep/90 px-2.5 py-0.5 text-xs font-semibold text-white">
+            {type}
+          </span>
+        ) : null}
+        {stars ? (
+          <span className="absolute bottom-2 left-2 text-sm text-amber-300">
+            {"★".repeat(stars)}
+          </span>
+        ) : null}
+      </div>
       <div className="flex flex-1 flex-col p-4">
         <div className="flex items-start justify-between gap-2">
           <h3 className="font-display text-base font-semibold leading-tight text-ink">{name}</h3>

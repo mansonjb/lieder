@@ -95,7 +95,7 @@ export function AccommodationHighlights({
           const emoji = typeEmoji(frLabel);
           const scraped = hotelImages[`${slug}-${i}`];
           const photo = scraped || typePhoto(slug, i);
-          const s22href = stay22Url(`${r.name}, Île de Ré, France`);
+          const s22href = stay22Url(`${r.name}, Île de Ré, France`, r.name);
 
           return (
             <article

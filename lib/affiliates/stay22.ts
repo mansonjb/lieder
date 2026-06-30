@@ -36,11 +36,14 @@ export function stay22MapSrc(opts: Stay22MapOpts): string {
   return `https://www.stay22.com/embed/gm?${p.toString()}`;
 }
 
-/** Lien de secours (nouvelle fenetre) si l'utilisateur prefere ouvrir la recherche. */
-export function stay22Url(addressOrLabel: string): string {
+/** Lien Allez/Roam Stay22 (redirige vers Booking/Expedia avec tracking affiliation).
+ *  Passer hotelName pour cibler un établissement précis, sinon shows hotels near address. */
+export function stay22Url(address: string, hotelName?: string): string {
   const p = new URLSearchParams();
-  if (AID) p.set("aid", AID);
+  p.set("aid", AID || "partner");
+  p.set("campaign", "lieder");
+  if (hotelName) p.set("hotelname", hotelName);
+  p.set("address", address);
   if (LMA) p.set("lmaid", LMA);
-  p.set("address", addressOrLabel);
-  return `https://www.stay22.com/l/${AID || "partner"}?${p.toString()}`;
+  return `https://www.stay22.com/allez/roam?${p.toString()}`;
 }

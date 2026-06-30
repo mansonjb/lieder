@@ -3,6 +3,7 @@ export type OuDormirPick = {
   village: string;
   villageSlug: string;
   photoIndex: 0 | 1 | 2;
+  imageUrl?: string;
   type: { fr: string; en: string };
   stars?: number;
   priceLevel: 1 | 2 | 3 | 4;

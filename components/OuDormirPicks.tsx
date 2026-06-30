@@ -37,12 +37,12 @@ export function OuDormirPicks({
             key={pick.name}
             name={pick.name}
             village={pick.village}
-            photo={`/images/hotels/${pick.villageSlug}-${pick.photoIndex}.jpg`}
+            photo={pick.imageUrl}
             type={pick.type[locale]}
             stars={pick.stars}
             priceLevel={pick.priceLevel}
             features={pick.features.map((f) => f[locale])}
-            href={stay22Url(pick.stayAddress)}
+            href={stay22Url(pick.stayAddress, pick.name)}
             ctaLabel={ctaLabel}
           />
         ))}
