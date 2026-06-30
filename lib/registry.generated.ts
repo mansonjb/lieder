@@ -11485,8 +11485,8 @@ export const REGISTRY: PageEntry[] = [
       "preparer",
       "preparer/depuis-la-rochelle",
       "preparer/depuis-paris",
-      "preparer/en-train",
-      "preparer/sans-voiture"
+      "preparer/depuis-uk",
+      "preparer/en-train"
     ],
     "lastUpdated": "2026-06-22",
     "priority": 0.5,
@@ -11522,8 +11522,8 @@ export const REGISTRY: PageEntry[] = [
       "preparer",
       "preparer/acces-pont",
       "preparer/depuis-paris",
-      "preparer/en-train",
-      "preparer/sans-voiture"
+      "preparer/depuis-uk",
+      "preparer/en-train"
     ],
     "lastUpdated": "2026-06-22",
     "priority": 0.5,
@@ -11559,8 +11559,45 @@ export const REGISTRY: PageEntry[] = [
       "preparer",
       "preparer/acces-pont",
       "preparer/depuis-la-rochelle",
-      "preparer/en-train",
-      "preparer/sans-voiture"
+      "preparer/depuis-uk",
+      "preparer/en-train"
+    ],
+    "lastUpdated": "2026-06-22",
+    "priority": 0.5,
+    "parent": "preparer"
+  },
+  {
+    "key": "preparer/depuis-uk",
+    "silo": "preparer",
+    "template": "guide",
+    "intent": "informationnel",
+    "stay22": false,
+    "slug": {
+      "fr": "preparer/depuis-uk",
+      "en": "plan-your-trip/from-uk"
+    },
+    "title": {
+      "fr": "Venir depuis le Royaume-Uni",
+      "en": "Getting to Île de Ré from the UK"
+    },
+    "h1": {
+      "fr": "Venir depuis le Royaume-Uni",
+      "en": "Getting to Île de Ré from the UK"
+    },
+    "description": {
+      "fr": "Venir depuis le Royaume-Uni : l'essentiel à savoir et nos conseils pratiques, à jour, pour l'Île de Ré.",
+      "en": "Getting to Île de Ré from the UK: the essentials and our practical, up-to-date tips for Île de Ré."
+    },
+    "targetKeyword": {
+      "fr": "venir depuis le royaume-uni",
+      "en": "getting to île de ré from the uk"
+    },
+    "related": [
+      "preparer",
+      "preparer/acces-pont",
+      "preparer/depuis-la-rochelle",
+      "preparer/depuis-paris",
+      "preparer/en-train"
     ],
     "lastUpdated": "2026-06-22",
     "priority": 0.5,
@@ -11597,7 +11634,7 @@ export const REGISTRY: PageEntry[] = [
       "preparer/acces-pont",
       "preparer/depuis-la-rochelle",
       "preparer/depuis-paris",
-      "preparer/sans-voiture"
+      "preparer/depuis-uk"
     ],
     "lastUpdated": "2026-06-22",
     "priority": 0.5,
@@ -11634,7 +11671,7 @@ export const REGISTRY: PageEntry[] = [
       "preparer/acces-pont",
       "preparer/depuis-la-rochelle",
       "preparer/depuis-paris",
-      "preparer/en-train"
+      "preparer/depuis-uk"
     ],
     "lastUpdated": "2026-06-22",
     "priority": 0.5,
@@ -11671,7 +11708,7 @@ export const REGISTRY: PageEntry[] = [
       "preparer/acces-pont",
       "preparer/depuis-la-rochelle",
       "preparer/depuis-paris",
-      "preparer/en-train"
+      "preparer/depuis-uk"
     ],
     "lastUpdated": "2026-06-22",
     "priority": 0.5,
@@ -11708,7 +11745,7 @@ export const REGISTRY: PageEntry[] = [
       "preparer/acces-pont",
       "preparer/depuis-la-rochelle",
       "preparer/depuis-paris",
-      "preparer/en-train"
+      "preparer/depuis-uk"
     ],
     "lastUpdated": "2026-06-22",
     "priority": 0.5,
@@ -11745,7 +11782,7 @@ export const REGISTRY: PageEntry[] = [
       "preparer/acces-pont",
       "preparer/depuis-la-rochelle",
       "preparer/depuis-paris",
-      "preparer/en-train"
+      "preparer/depuis-uk"
     ],
     "lastUpdated": "2026-06-22",
     "priority": 0.5,
@@ -11782,7 +11819,7 @@ export const REGISTRY: PageEntry[] = [
       "preparer/acces-pont",
       "preparer/depuis-la-rochelle",
       "preparer/depuis-paris",
-      "preparer/en-train"
+      "preparer/depuis-uk"
     ],
     "lastUpdated": "2026-06-22",
     "priority": 0.5,
@@ -11828,7 +11865,7 @@ export const REGISTRY: PageEntry[] = [
       "preparer/acces-pont",
       "preparer/depuis-la-rochelle",
       "preparer/depuis-paris",
-      "preparer/en-train"
+      "preparer/depuis-uk"
     ],
     "lastUpdated": "2026-06-22",
     "priority": 0.5,
@@ -11865,7 +11902,7 @@ export const REGISTRY: PageEntry[] = [
       "preparer/acces-pont",
       "preparer/depuis-la-rochelle",
       "preparer/depuis-paris",
-      "preparer/en-train"
+      "preparer/depuis-uk"
     ],
     "lastUpdated": "2026-06-22",
     "priority": 0.5,
@@ -11902,7 +11939,7 @@ export const REGISTRY: PageEntry[] = [
       "preparer/acces-pont",
       "preparer/depuis-la-rochelle",
       "preparer/depuis-paris",
-      "preparer/en-train"
+      "preparer/depuis-uk"
     ],
     "lastUpdated": "2026-06-22",
     "priority": 0.5,
@@ -11939,7 +11976,7 @@ export const REGISTRY: PageEntry[] = [
       "preparer/acces-pont",
       "preparer/depuis-la-rochelle",
       "preparer/depuis-paris",
-      "preparer/en-train"
+      "preparer/depuis-uk"
     ],
     "lastUpdated": "2026-06-22",
     "priority": 0.5,
@@ -11976,7 +12013,7 @@ export const REGISTRY: PageEntry[] = [
       "preparer/acces-pont",
       "preparer/depuis-la-rochelle",
       "preparer/depuis-paris",
-      "preparer/en-train"
+      "preparer/depuis-uk"
     ],
     "lastUpdated": "2026-06-22",
     "priority": 0.5,
@@ -12013,7 +12050,7 @@ export const REGISTRY: PageEntry[] = [
       "preparer/acces-pont",
       "preparer/depuis-la-rochelle",
       "preparer/depuis-paris",
-      "preparer/en-train"
+      "preparer/depuis-uk"
     ],
     "lastUpdated": "2026-06-22",
     "priority": 0.5,
@@ -12050,7 +12087,7 @@ export const REGISTRY: PageEntry[] = [
       "preparer/acces-pont",
       "preparer/depuis-la-rochelle",
       "preparer/depuis-paris",
-      "preparer/en-train"
+      "preparer/depuis-uk"
     ],
     "lastUpdated": "2026-06-22",
     "priority": 0.5,
@@ -12096,7 +12133,7 @@ export const REGISTRY: PageEntry[] = [
       "preparer/acces-pont",
       "preparer/depuis-la-rochelle",
       "preparer/depuis-paris",
-      "preparer/en-train"
+      "preparer/depuis-uk"
     ],
     "lastUpdated": "2026-06-22",
     "priority": 0.5,
