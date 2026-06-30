@@ -5222,6 +5222,52 @@ export const REGISTRY: PageEntry[] = [
     "parent": "ou-dormir"
   },
   {
+    "key": "ou-dormir/hotels-milieu-de-gamme",
+    "silo": "ou-dormir",
+    "template": "ou-dormir",
+    "intent": "comparatif",
+    "stay22": true,
+    "slug": {
+      "fr": "ou-dormir/hotels-milieu-de-gamme",
+      "en": "where-to-stay/mid-range-hotels"
+    },
+    "title": {
+      "fr": "Hôtels 3★ rapport qualité-prix",
+      "en": "Mid-range 3-star hotels best value"
+    },
+    "h1": {
+      "fr": "Hôtels 3★ rapport qualité-prix",
+      "en": "Mid-range 3-star hotels best value"
+    },
+    "description": {
+      "fr": "Hôtels 3★ rapport qualité-prix : nos meilleures adresses par quartier et par budget, avec carte et comparatif pour réserver au bon endroit.",
+      "en": "Mid-range 3-star hotels best value: our top picks by area and budget, with a map and comparison table to book in the right place."
+    },
+    "targetKeyword": {
+      "fr": "hôtels 3★ rapport qualité-prix",
+      "en": "mid-range 3-star hotels best value"
+    },
+    "related": [
+      "ou-dormir",
+      "ou-dormir/rivedoux-plage",
+      "ou-dormir/sainte-marie-de-re",
+      "ou-dormir/la-flotte",
+      "ou-dormir/saint-martin-de-re"
+    ],
+    "lastUpdated": "2026-06-22",
+    "priority": 0.8,
+    "geo": {
+      "lat": 46.198,
+      "lng": -1.42,
+      "zoom": 11
+    },
+    "mapLabel": {
+      "fr": "l'Île de Ré",
+      "en": "Île de Ré"
+    },
+    "parent": "ou-dormir"
+  },
+  {
     "key": "ou-dormir/hotels-pas-cher",
     "silo": "ou-dormir",
     "template": "ou-dormir",
@@ -5292,6 +5338,52 @@ export const REGISTRY: PageEntry[] = [
     "targetKeyword": {
       "fr": "hôtels romantiques",
       "en": "romantic hotels"
+    },
+    "related": [
+      "ou-dormir",
+      "ou-dormir/rivedoux-plage",
+      "ou-dormir/sainte-marie-de-re",
+      "ou-dormir/la-flotte",
+      "ou-dormir/saint-martin-de-re"
+    ],
+    "lastUpdated": "2026-06-22",
+    "priority": 0.8,
+    "geo": {
+      "lat": 46.198,
+      "lng": -1.42,
+      "zoom": 11
+    },
+    "mapLabel": {
+      "fr": "l'Île de Ré",
+      "en": "Île de Ré"
+    },
+    "parent": "ou-dormir"
+  },
+  {
+    "key": "ou-dormir/thalasso",
+    "silo": "ou-dormir",
+    "template": "ou-dormir",
+    "intent": "comparatif",
+    "stay22": true,
+    "slug": {
+      "fr": "ou-dormir/thalasso",
+      "en": "where-to-stay/thalasso-hotels"
+    },
+    "title": {
+      "fr": "Hôtels thalasso et remise en forme",
+      "en": "Thalasso and wellness hotels"
+    },
+    "h1": {
+      "fr": "Hôtels thalasso et remise en forme",
+      "en": "Thalasso and wellness hotels"
+    },
+    "description": {
+      "fr": "Hôtels thalasso et remise en forme : nos meilleures adresses par quartier et par budget, avec carte et comparatif pour réserver au bon endroit.",
+      "en": "Thalasso and wellness hotels: our top picks by area and budget, with a map and comparison table to book in the right place."
+    },
+    "targetKeyword": {
+      "fr": "hôtels thalasso et remise en forme",
+      "en": "thalasso and wellness hotels"
     },
     "related": [
       "ou-dormir",
