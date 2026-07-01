@@ -848,6 +848,14 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
         )
       ) : null}
 
+      {/* Carte Stay22 immédiatement après les picks ou-dormir */}
+      {entry.template === "ou-dormir" && !isOuDormirRoot && stay ? (
+        <div className="mt-8">
+          <SectionDivider label={locale === "fr" ? "Carte des hébergements" : "Accommodation map"} />
+          <div className="mt-2">{stay}</div>
+        </div>
+      ) : null}
+
       {/* CTA Stay22 après le contenu éditorial */}
       {entry.stay22 ? (
         <Stay22InlineCta
@@ -874,7 +882,8 @@ export function PageBody({ entry, locale, dict, Body }: Props) {
         </div>
       ) : null}
 
-      {stay ? (
+      {/* Carte Stay22 pour les autres templates (pas les sous-pages ou-dormir, déjà affichée plus haut) */}
+      {(isOuDormirRoot || entry.template !== "ou-dormir") && stay ? (
         <div className="mt-8">
           <SectionDivider label={locale === "fr" ? "Hébergements à proximité" : "Nearby accommodation"} />
           <div className="mt-2">{stay}</div>
